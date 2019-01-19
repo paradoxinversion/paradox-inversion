@@ -1,0 +1,18 @@
+.logo {
+  font-size: 32px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+}
+
+.logo:hover {
+  cursor: pointer;
+}
+.logo__p {
+  color: white;
+}
+
+.logo__i {
+  color: red;
+}

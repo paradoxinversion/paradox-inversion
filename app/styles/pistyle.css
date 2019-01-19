@@ -1,0 +1,42 @@
+body {
+  font-family: sans-serif;
+}
+p {
+  font-size: 18px;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+#main-header {
+  background-color: black;
+  height: 105px;
+}
+#main-footer {
+  background-color: black;
+  color: white;
+  padding-left: 1rem;
+}
+.nav {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 0 1rem 0;
+}
+
+.nav__link {
+  color: white;
+  margin: 0 1rem 0 0;
+  text-decoration: none;
+  font-size: 22px;
+}
+
+.nav__link--active {
+  color: red;
+  border-bottom: 4px solid red;
+}
+#route-content {
+  margin: 1rem;
+  flex-grow: 1;
+}
