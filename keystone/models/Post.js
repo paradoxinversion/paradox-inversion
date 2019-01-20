@@ -14,6 +14,8 @@ Post.add({
     options: "draft, published, archived",
     default: "draft"
   },
+  category: { type: Types.Relationship, ref: "Category" },
+  tags: { type: Types.TextArray },
   author: { type: Types.Relationship, ref: "User" },
   createdAt: { type: Date, default: Date.now },
   publishedAt: Date,
@@ -22,6 +24,12 @@ Post.add({
     extended: { type: Types.Html, wysiwyg: true, height: 400 }
   }
 });
+Post.schema.pre("save", async function(next) {
+  this.tags = this.tags.map(category => {
+    return category.toLowerCase();
+  });
 
-Post.defaultColumns = "title, state|20%, author, publishedAt|15%";
+  next();
+});
+Post.defaultColumns = "title, state|20%, author, publishedAt|15%, category";
 Post.register();
