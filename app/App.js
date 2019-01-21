@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import Index from "./pages/Index/Index";
 import { NavLink, Route, Switch } from "react-router-dom";
 import Tech from "./pages/Tech/Tech";
@@ -8,52 +9,50 @@ import Games from "./pages/Games/Games";
 import PostIndex from "./Pages/PostIndex/PostIndex";
 import Post from "./components/Post/Post";
 import NotFound from "./pages/NotFound/NotFound";
+import Page from "./components/Page/Page";
 import Logo from "./components/Logo/Logo";
 import "./styles/style.css";
 import "./styles/pistyle.css";
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      pages: []
+    };
+  }
+  async componentDidMount() {
+    const pages = await axios.get("http://localhost:3000/api/pages");
+    this.setState({
+      pages: pages.data
+    });
+  }
   render() {
     return (
       <React.Fragment>
         <header id="main-header">
           <Logo />
           <div className="nav">
-            <NavLink
-              activeClassName="nav__link--active"
-              className="nav__link"
-              to="/fiction">
-              Fiction
-            </NavLink>
-            <NavLink
-              activeClassName="nav__link--active"
-              className="nav__link"
-              to="/tech">
-              Tech
-            </NavLink>
-            <NavLink
-              activeClassName="nav__link--active"
-              className="nav__link"
-              to="/games">
-              Games
-            </NavLink>
-            <NavLink
-              activeClassName="nav__link--active"
-              className="nav__link"
-              to="/about">
-              About
-            </NavLink>
+            {this.state.pages.map(page => (
+              <NavLink
+                activeClassName="nav__link--active"
+                className="nav__link"
+                to={`/${page.slug}`}>
+                {page.title}
+              </NavLink>
+            ))}
           </div>
         </header>
         <main id="route-content">
           <Switch>
             <Route exact path="/" component={Index} />
+
             <Route path="/post/:year/:month/:day/:slug" component={Post} />
             {/* Searchtype: tagged, or category? */}
             <Route path="/posts/:searchType/:query" component={PostIndex} />
-            <Route path="/tech" component={Tech} />
-            <Route path="/games" component={Games} />
-            <Route path="/about" component={About} />
-            <Route path="/fiction" component={Fiction} />
+            <Route
+              path="/:page"
+              render={() => <Page pageData={this.state.pages} />}
+            />
             <Route component={NotFound} />
           </Switch>
         </main>

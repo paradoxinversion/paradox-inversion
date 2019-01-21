@@ -22,7 +22,8 @@ Post.add({
   content: {
     brief: { type: Types.Html, wysiwyg: true, height: 150 },
     extended: { type: Types.Html, wysiwyg: true, height: 400 }
-  }
+  },
+  page: { type: Types.Relationship, ref: "Page" }
 });
 Post.schema.pre("save", async function(next) {
   this.tags = this.tags.map(category => {

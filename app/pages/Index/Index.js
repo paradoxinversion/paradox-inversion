@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import PostTeaserList from "../../components/PostTeaserList/PostTeaserList";
 class Index extends React.Component {
   constructor(props) {

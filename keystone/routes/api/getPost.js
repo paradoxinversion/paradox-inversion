@@ -1,7 +1,9 @@
 var keystone = require("keystone");
 var Post = keystone.list("Post");
-var Category = keystone.list("Category");
 
+/**
+ * Return an individual post by it's slug or an error declaring none match,
+ */
 module.exports = async function(req, res) {
   let post;
   let slugQuery = req.query.slug;

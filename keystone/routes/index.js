@@ -10,4 +10,5 @@ exports = module.exports = function(app) {
   app.all("/api*", keystone.middleware.cors);
   app.get("/api/posts", routes.api.getPosts);
   app.get("/api/post", routes.api.getPost);
+  app.get("/api/pages", routes.api.getPages);
 };
