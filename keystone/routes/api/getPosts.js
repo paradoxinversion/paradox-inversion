@@ -6,9 +6,13 @@ module.exports = async function(req, res) {
   let posts;
   let categoryQuery = req.query.category;
   if (categoryQuery) {
-    const category = await Category.model.find({ name: categoryQuery });
+    const category = await Category.model.find({
+      name: categoryQuery
+    });
     if (category) {
-      posts = await Post.model.find({ category: category });
+      posts = await Post.model
+        .find({ category: category, state: "published" })
+        .populate("category");
     } else {
       res.json([]);
     }

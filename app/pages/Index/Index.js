@@ -1,20 +1,21 @@
 import React from "react";
 import axios from "axios";
 import Post from "../../components/Post/Post";
+import PostTeaser from "../../components/PostTeaser/PostTeaser";
 class Index extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      testPost: null
+      content: []
     };
   }
   async componentDidMount() {
-    const test = await axios.get(
+    const postData = await axios.get(
       "http://localhost:3000/api/posts?category=Announcements"
     );
-    console.log(test);
+    console.log(postData);
     this.setState({
-      testPost: test.data[0]
+      content: postData.data
     });
   }
   render() {
@@ -24,7 +25,13 @@ class Index extends React.Component {
           <h1>Welcome to Paradox Inversion</h1>
         </header>
         <p>We're under construction.</p>
-        {this.state.testPost !== null && <Post post={this.state.testPost} />}
+        {this.state.content !== null && (
+          <div>
+            {this.state.content.map(post => (
+              <PostTeaser key={post.slug} post={post} />
+            ))}
+          </div>
+        )}
       </div>
     );
   }

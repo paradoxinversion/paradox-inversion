@@ -5,6 +5,7 @@ import Tech from "./pages/Tech/Tech";
 import About from "./pages/About/About";
 import Fiction from "./pages/Fiction/Fiction";
 import Games from "./pages/Games/Games";
+import Posts from "./Pages/Posts/Posts";
 import NotFound from "./pages/NotFound/NotFound";
 import Logo from "./components/Logo/Logo";
 import "./styles/style.css";
@@ -45,6 +46,7 @@ class App extends React.Component {
         <main id="route-content">
           <Switch>
             <Route exact path="/" component={Index} />
+            <Route path="/posts" component={Posts} />
             <Route path="/tech" component={Tech} />
             <Route path="/games" component={Games} />
             <Route path="/about" component={About} />
