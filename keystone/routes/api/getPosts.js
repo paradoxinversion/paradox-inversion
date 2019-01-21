@@ -2,6 +2,10 @@ var keystone = require("keystone");
 var Post = keystone.list("Post");
 var Category = keystone.list("Category");
 
+/**
+ * Get all posts matching a category or tag,
+ * depending on which queryParameter is used (category or tagged)
+ */
 module.exports = async function(req, res) {
   let posts;
   let categoryQuery = req.query.category;
