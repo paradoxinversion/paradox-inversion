@@ -5,7 +5,8 @@ import Tech from "./pages/Tech/Tech";
 import About from "./pages/About/About";
 import Fiction from "./pages/Fiction/Fiction";
 import Games from "./pages/Games/Games";
-import Posts from "./Pages/Posts/Posts";
+import PostIndex from "./Pages/PostIndex/PostIndex";
+import Post from "./components/Post/Post";
 import NotFound from "./pages/NotFound/NotFound";
 import Logo from "./components/Logo/Logo";
 import "./styles/style.css";
@@ -46,7 +47,9 @@ class App extends React.Component {
         <main id="route-content">
           <Switch>
             <Route exact path="/" component={Index} />
-            <Route path="/posts" component={Posts} />
+            <Route path="/post/:year/:month/:day/:slug" component={Post} />
+            {/* Searchtype: tagged, or category? */}
+            <Route path="/posts/:searchType/:query" component={PostIndex} />
             <Route path="/tech" component={Tech} />
             <Route path="/games" component={Games} />
             <Route path="/about" component={About} />

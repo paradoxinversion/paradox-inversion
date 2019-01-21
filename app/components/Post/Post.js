@@ -1,6 +1,9 @@
 import React from "react";
 import axios from "axios";
 import { Switch, Route, withRouter, Redirect } from "react-router-dom";
+import moment from "moment";
+import TagList from "../TagList/TagList";
+import { formatDate } from "../../utilityFunctions";
 class Post extends React.Component {
   constructor(props) {
     super(props);
@@ -10,35 +13,42 @@ class Post extends React.Component {
   }
   async componentDidMount() {
     const post = await axios.get(
-      `http://localhost:3000/api/post?slug=${this.props.match.params.postSlug}`
+      `http://localhost:3000/api/post?slug=${this.props.match.params.slug}`
     );
-    console.log(post.data);
     this.setState({
       postData: post.data
     });
   }
+
   render() {
-    console.log(this.state.postData);
+    const { postData } = this.state;
     return (
       <React.Fragment>
-        {this.state.postData ? (
+        {postData ? (
           <React.Fragment>
-            {!this.state.postData.error ? (
-              <div>
-                <p>{this.state.postData.title}</p>
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: this.state.postData.content.extended
-                  }}
-                />
-              </div>
+            {!postData.error ? (
+              <React.Fragment>
+                <div>
+                  <p>{postData.title}</p>
+                  <p>{formatDate(postData.publishedAt)}</p>
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: postData.content.extended
+                    }}
+                  />
+                </div>
+                <div>
+                  <p>Category: {postData.category.name}</p>
+                  <TagList tags={postData.tags} />
+                </div>
+              </React.Fragment>
             ) : (
               <Redirect to="/404" />
             )}
           </React.Fragment>
         ) : (
           <div>
-            <p>Loading PostData</p>
+            <p>Loading post...</p>
           </div>
         )}
       </React.Fragment>

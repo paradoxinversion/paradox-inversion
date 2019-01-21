@@ -26,7 +26,10 @@ Post.add({
 });
 Post.schema.pre("save", async function(next) {
   this.tags = this.tags.map(category => {
-    return category.toLowerCase();
+    return category
+      .toLowerCase()
+      .split(" ")
+      .join("-");
   });
 
   next();

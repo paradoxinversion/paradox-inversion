@@ -5,6 +5,8 @@ var Category = keystone.list("Category");
 module.exports = async function(req, res) {
   let posts;
   let categoryQuery = req.query.category;
+  let tagQuery = req.query.tagged;
+  console.log(req.query);
   if (categoryQuery) {
     const category = await Category.model.find({
       name: categoryQuery
@@ -14,13 +16,22 @@ module.exports = async function(req, res) {
         .find({ category: category, state: "published" })
         .populate("category");
     } else {
-      res.json([]);
+      posts = [];
     }
+  } else if (tagQuery) {
+    console.log("weee");
+    console.log(tagQuery);
+    posts = await Post.model
+      .find()
+      .populate("category")
+      .where("tags")
+      .in([tagQuery]);
   } else {
-    posts = await Post.model.find({});
+    // posts = await Post.model.find({ state: "published" }).populate("category");
+    posts = [];
   }
   if (posts) {
     return res.json(posts);
   }
-  return res.json({});
+  return res.json([]);
 };
