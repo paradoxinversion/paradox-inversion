@@ -4,6 +4,7 @@ import { Switch, Route, withRouter, Redirect } from "react-router-dom";
 import moment from "moment";
 import TagList from "../TagList/TagList";
 import { formatDate } from "../../utilityFunctions";
+import "./Post.css";
 class Post extends React.Component {
   constructor(props) {
     super(props);
@@ -27,21 +28,23 @@ class Post extends React.Component {
         {postData ? (
           <React.Fragment>
             {!postData.error ? (
-              <React.Fragment>
-                <div>
-                  <p>{postData.title}</p>
-                  <p>{formatDate(postData.publishedAt)}</p>
+              <div className="post">
+                <div className="post__content">
+                  <h1 className="post__content__title">{postData.title}</h1>
+                  <p className="post__content__date">
+                    {formatDate(postData.publishedAt)}
+                  </p>
                   <div
                     dangerouslySetInnerHTML={{
                       __html: postData.content.extended
                     }}
                   />
                 </div>
-                <div>
+                <div className="post__metadata">
                   <p>Category: {postData.category.name}</p>
                   <TagList tags={postData.tags} />
                 </div>
-              </React.Fragment>
+              </div>
             ) : (
               <Redirect to="/404" />
             )}

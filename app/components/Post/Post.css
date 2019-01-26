@@ -1,0 +1,9 @@
+.post {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.post__content__date {
+  font-style: italic;
+}

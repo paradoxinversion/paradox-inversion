@@ -15,8 +15,20 @@ class PostTeaserList extends React.Component {
   async componentDidMount() {
     const postData = await this.fetchPosts();
     this.setState({
-      content: postData.data
+      content: postData
     });
+  }
+
+  async componentDidUpdate(prevProps, prevState) {
+    if (
+      prevProps.searchType !== this.props.searchType ||
+      prevProps.query !== this.props.query
+    ) {
+      const newPosts = await this.fetchPosts();
+      this.setState({
+        content: newPosts
+      });
+    }
   }
 
   async fetchPosts() {
@@ -25,14 +37,13 @@ class PostTeaserList extends React.Component {
     });
     const baseUrl = "http://localhost:3000/api/posts";
     const { searchType, query } = this.props;
-    const url = `${baseUrl}?${searchType}=${query}`;
+    const url = `${baseUrl}?searchType=${searchType}&query=${query}`;
     const postData = await axios.get(url);
     this.setState({
       fetchingPosts: false
     });
-    return postData;
+    return postData.data;
   }
-
   render() {
     return (
       <div>
