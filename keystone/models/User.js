@@ -2,7 +2,8 @@ const keystone = require("keystone");
 
 // Create a list of Users
 const User = new keystone.List("User", {
-  autokey: { path: "slug", from: "displayName" }
+  autokey: { path: "slug", from: "displayName" },
+  map: { name: "displayName" }
 });
 
 // Add fields to the User model

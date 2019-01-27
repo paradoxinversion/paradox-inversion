@@ -1,21 +1,52 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import PostTeaserList from "../PostTeaserList/PostTeaserList";
-const Page = ({ pageData, match }) => {
-  const thisPage = pageData.filter(page => page.slug === match.params.page);
-  return (
-    <div>
-      {thisPage.length > 0 ? (
-        <React.Fragment>
-          <h1>{thisPage[0].title}</h1>
-          <div dangerouslySetInnerHTML={{ __html: thisPage[0].content }} />
-          <PostTeaserList searchType="page" query={thisPage[0].slug} />
-        </React.Fragment>
-      ) : (
-        <p>Loading</p>
-      )}
-    </div>
-  );
+const Page = ({ pageData, match, useIndex, getPagePosts }) => {
+  // useIndex forces this component to render the index page.
+  const pageFilter = useIndex
+    ? pageData.filter(page => page.isIndex)
+    : pageData.filter(page => page.slug === match.params.page);
+  const thisPage = pageFilter[0];
+  if (!thisPage) {
+    return (
+      <div>
+        <header>
+          <h1>Yikes...</h1>
+        </header>
+        <p>
+          The page you're looking for doesn't exist. You can try going back or{" "}
+          <Link to="/">clicking here to go home.</Link>
+        </p>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        {thisPage ? (
+          <React.Fragment>
+            <h1>{thisPage.title}</h1>
+            <div dangerouslySetInnerHTML={{ __html: thisPage.content }} />
+            {getPagePosts && (
+              <PostTeaserList searchType="page" query={thisPage.slug} />
+            )}
+            {thisPage.pagePostSections.length > 0 &&
+              thisPage.pagePostSections.map(postSection => {
+                const typeAndQuery = postSection.split(" ");
+                return (
+                  <PostTeaserList
+                    key={`teaset-${typeAndQuery[0]}-${typeAndQuery[1]}`}
+                    searchType={typeAndQuery[0]}
+                    query={typeAndQuery[1]}
+                  />
+                );
+              })}
+          </React.Fragment>
+        ) : (
+          <p>Loading</p>
+        )}
+      </div>
+    );
+  }
 };
 
 export default withRouter(Page);

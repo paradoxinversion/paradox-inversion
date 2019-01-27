@@ -33,6 +33,10 @@ Post.schema.pre("save", async function(next) {
       .join("-");
   });
 
+  if (this.state === "published" && !this.publishedAt) {
+    this.publishedAt = Date.now();
+  }
+
   next();
 });
 Post.defaultColumns = "title, state|20%, author, publishedAt|15%, category";

@@ -2,10 +2,6 @@ import React from "react";
 import axios from "axios";
 import Index from "./pages/Index/Index";
 import { NavLink, Route, Switch } from "react-router-dom";
-import Tech from "./pages/Tech/Tech";
-import About from "./pages/About/About";
-import Fiction from "./pages/Fiction/Fiction";
-import Games from "./pages/Games/Games";
 import PostIndex from "./Pages/PostIndex/PostIndex";
 import Post from "./components/Post/Post";
 import NotFound from "./pages/NotFound/NotFound";
@@ -17,45 +13,91 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pages: []
+      pages: [],
+      isLoading: true,
+      error: null
     };
   }
   async componentDidMount() {
-    const pages = await axios.get("http://localhost:3000/api/pages");
-    this.setState({
-      pages: pages.data
-    });
+    try {
+      const pages = await axios.get("http://localhost:3000/api/pages");
+      this.setState({
+        pages: pages.data,
+        isLoading: false
+      });
+    } catch (e) {
+      this.setState({
+        error: e,
+        isLoading: false
+      });
+    }
   }
+
+  renderPageLoading() {
+    return <p>Loading Paradox Inversion...</p>;
+  }
+
+  renderError() {
+    return (
+      <div>
+        <h1>Something went very wrong...</h1>
+        <p>
+          An error occured while loading the site data. Try waiting a minute or
+          two and reloading the page.
+        </p>
+        <h3>What the heck happened?</h3>
+        <p>{this.state.error.message}</p>
+      </div>
+    );
+  }
+  renderRouteContent() {
+    return (
+      <Switch>
+        <Route
+          exact
+          path="/"
+          render={() => <Index pageData={this.state.pages} />}
+        />
+        <Route path="/post/:year/:month/:day/:slug" component={Post} />
+        <Route path="/posts/:searchType/:query" component={PostIndex} />
+        <Route
+          path="/:page"
+          render={() => (
+            <Page pageData={this.state.pages} getPagePosts={true} />
+          )}
+        />
+        <Route component={NotFound} />
+      </Switch>
+    );
+  }
+
   render() {
     return (
       <React.Fragment>
         <header id="main-header">
           <Logo />
           <div className="nav">
-            {this.state.pages.map(page => (
-              <NavLink
-                activeClassName="nav__link--active"
-                className="nav__link"
-                to={`/${page.slug}`}>
-                {page.title}
-              </NavLink>
-            ))}
+            {this.state.pages
+              .filter(page => !page.isIndex)
+              .map(page => (
+                <NavLink
+                  key={`navlink-${page.slug}`}
+                  activeClassName="nav__link--active"
+                  className="nav__link"
+                  to={`/${page.slug}`}>
+                  {page.title}
+                </NavLink>
+              ))}
           </div>
         </header>
         <main id="route-content">
-          <Switch>
-            <Route exact path="/" component={Index} />
-
-            <Route path="/post/:year/:month/:day/:slug" component={Post} />
-            {/* Searchtype: tagged, or category? */}
-            <Route path="/posts/:searchType/:query" component={PostIndex} />
-            <Route
-              path="/:page"
-              render={() => <Page pageData={this.state.pages} />}
-            />
-            <Route component={NotFound} />
-          </Switch>
+          {this.state.isLoading && !this.state.error
+            ? this.renderPageLoading()
+            : !this.state.error
+            ? this.renderRouteContent()
+            : this.renderError()}
         </main>
+
         <footer id="main-footer">
           <p>By Jedai Saboteur</p>
         </footer>

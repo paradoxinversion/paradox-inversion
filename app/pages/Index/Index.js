@@ -1,22 +1,11 @@
 import React from "react";
-import axios from "axios";
-import PostTeaserList from "../../components/PostTeaserList/PostTeaserList";
-class Index extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div>
-        <header>
-          <h1>Welcome to Paradox Inversion</h1>
-        </header>
-        <p>We're under construction.</p>
-        <PostTeaserList searchType="category" query="Announcements" />
-      </div>
-    );
-  }
-}
+import Page from "../../components/Page/Page";
+const Index = ({ pageData }) => {
+  return (
+    <div>
+      <Page pageData={pageData} useIndex={true} />
+    </div>
+  );
+};
 
 export default Index;
