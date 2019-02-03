@@ -25,7 +25,7 @@
     "start": "node ./keystone/keystone.js",
     "build-client": "parcel build ./app/index.html",
     "keystone-dev": "nodemon keystone/keystone.js",
-    "heroku-postbuild": "build-client"
+    "heroku-postbuild": "yarn run build-client"
   },
   "browserslist": [
     "since 2017-06"
