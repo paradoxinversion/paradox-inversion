@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import axiosInstance from "../../axiosInstance";
 import { Switch, Route, withRouter, Redirect } from "react-router-dom";
 import moment from "moment";
 import TagList from "../TagList/TagList";
@@ -13,8 +14,8 @@ class Post extends React.Component {
     };
   }
   async componentDidMount() {
-    const post = await axios.get(
-      `http://localhost:3000/api/post?slug=${this.props.match.params.slug}`
+    const post = await axiosInstance.get(
+      `/post?slug=${this.props.match.params.slug}`
     );
     this.setState({
       postData: post.data

@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Post from "../../components/Post/Post";
+import axiosInstance from "../../axiosInstance";
 import PostTeaser from "../../components/PostTeaser/PostTeaser";
 import { withRouter } from "react-router-dom";
 class PostTeaserList extends React.Component {
@@ -35,10 +36,11 @@ class PostTeaserList extends React.Component {
     await this.setState({
       fetchingPosts: true
     });
-    const baseUrl = "http://localhost:3000/api/posts";
     const { searchType, query } = this.props;
-    const url = `${baseUrl}?searchType=${searchType}&query=${query}`;
-    const postData = await axios.get(url);
+
+    const postData = await axiosInstance(
+      `/posts?searchType=${searchType}&query=${query}`
+    );
     this.setState({
       fetchingPosts: false
     });

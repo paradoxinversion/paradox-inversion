@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import axiosIntance from "./axiosInstance";
 import Index from "./pages/Index/Index";
 import { NavLink, Route, Switch } from "react-router-dom";
 import PostIndex from "./pages/PostIndex/PostIndex";
@@ -20,7 +21,7 @@ class App extends React.Component {
   }
   async componentDidMount() {
     try {
-      const pages = await axios.get("http://localhost:3000/api/pages");
+      const pages = await axiosIntance.get("/pages");
       this.setState({
         pages: pages.data,
         isLoading: false
