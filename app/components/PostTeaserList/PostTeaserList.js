@@ -44,27 +44,36 @@ class PostTeaserList extends React.Component {
     });
     return postData.data;
   }
+
+  renderTeaserList() {
+    return (
+      <div>
+        <h3>
+          {this.props.searchType === "page"
+            ? `Recent Posts`
+            : this.props.searchType === "category"
+            ? `Recent Posts in ${this.props.query}`
+            : `Recent Posts tagged ${this.props.query}`}
+        </h3>
+        {this.state.content.length > 0 ? (
+          <React.Fragment>
+            {this.state.content.map(post => (
+              <PostTeaser key={post.slug} post={post} />
+            ))}
+          </React.Fragment>
+        ) : (
+          <p>
+            Couldn't find any tagged or category posts with the name '
+            {this.props.query}'.
+          </p>
+        )}
+      </div>
+    );
+  }
   render() {
     return (
       <div>
-        {this.state.fetchingPosts ? (
-          <p>Fetching</p>
-        ) : (
-          <div>
-            {this.state.content.length > 0 ? (
-              <React.Fragment>
-                {this.state.content.map(post => (
-                  <PostTeaser key={post.slug} post={post} />
-                ))}
-              </React.Fragment>
-            ) : (
-              <p>
-                No posts found in '{this.props.searchType}' with the name '
-                {this.props.query}'
-              </p>
-            )}
-          </div>
-        )}
+        {this.state.content.length > 0 ? this.renderTeaserList() : null}
       </div>
     );
   }

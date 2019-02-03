@@ -20,6 +20,7 @@
   },
   "scripts": {
     "start": "parcel ./app/index.html --no-cache",
+    "build-client": "parcel build ./app/index.html",
     "keystone-dev": "nodemon keystone/keystone.js",
     "start-dev": "concurrently \"yarn start\" \"yarn run keystone-dev\""
   },

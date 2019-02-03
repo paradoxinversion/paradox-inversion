@@ -15,8 +15,9 @@ module.exports = async function(req, res) {
     switch (searchType) {
       case "category":
         const category = await Category.model.find({
-          name: query
+          slug: query
         });
+
         if (category) {
           posts = await Post.model
             .find({ category: category, state: "published" })
@@ -32,13 +33,11 @@ module.exports = async function(req, res) {
           .where("tags")
           .in([query]);
 
-        console.log("found", posts);
         break;
       case "page":
         const page = await Page.model.find({
           slug: query
         });
-        console.log(page);
         if (page) {
           posts = await Post.model.find({ page: page, state: "published" });
         } else {
@@ -48,11 +47,9 @@ module.exports = async function(req, res) {
         break;
     }
   } else {
-    console.log("elsecase");
     posts = [];
   }
   if (posts) {
     return res.json(posts);
   }
-  // return res.json([]);
 };

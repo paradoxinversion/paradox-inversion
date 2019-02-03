@@ -5,7 +5,8 @@ keystone.init({
   "user model": "User",
   "auto update": true,
   auth: true,
-  "trust proxy": "loopback"
+  "trust proxy": "loopback",
+  static: "../dist"
 });
 keystone.set("cors allow origin", true);
 // Import our models directory
