@@ -18,11 +18,14 @@
     "nodemon": "^1.18.9",
     "parcel-bundler": "^1.11.0"
   },
+  "engines": {
+    "node": "9.3.0"
+  },
   "scripts": {
-    "start": "parcel ./app/index.html --no-cache",
+    "start": "node ./keystone/keystone.js",
     "build-client": "parcel build ./app/index.html",
     "keystone-dev": "nodemon keystone/keystone.js",
-    "start-dev": "concurrently \"yarn start\" \"yarn run keystone-dev\""
+    "heroku-postbuild": "build-client"
   },
   "browserslist": [
     "since 2017-06"
