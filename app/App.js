@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import Index from "./pages/Index/Index";
 import { NavLink, Route, Switch } from "react-router-dom";
-import PostIndex from "./Pages/PostIndex/PostIndex";
+import PostIndex from "./pages/PostIndex/PostIndex";
 import Post from "./components/Post/Post";
 import NotFound from "./pages/NotFound/NotFound";
 import Page from "./components/Page/Page";
