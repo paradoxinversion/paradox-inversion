@@ -37,7 +37,8 @@ p {
   border-bottom: 4px solid red;
 }
 #route-content {
-  margin: 1rem;
-  flex-grow: 1;
+  margin: 0 1rem;
+  flex: 1;
   display: flex;
+  overflow-y: scroll;
 }

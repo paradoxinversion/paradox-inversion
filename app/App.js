@@ -3,6 +3,8 @@ import axios from "axios";
 import axiosIntance from "./axiosInstance";
 import Index from "./pages/Index/Index";
 import { NavLink, Route, Switch } from "react-router-dom";
+import { hot } from "react-hot-loader";
+
 import PostIndex from "./pages/PostIndex/PostIndex";
 import Post from "./components/Post/Post";
 import NotFound from "./pages/NotFound/NotFound";
@@ -107,4 +109,5 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default hot(module)(App);
+// export default App;
