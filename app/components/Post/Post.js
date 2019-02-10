@@ -35,6 +35,7 @@ class Post extends React.Component {
                   <p className="post__content__date">
                     {formatDate(postData.publishedAt)}
                   </p>
+                  <hr />
                   <div
                     dangerouslySetInnerHTML={{
                       __html: postData.content.extended

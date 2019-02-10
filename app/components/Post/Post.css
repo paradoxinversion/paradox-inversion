@@ -4,9 +4,9 @@
   justify-content: space-between;
   width: 100%;
   padding: 1rem 0;
-  font-family: "Times New Roman", Times, serif;
 }
 
 .post__content__date {
   font-style: italic;
+  margin-bottom: 1rem;
 }

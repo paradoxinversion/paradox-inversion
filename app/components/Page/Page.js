@@ -24,7 +24,6 @@ const Page = ({ pageData, match, useIndex, getPagePosts }) => {
       <div>
         {thisPage ? (
           <React.Fragment>
-            <h1>{thisPage.title}</h1>
             <div dangerouslySetInnerHTML={{ __html: thisPage.content }} />
             {getPagePosts && (
               <PostTeaserList searchType="page" query={thisPage.slug} />

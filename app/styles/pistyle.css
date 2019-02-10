@@ -165,8 +165,26 @@
 body {
   font-family: "Open Sans", sans-serif;
 }
+
+h1 {
+  font-family: "Comfortaa";
+  font-weight: 700;
+  font-size: 48px;
+  margin-block-start: 0.5rem;
+  margin-block-end: 0.5rem;
+}
+
+h2 {
+  font-family: "Comfortaa";
+  font-weight: 700;
+  font-size: 32px;
+  margin-block-start: 0.5rem;
+  margin-block-end: 0.5rem;
+}
 p {
   font-size: 18px;
+  margin-block-start: 0.5rem;
+  margin-block-end: 1.5rem;
 }
 
 #app {
