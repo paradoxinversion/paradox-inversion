@@ -159,6 +159,7 @@
 }
 :root {
   --main-header-height: 105px;
+  --route-content-padding: 1rem 0;
   --main-footer-height: 80px;
 }
 
@@ -202,9 +203,9 @@ p {
   height: var(--main-footer-height);
 }
 .nav {
-  display: flex;
-  justify-content: center;
-  padding: 0.5rem 0 1rem 0;
+  padding: 0.5rem 1rem 1rem 1rem;
+  overflow-x: scroll;
+  text-align: center;
 }
 
 .nav__link {
@@ -212,6 +213,7 @@ p {
   margin: 0 1rem 0 0;
   text-decoration: none;
   font-size: 22px;
+  white-space: nowrap;
 }
 
 .nav__link--active {
@@ -224,6 +226,14 @@ p {
   display: flex;
   overflow-y: scroll;
   min-height: calc(
-    100vh - var(--main-header-height) - var(--main-footer-height)
+    100vh -
+      (
+        var(--main-header-height) + var(--main-footer-height) +
+          var(--route-content-padding)
+      )
   );
+  padding: var(--route-content-padding);
+}
+
+@media screen and (min-width: 500px) {
 }
