@@ -31,12 +31,16 @@ class Post extends React.Component {
             {!postData.error ? (
               <div className="post">
                 <div className="post__content">
-                  <h1 className="post__content__title">{postData.title}</h1>
-                  <p className="post__content__date">
-                    {formatDate(postData.publishedAt)}
-                  </p>
+                  <header>
+                    <h1 className="post__content__title">{postData.title}</h1>
+                    <p className="post__content__date">
+                      {formatDate(postData.publishedAt)}
+                    </p>
+                  </header>
+
                   <hr />
                   <div
+                    className="post__content__html"
                     dangerouslySetInnerHTML={{
                       __html: postData.content.extended
                     }}

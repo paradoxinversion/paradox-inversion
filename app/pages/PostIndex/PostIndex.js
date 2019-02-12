@@ -3,7 +3,7 @@ import PostTeaserList from "../../components/PostTeaserList/PostTeaserList";
 
 const PostIndex = ({ match }) => {
   return (
-    <div>
+    <div className="post-index">
       <PostTeaserList
         searchType={match.params.searchType}
         query={match.params.query}

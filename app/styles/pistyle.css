@@ -236,7 +236,6 @@ p {
   border-bottom: 4px solid red;
 }
 #route-content {
-  margin: 0 1rem;
   overflow-y: scroll;
   padding: var(--route-content-padding);
 }
@@ -244,5 +243,9 @@ p {
 @media screen and (min-width: 1000px) {
   .nav {
     justify-content: center;
+  }
+  .post-index {
+    width: 60%;
+    margin: 0 auto;
   }
 }

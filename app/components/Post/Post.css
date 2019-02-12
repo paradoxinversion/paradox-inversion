@@ -11,9 +11,16 @@
 }
 
 .post__metadata {
-  margin-bottom: 1rem;
+  margin: 1rem;
 }
 
 .post__content {
-  margin-top: 1rem;
+  margin: 1rem;
+}
+
+@media screen and (min-width: 1000px) {
+  .post {
+    width: 60%;
+    margin: 0 auto;
+  }
 }
