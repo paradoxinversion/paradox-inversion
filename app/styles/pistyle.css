@@ -158,13 +158,18 @@
       url("../fonts/comfortaa-v19-latin-regular.svg#Comfortaa") format("svg"); /* Legacy iOS */
 }
 :root {
-  --main-header-height: 105px;
-  --route-content-padding: 1rem 0;
+  --main-header-height: 70px;
+  --main-header-padding-top: 32px;
+  --main-header-padding-bottom: 32px;
+  --main-nav-height: 28px;
+  --route-content-padding-top: 18px;
+  --route-content-padding-bottom: 18px;
   --main-footer-height: 80px;
 }
 
 body {
   font-family: "Open Sans", sans-serif;
+  min-height: 100vh;
 }
 
 h1 {
@@ -189,12 +194,16 @@ p {
 }
 
 #app {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: auto 1fr auto;
 }
 #main-header {
   background-color: black;
   height: var(--main-header-height);
+  padding-top: var(--main-header-padding-top);
+  padding-bottom: var(--main-header-padding-bottom);
+  width: 100vw;
 }
 #main-footer {
   background-color: black;
@@ -206,6 +215,7 @@ p {
   padding: 0.5rem 1rem 1rem 1rem;
   overflow-x: scroll;
   text-align: center;
+  height: var(--main-nav-height);
 }
 
 .nav__link {
@@ -225,13 +235,6 @@ p {
   flex: 1;
   display: flex;
   overflow-y: scroll;
-  min-height: calc(
-    100vh -
-      (
-        var(--main-header-height) + var(--main-footer-height) +
-          var(--route-content-padding)
-      )
-  );
   padding: var(--route-content-padding);
 }
 
