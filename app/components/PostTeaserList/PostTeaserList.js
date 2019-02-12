@@ -49,7 +49,7 @@ class PostTeaserList extends React.Component {
 
   renderTeaserList() {
     return (
-      <div>
+      <div className="post-teaser">
         <h3>
           {this.props.searchType === "page"
             ? `Recent Posts`
@@ -74,7 +74,7 @@ class PostTeaserList extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className="post-teaser-list">
         {this.state.content.length > 0 ? this.renderTeaserList() : null}
       </div>
     );

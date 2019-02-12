@@ -1,6 +1,7 @@
 import React from "react";
 import { withRouter, Link } from "react-router-dom";
 import PostTeaserList from "../PostTeaserList/PostTeaserList";
+import "./Page.css";
 const Page = ({ pageData, match, useIndex, getPagePosts }) => {
   // useIndex forces this component to render the index page.
   const pageFilter = useIndex
@@ -21,10 +22,13 @@ const Page = ({ pageData, match, useIndex, getPagePosts }) => {
     );
   } else {
     return (
-      <div>
+      <div className="page">
         {thisPage ? (
           <React.Fragment>
-            <div dangerouslySetInnerHTML={{ __html: thisPage.content }} />
+            <div
+              className="page__content"
+              dangerouslySetInnerHTML={{ __html: thisPage.content }}
+            />
             {getPagePosts && (
               <PostTeaserList searchType="page" query={thisPage.slug} />
             )}
@@ -33,7 +37,7 @@ const Page = ({ pageData, match, useIndex, getPagePosts }) => {
                 const typeAndQuery = postSection.split(" ");
                 return (
                   <PostTeaserList
-                    key={`teaset-${typeAndQuery[0]}-${typeAndQuery[1]}`}
+                    key={`teaser-${typeAndQuery[0]}-${typeAndQuery[1]}`}
                     searchType={typeAndQuery[0]}
                     query={typeAndQuery[1]}
                   />
