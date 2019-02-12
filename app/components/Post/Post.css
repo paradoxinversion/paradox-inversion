@@ -1,12 +1,19 @@
 .post {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  display: grid;
+  grid-template-rows: 1fr auto;
   width: 100%;
-  padding: 1rem 0;
+  height: 100%;
 }
 
 .post__content__date {
   font-style: italic;
   margin-bottom: 1rem;
+}
+
+.post__metadata {
+  margin-bottom: 1rem;
+}
+
+.post__content {
+  margin-top: 1rem;
 }

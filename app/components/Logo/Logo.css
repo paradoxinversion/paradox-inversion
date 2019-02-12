@@ -1,11 +1,11 @@
 .logo {
-  font-size: 32px;
+  font-size: 36px;
   width: 100%;
-  display: flex;
+  display: grid;
   justify-content: center;
-  /* padding-top: 1rem; */
   font-family: "Comfortaa";
   font-weight: 700;
+  grid-template-columns: auto auto;
 }
 
 .logo:hover {
