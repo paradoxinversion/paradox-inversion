@@ -10,6 +10,7 @@
     "express": "^4.16.4",
     "keystone": "^4.0.0",
     "moment": "^2.23.0",
+    "morgan": "^1.9.1",
     "multer": "0.1.8",
     "pug": "^2.0.3",
     "react": "^16.7.0",
@@ -29,7 +30,7 @@
     "node": "9.3.0"
   },
   "scripts": {
-    "start": "node ./keystone/keystone.js",
+    "start": "NODE_ENV='production' node ./server/server.js",
     "build-client": "parcel build ./app/index.html --log-level 5",
     "watch-client": "parcel ./app/index.html --no-cache --open --log-level 3",
     "keystone-dev": "nodemon server/server.js"

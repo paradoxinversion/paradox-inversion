@@ -7,14 +7,14 @@ const initializeKeystone = app => {
     "auto update": true,
     auth: true,
     "trust proxy": "loopback",
-    static: "../dist"
+    static: "../dist",
+    logger: "dev"
   });
   keystone.set("cors allow origin", true);
   // Import our models directory
   keystone.import("models");
 
-  // Tell keystone where to find routes
-  // keystone.set("routes", require("./routes"));
+  // Import routes from express app
   keystone.set("routes", app);
   keystone.start();
 };
