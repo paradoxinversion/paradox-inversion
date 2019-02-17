@@ -28,6 +28,15 @@ const Page = ({ pageData, match, useIndex, getPagePosts }) => {
           <React.Fragment>
             <Helmet>
               <title>Paradox Inversion - {thisPage.title}</title>
+              <meta property="og:url" content={window.location.href} />
+              <meta
+                property="og:title"
+                content={`Pradox Inversion - ${thisPage.title}`}
+              />
+              <meta
+                property="og:description"
+                content="Home of Fiction, Articles, and Games by Jedai Saboteur"
+              />
             </Helmet>
             <div
               className="page__content"
