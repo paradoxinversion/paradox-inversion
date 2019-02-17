@@ -5,10 +5,12 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
     "concurrently": "^4.1.0",
     "express": "^4.16.4",
     "keystone": "^4.0.0",
     "moment": "^2.23.0",
+    "multer": "0.1.8",
     "pug": "^2.0.3",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
@@ -30,7 +32,7 @@
     "start": "node ./keystone/keystone.js",
     "build-client": "parcel build ./app/index.html --log-level 5",
     "watch-client": "parcel ./app/index.html --no-cache --open --log-level 3",
-    "keystone-dev": "nodemon keystone/keystone.js"
+    "keystone-dev": "nodemon server/server.js"
   },
   "browserslist": [
     "since 2017-06"
