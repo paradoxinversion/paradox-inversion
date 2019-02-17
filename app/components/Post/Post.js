@@ -1,8 +1,8 @@
 import React from "react";
-import axios from "axios";
 import axiosInstance from "../../axiosInstance";
-import { Switch, Route, withRouter, Redirect } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 import moment from "moment";
+import { Helmet } from "react-helmet";
 import TagList from "../TagList/TagList";
 import { formatDate } from "../../utilityFunctions";
 import "./Post.css";
@@ -30,6 +30,9 @@ class Post extends React.Component {
           <React.Fragment>
             {!postData.error ? (
               <div className="post">
+                <Helmet>
+                  <title>Paradox Inversion - {postData.title}</title>
+                </Helmet>
                 <div className="post__content">
                   <header>
                     <h1 className="post__content__title">{postData.title}</h1>

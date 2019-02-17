@@ -1,5 +1,6 @@
 import React from "react";
 import { withRouter, Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import PostTeaserList from "../PostTeaserList/PostTeaserList";
 import "./Page.css";
 const Page = ({ pageData, match, useIndex, getPagePosts }) => {
@@ -25,6 +26,9 @@ const Page = ({ pageData, match, useIndex, getPagePosts }) => {
       <div className="page">
         {thisPage ? (
           <React.Fragment>
+            <Helmet>
+              <title>Paradox Inversion - {thisPage.title}</title>
+            </Helmet>
             <div
               className="page__content"
               dangerouslySetInnerHTML={{ __html: thisPage.content }}

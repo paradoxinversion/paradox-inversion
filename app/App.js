@@ -1,10 +1,9 @@
 import React from "react";
-import axios from "axios";
 import axiosIntance from "./axiosInstance";
 import Index from "./pages/Index/Index";
 import { NavLink, Route, Switch } from "react-router-dom";
 import { hot } from "react-hot-loader";
-
+import { Helmet } from "react-helmet";
 import PostIndex from "./pages/PostIndex/PostIndex";
 import Post from "./components/Post/Post";
 import NotFound from "./pages/NotFound/NotFound";
@@ -77,6 +76,13 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
+        <Helmet>
+          <meta
+            name="description"
+            content="Home of Fiction, Articles, and Games by Jedai Saboteur"
+          />
+          <meta name="author" content="Jedai Saboteur" />
+        </Helmet>
         <header id="main-header">
           <Logo />
           <div className="nav">
