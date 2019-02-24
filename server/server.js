@@ -18,12 +18,12 @@ const ksRoutes = require("../keystone/routes/index.js")(app);
 */
 
 if (process.env.NODE_ENV === "production") {
-  const dist = path.resolve(__dirname, "..", "dist");
+  const clientPath = path.resolve(__dirname, "..", "client");
 
-  app.use("/", express.static(dist));
+  app.use("/", express.static(clientPath));
   app.get("*", function(req, res) {
-    console.log("sending", path.resolve(dist, "index.html"));
-    res.sendFile(path.resolve(dist, "index.html"));
+    console.log("sending", path.resolve(clientPath, "index.html"));
+    res.sendFile(path.resolve(clientPath, "index.html"));
     console.log("sent");
   });
 }

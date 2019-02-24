@@ -1,5 +1,10 @@
 const keystone = require("keystone");
-const importRoutes = keystone.importer(__dirname);
+const path = require("path");
+const dir =
+  process.env.NODE_ENV === "production"
+    ? path.resolve(__dirname, "..", "..", "keystone", "routes")
+    : __dirname;
+const importRoutes = keystone.importer(dir);
 
 const routes = {
   api: importRoutes("./api")
