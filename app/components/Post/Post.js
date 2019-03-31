@@ -32,7 +32,8 @@ class Post extends React.Component {
               <div className="post">
                 <Helmet>
                   <title>Paradox Inversion - {postData.title}</title>
-                  <meta property="og:url" content={window.location.href} />
+                  {/* <meta property="og:url" content={window.location.href} /> */}
+
                   <meta property="og:type" content="article" />
                   <meta property="og:title" content={postData.title} />
                   <meta

@@ -14,6 +14,8 @@ import "./styles/pistyle.css";
 class App extends React.Component {
   constructor(props) {
     super(props);
+    console.log("app props", props);
+
     this.state = {
       pages: [],
       isLoading: true,
@@ -82,7 +84,7 @@ class App extends React.Component {
             content="Home of Fiction, Articles, and Games by Jedai Saboteur"
           />
           <meta name="author" content="Jedai Saboteur" />
-          <meta property="og:url" content={window.location.href} />
+          {/* <meta property="og:url" content={window.location.href} /> */}
           <meta property="og:title" content="Paradox Inversion" />
           <meta
             property="og:description"

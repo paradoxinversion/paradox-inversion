@@ -7,8 +7,10 @@
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "concurrently": "^4.1.0",
+    "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "keystone": "^4.0.0",
+    "location": "^0.0.1",
     "moment": "^2.23.0",
     "morgan": "^1.9.1",
     "multer": "0.1.8",
@@ -17,6 +19,7 @@
     "react-dom": "^16.7.0",
     "react-helmet": "^5.2.0",
     "react-hot-loader": "^4.6.5",
+    "react-router-config": "^5.0.0",
     "react-router-dom": "^4.3.1"
   },
   "devDependencies": {
@@ -24,18 +27,18 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "nodemon": "^1.18.9",
-    "parcel-bundler": "^1.11.0"
+    "parcel-bundler": "^1.12.3"
   },
   "engines": {
     "node": "9.3.0"
   },
   "scripts": {
-    "start": "NODE_ENV='production' NODE_PATH=.  node ./dist/server/server.js",
+    "start": "API_URL='http://localhost:3000/api' NODE_ENV='production' NODE_PATH=.  node ./dist/server/server.js",
     "start-dev": "concurrently \"yarn run watch-server\" \"yarn run watch-client\" ",
     "build-client": "parcel build ./app/index.html --log-level 5 --out-dir dist/client",
     "watch-client": "parcel ./app/index.html --no-cache --open --log-level 3",
     "build-server": "NODE_ENV='production' parcel build ./server/server.js --target node --no-minify --no-source-maps --out-dir dist/server",
-    "watch-server": "nodemon server/server.js",
+    "start-server": "node ./dist/server/server.js",
     "build": "rimraf dist && yarn run build-server && yarn run build-client"
   },
   "browserslist": [

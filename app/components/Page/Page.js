@@ -1,6 +1,7 @@
 import React from "react";
 import { withRouter, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+// var pathname = require("location").pathname();
 import PostTeaserList from "../PostTeaserList/PostTeaserList";
 import "./Page.css";
 const Page = ({ pageData, match, useIndex, getPagePosts }) => {
@@ -28,7 +29,8 @@ const Page = ({ pageData, match, useIndex, getPagePosts }) => {
           <React.Fragment>
             <Helmet>
               <title>Paradox Inversion - {thisPage.title}</title>
-              <meta property="og:url" content={window.location.href} />
+              {/* <meta property="og:url" content={window.location.href} /> */}
+              <meta property="og:url" content={"derp"} />
               <meta
                 property="og:title"
                 content={`Pradox Inversion - ${thisPage.title}`}
