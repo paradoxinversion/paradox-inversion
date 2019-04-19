@@ -11,22 +11,30 @@ import Page from "./components/Page/Page";
 import Logo from "./components/Logo/Logo";
 import "./styles/style.css";
 import "./styles/pistyle.css";
+import { routes } from "./routes";
+import { RouteWithSubRoutes } from "./components/Misc/RouteWithSubroutes/RouteWithSubroutes";
+import connect from "unstated-connect";
+import SiteContainer from "./containers/SiteContainer";
+
 class App extends React.Component {
   constructor(props) {
     super(props);
     console.log("app props", props);
 
     this.state = {
-      pages: [],
       isLoading: true,
       error: null
     };
+    console.log(routes);
+    console.log("lol");
   }
   async componentDidMount() {
+    const [SiteContainer] = this.props.containers;
+    console.log(SiteContainer.state.test);
     try {
       const pages = await axiosIntance.get("/pages");
+      SiteContainer.setPages(pages.data);
       this.setState({
-        pages: pages.data,
         isLoading: false
       });
     } catch (e) {
@@ -57,25 +65,18 @@ class App extends React.Component {
   renderRouteContent() {
     return (
       <Switch>
-        <Route
-          exact
-          path="/"
-          render={() => <Index pageData={this.state.pages} />}
-        />
-        <Route path="/post/:year/:month/:day/:slug" component={Post} />
-        <Route path="/posts/:searchType/:query" component={PostIndex} />
-        <Route
-          path="/:page"
-          render={() => (
-            <Page pageData={this.state.pages} getPagePosts={true} />
-          )}
-        />
+        {routes.map((route, i) => (
+          <RouteWithSubRoutes key={i} {...route} />
+        ))}
         <Route component={NotFound} />
       </Switch>
     );
   }
 
   render() {
+    const [SiteContainer] = this.props.containers;
+    const { pages } = SiteContainer.state;
+
     return (
       <React.Fragment>
         <Helmet>
@@ -94,7 +95,7 @@ class App extends React.Component {
         <header id="main-header">
           <Logo />
           <div className="nav">
-            {this.state.pages
+            {pages
               .filter(page => !page.isIndex)
               .map(page => (
                 <NavLink
@@ -123,5 +124,4 @@ class App extends React.Component {
   }
 }
 
-export default hot(module)(App);
-// export default App;
+export default hot(module)(connect([SiteContainer])(App));

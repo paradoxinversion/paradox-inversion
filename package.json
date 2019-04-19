@@ -20,7 +20,9 @@
     "react-helmet": "^5.2.0",
     "react-hot-loader": "^4.6.5",
     "react-router-config": "^5.0.0",
-    "react-router-dom": "^4.3.1"
+    "react-router-dom": "^4.3.1",
+    "unstated": "^2.1.1",
+    "unstated-connect": "^0.0.3"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

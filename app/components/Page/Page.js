@@ -2,10 +2,16 @@ import React from "react";
 import { withRouter, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 // var pathname = require("location").pathname();
+import connect from "unstated-connect";
 import PostTeaserList from "../PostTeaserList/PostTeaserList";
 import "./Page.css";
-const Page = ({ pageData, match, useIndex, getPagePosts }) => {
+import SiteContainer from "../../containers/SiteContainer";
+
+// const Page = ({ pageData, match, useIndex, getPagePosts, containers }) => {
+const Page = ({ match, useIndex, getPagePosts, containers }) => {
   // useIndex forces this component to render the index page.
+  const [SiteContainer] = containers;
+  const pageData = SiteContainer.state.pages;
   const pageFilter = useIndex
     ? pageData.filter(page => page.isIndex)
     : pageData.filter(page => page.slug === match.params.page);
@@ -67,4 +73,4 @@ const Page = ({ pageData, match, useIndex, getPagePosts }) => {
   }
 };
 
-export default withRouter(Page);
+export default withRouter(connect([SiteContainer])(Page));

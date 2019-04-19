@@ -3,20 +3,34 @@ import ReactDOM from "react-dom";
 import AppRouter from "./pages/AppRouter/AppRouter";
 import App from "./App";
 import { BrowserRouter, Route } from "react-router-dom";
+import { RouteWithSubRoutes } from "./components/Misc/RouteWithSubroutes/RouteWithSubroutes";
+import { routes } from "./routes";
+import { Provider } from "unstated";
 require("dotenv").config();
 var mountNode = document.getElementById("app");
 const renderFunction = !!Window ? ReactDOM.render : ReactDOM.hydrate;
-// ReactDOM.render(
+
+console.log("running", renderFunction);
+// ReactDOM.hydrate(
 //   <BrowserRouter>
-//     <Route path="/" component={App} />
+//     {/* {routes.map((route, i) => (
+//       <RouteWithSubRoutes key={i} {...route} />
+//     ))}
+//     <Route path="/" component={App} /> */}
+//     <App />
 //   </BrowserRouter>,
 //   mountNode
 // );
-console.log("running", renderFunction);
-ReactDOM.hydrate(
+
+renderFunction(
   <BrowserRouter>
-    <Route path="/" component={App} />
+    {/* {routes.map((route, i) => (
+      <RouteWithSubRoutes key={i} {...route} />
+    ))}
+    <Route path="/" component={App} /> */}
+    <Provider>
+      <App />
+    </Provider>
   </BrowserRouter>,
   mountNode
 );
-// ReactDOM.hydrate(<AppRouter />, mountNode);
