@@ -1,13 +1,10 @@
 import Index from "./pages/Index/Index";
+import App from "./App";
 
 export const routes = [
   {
-    component: Index,
-    routes: [
-      {
-        path: "/",
-        exact: true
-      }
-    ]
+    path: "/",
+    component: App,
+    exact: true
   }
 ];
