@@ -47,23 +47,27 @@ if (process.env.NODE_ENV === "production") {
       : Promise.resolve();
     promise
       .then(data => {
-        const routeData = data.data;
-        const context = { routeData };
+        const context = {};
+        console.log(!!data);
+        if (data) {
+          const routeData = data.data;
+          context.routeData = routeData;
+        }
         const reactApp = ReactDOMServer.renderToString(
           <Provider>
             <StaticRouter location={req.url} context={context}>
-              <App data={data.data} ssr={true} />
+              <App ssr={true} />
             </StaticRouter>
           </Provider>
         );
         const indexFile = path.resolve(__dirname, "..", "client", "index.html");
-        fs.readFile(indexFile, "utf8", (err, data) => {
+        fs.readFile(indexFile, "utf8", (err, indexPage) => {
           if (err) {
             return res.status(500).send("Derp");
           }
 
           return res.send(
-            data.replace(
+            indexPage.replace(
               '<div id="app"></div>',
               `<div id="app">${reactApp}</div>`
             )

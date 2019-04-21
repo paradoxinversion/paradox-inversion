@@ -8,10 +8,16 @@ import "./Page.css";
 import SiteContainer from "../../containers/SiteContainer";
 
 // const Page = ({ pageData, match, useIndex, getPagePosts, containers }) => {
-const Page = ({ match, useIndex, getPagePosts, containers }) => {
+const Page = ({ match, useIndex, getPagePosts, containers, staticContext }) => {
   // useIndex forces this component to render the index page.
+  let pageData;
   const [SiteContainer] = containers;
-  const pageData = SiteContainer.state.pages;
+  if (staticContext) {
+    console.log("got static context");
+    pageData = staticContext.routeData;
+  } else {
+    pageData = SiteContainer.state.pages;
+  }
   const pageFilter = useIndex
     ? pageData.filter(page => page.isIndex)
     : pageData.filter(page => page.slug === match.params.page);

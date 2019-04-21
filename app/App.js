@@ -23,7 +23,6 @@ class App extends React.Component {
       isLoading: !props.ssr ? true : false,
       error: null
     };
-    console.log("App Props::", props);
   }
   async componentDidMount() {
     const [SiteContainer] = this.props.containers;

@@ -3,7 +3,7 @@ import App from "./App";
 import Post from "./components/Post/Post";
 import PostIndex from "./pages/PostIndex/PostIndex";
 import Page from "./components/Page/Page";
-import { getPost, queryPosts } from "./actions";
+import { getPost, queryPosts, getPages } from "./actions";
 
 export const routes = [
   {
@@ -23,7 +23,8 @@ export const routes = [
   {
     path: "/:page",
     component: Page,
-    exact: true
+    exact: true,
+    fetchInitialData: () => getPages()
   }
 ];
 // export const routes = [
