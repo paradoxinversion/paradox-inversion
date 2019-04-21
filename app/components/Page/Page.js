@@ -13,7 +13,6 @@ const Page = ({ match, useIndex, getPagePosts, containers, staticContext }) => {
   let pageData;
   const [SiteContainer] = containers;
   if (staticContext) {
-    console.log("got static context");
     pageData = staticContext.routeData;
   } else {
     pageData = SiteContainer.state.pages;

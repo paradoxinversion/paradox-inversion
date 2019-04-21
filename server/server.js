@@ -48,8 +48,9 @@ if (process.env.NODE_ENV === "production") {
     promise
       .then(data => {
         const context = {};
-        console.log(!!data);
+
         if (data) {
+          data.data;
           const routeData = data.data;
           context.routeData = routeData;
         }

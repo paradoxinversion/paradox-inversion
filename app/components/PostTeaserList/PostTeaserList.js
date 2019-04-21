@@ -1,23 +1,24 @@
 import React from "react";
-import axios from "axios";
-import Post from "../../components/Post/Post";
 import PostTeaser from "../../components/PostTeaser/PostTeaser";
 import { withRouter } from "react-router-dom";
 import { queryPosts } from "../../actions";
 class PostTeaserList extends React.Component {
   constructor(props) {
     super(props);
+    const content = props.staticContext ? props.staticContext.routeData : [];
     this.state = {
-      content: [],
+      content,
       fetchingPosts: true
     };
   }
 
   async componentDidMount() {
-    const postData = await this.fetchPosts();
-    this.setState({
-      content: postData
-    });
+    if (this.state.content.length === 0) {
+      const postData = await this.fetchPosts();
+      this.setState({
+        content: postData
+      });
+    }
   }
 
   async componentDidUpdate(prevProps, prevState) {
@@ -79,4 +80,4 @@ class PostTeaserList extends React.Component {
   }
 }
 
-export default PostTeaserList;
+export default withRouter(PostTeaserList);

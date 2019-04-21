@@ -18,7 +18,11 @@ export const routes = [
   },
   {
     path: "/posts/:searchType/:query",
-    component: PostIndex
+    component: PostIndex,
+    fetchInitialData: (path = "") => {
+      const typeAndQuery = path.split("/").slice(-2);
+      return queryPosts(typeAndQuery[0], typeAndQuery[1]);
+    }
   },
   {
     path: "/:page",
