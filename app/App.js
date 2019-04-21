@@ -1,5 +1,4 @@
 import React from "react";
-import axiosIntance from "./axiosInstance";
 import Index from "./pages/Index/Index";
 import { NavLink, Route, Switch } from "react-router-dom";
 import { hot } from "react-hot-loader";
@@ -15,24 +14,21 @@ import { routes } from "./routes";
 import { RouteWithSubRoutes } from "./components/Misc/RouteWithSubroutes/RouteWithSubroutes";
 import connect from "unstated-connect";
 import SiteContainer from "./containers/SiteContainer";
+import { getPages } from "./actions";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    console.log("app props", props);
-
     this.state = {
-      isLoading: true,
+      isLoading: !props.ssr ? true : false,
       error: null
     };
-    console.log(routes);
-    console.log("lol");
+    console.log("App Props::", props);
   }
   async componentDidMount() {
     const [SiteContainer] = this.props.containers;
-    console.log(SiteContainer.state.test);
     try {
-      const pages = await axiosIntance.get("/pages");
+      const pages = await getPages();
       SiteContainer.setPages(pages.data);
       this.setState({
         isLoading: false
@@ -46,7 +42,7 @@ class App extends React.Component {
   }
 
   renderPageLoading() {
-    return <p>Loading Paradox Inversion...</p>;
+    return <p>Loading Paradox Inversion...!</p>;
   }
 
   renderError() {

@@ -9,6 +9,7 @@
     "concurrently": "^4.1.0",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
+    "isomorphic-fetch": "^2.2.1",
     "keystone": "^4.0.0",
     "location": "^0.0.1",
     "moment": "^2.23.0",
@@ -21,6 +22,7 @@
     "react-hot-loader": "^4.6.5",
     "react-router-config": "^5.0.0",
     "react-router-dom": "^4.3.1",
+    "serialize-javascript": "^1.7.0",
     "unstated": "^2.1.1",
     "unstated-connect": "^0.0.3"
   },

@@ -5,9 +5,13 @@ const keystone = require("../keystone/keystone");
 const path = require("path");
 import React from "react";
 import ReactDOMServer from "react-dom/server";
-import { StaticRouter } from "react-router-dom";
+import { StaticRouter, matchPath } from "react-router-dom";
 import App from "../app/App";
 import AppRouter from "../app/pages/AppRouter/AppRouter";
+import { Provider } from "unstated";
+import { routes } from "../app/routes";
+import serialize from "serialize-javascript";
+import fs from "fs";
 const app = express();
 
 app.use(body.urlencoded({ extended: true }));
@@ -27,9 +31,7 @@ const ksRoutes = require("../keystone/routes/index.js")(app);
 
 //   app.use("/", express.static(clientPath));
 //   app.get("*", function(req, res) {
-//     console.log("sending", path.resolve(clientPath, "index.html"));
 //     res.sendFile(path.resolve(clientPath, "index.html"));
-//     console.log("sent");
 //   });
 // }
 
@@ -37,27 +39,37 @@ if (process.env.NODE_ENV === "production") {
   const clientPath = path.resolve(__dirname, "..", "client");
 
   app.use("/", express.static(clientPath));
-  app.get("*", function(req, res) {
-    const context = {};
-    const reactApp = ReactDOMServer.renderToString(
-      <StaticRouter location={req.url} context={context}>
-        <App derp="ikea" />
-      </StaticRouter>
-    );
-    console.log("sending", path.resolve(clientPath, "index.html"));
-    // res.sendFile(path.resolve(clientPath, "index.html"));
-    res.send(`
-      <!DOCTYPE html>
-      <html>
-        <head>
-          <title>Paradox Inversion</title>
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-        </head>
-        <body>
-          <div id="app">${reactApp}</div>
-        </body>
-      <html>
-    `);
-    console.log("sent");
+  app.get("*", function(req, res, next) {
+    const activeRoute = routes.find(route => matchPath(req.url, route)) || {};
+
+    const promise = activeRoute.fetchInitialData
+      ? activeRoute.fetchInitialData(req.path)
+      : Promise.resolve();
+    promise
+      .then(data => {
+        const routeData = data.data;
+        const context = { routeData };
+        const reactApp = ReactDOMServer.renderToString(
+          <Provider>
+            <StaticRouter location={req.url} context={context}>
+              <App data={data.data} ssr={true} />
+            </StaticRouter>
+          </Provider>
+        );
+        const indexFile = path.resolve(__dirname, "..", "client", "index.html");
+        fs.readFile(indexFile, "utf8", (err, data) => {
+          if (err) {
+            return res.status(500).send("Derp");
+          }
+
+          return res.send(
+            data.replace(
+              '<div id="app"></div>',
+              `<div id="app">${reactApp}</div>`
+            )
+          );
+        });
+      })
+      .catch(next);
   });
 }

@@ -3,6 +3,7 @@ import App from "./App";
 import Post from "./components/Post/Post";
 import PostIndex from "./pages/PostIndex/PostIndex";
 import Page from "./components/Page/Page";
+import { getPost, queryPosts } from "./actions";
 
 export const routes = [
   {
@@ -12,7 +13,8 @@ export const routes = [
   },
   {
     path: "/post/:year/:month/:day/:slug",
-    component: Post
+    component: Post,
+    fetchInitialData: (path = "") => getPost(path.split("/").pop())
   },
   {
     path: "/posts/:searchType/:query",
@@ -20,7 +22,8 @@ export const routes = [
   },
   {
     path: "/:page",
-    component: Page
+    component: Page,
+    exact: true
   }
 ];
 // export const routes = [

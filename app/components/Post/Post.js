@@ -1,25 +1,26 @@
 import React from "react";
-import axiosInstance from "../../axiosInstance";
 import { withRouter, Redirect } from "react-router-dom";
 import moment from "moment";
 import { Helmet } from "react-helmet";
 import TagList from "../TagList/TagList";
 import { formatDate } from "../../utilityFunctions";
 import "./Post.css";
+import { getPost } from "../../actions";
 class Post extends React.Component {
   constructor(props) {
     super(props);
+    const postData = props.staticContext ? props.staticContext.routeData : null;
     this.state = {
-      postData: null
+      postData
     };
   }
   async componentDidMount() {
-    const post = await axiosInstance.get(
-      `/post?slug=${this.props.match.params.slug}`
-    );
-    this.setState({
-      postData: post.data
-    });
+    if (this.state.postData === null) {
+      const post = await getPost(this.props.match.params.slug);
+      this.setState({
+        postData: post.data
+      });
+    }
   }
 
   render() {

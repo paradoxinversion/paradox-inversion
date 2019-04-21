@@ -14,10 +14,6 @@ class SiteContainer extends Container {
       pages: pages
     });
   }
-
-  getPages() {
-    return this.state.pages;
-  }
 }
 
 export default new SiteContainer();

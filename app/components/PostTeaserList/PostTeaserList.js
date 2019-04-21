@@ -1,9 +1,9 @@
 import React from "react";
 import axios from "axios";
 import Post from "../../components/Post/Post";
-import axiosInstance from "../../axiosInstance";
 import PostTeaser from "../../components/PostTeaser/PostTeaser";
 import { withRouter } from "react-router-dom";
+import { queryPosts } from "../../actions";
 class PostTeaserList extends React.Component {
   constructor(props) {
     super(props);
@@ -38,9 +38,7 @@ class PostTeaserList extends React.Component {
     });
     const { searchType, query } = this.props;
 
-    const postData = await axiosInstance(
-      `/posts?searchType=${searchType}&query=${query}`
-    );
+    const postData = await queryPosts(searchType, query);
     this.setState({
       fetchingPosts: false
     });
