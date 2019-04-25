@@ -4,6 +4,8 @@ const baseURL =
   window.location.host.includes("localhost")
     ? "http://localhost:3000/api"
     : "https://paradoxinversion.com/api";
+
+console.log(process.env.API_URL);
 const axiosInstance = axios.create({
   baseURL: process.env.API_URL
 });

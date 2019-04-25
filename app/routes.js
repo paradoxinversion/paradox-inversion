@@ -7,11 +7,6 @@ import { getPost, queryPosts, getPages } from "./actions";
 
 export const routes = [
   {
-    path: "/",
-    component: Index,
-    exact: true
-  },
-  {
     path: "/post/:year/:month/:day/:slug",
     component: Post,
     fetchInitialData: (path = "") => getPost(path.split("/").pop())
@@ -27,6 +22,12 @@ export const routes = [
   {
     path: "/:page",
     component: Page,
+    exact: true,
+    fetchInitialData: () => getPages()
+  },
+  {
+    path: "",
+    component: Index,
     exact: true,
     fetchInitialData: () => getPages()
   }

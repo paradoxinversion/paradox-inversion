@@ -12,6 +12,7 @@ import { Provider } from "unstated";
 import { routes } from "../app/routes";
 import serialize from "serialize-javascript";
 import fs from "fs";
+import { Helmet } from "react-helmet";
 const app = express();
 
 app.use(body.urlencoded({ extended: true }));
@@ -61,17 +62,24 @@ if (process.env.NODE_ENV === "production") {
             </StaticRouter>
           </Provider>
         );
+        const helmet = Helmet.renderStatic();
+        console.log(helmet.title.toString(), helmet.meta.toString());
         const indexFile = path.resolve(__dirname, "..", "client", "index.html");
         fs.readFile(indexFile, "utf8", (err, indexPage) => {
           if (err) {
             return res.status(500).send("Derp");
           }
-
+          console.log(indexPage);
           return res.send(
-            indexPage.replace(
-              '<div id="app"></div>',
-              `<div id="app">${reactApp}</div>`
-            )
+            indexPage
+              .replace(
+                '<div id="app"></div>',
+                `<div id="app">${reactApp}</div>`
+              )
+              .replace(
+                "<meta>",
+                `${helmet.title.toString()} ${helmet.meta.toString()}`
+              )
           );
         });
       })
