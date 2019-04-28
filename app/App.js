@@ -82,10 +82,6 @@ class App extends React.Component {
           <meta name="author" content="Jedai Saboteur" />
           {/* <meta property="og:url" content={window.location.href} /> */}
           <meta property="og:title" content="Paradox Inversion" />
-          <meta
-            property="og:description"
-            content="Home of Fiction, Articles, and Games by Jedai Saboteur"
-          />
         </Helmet>
         <header id="main-header">
           <Logo />
