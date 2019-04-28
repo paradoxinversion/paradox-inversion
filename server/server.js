@@ -63,13 +63,11 @@ if (process.env.NODE_ENV === "production") {
           </Provider>
         );
         const helmet = Helmet.renderStatic();
-        console.log(helmet.title.toString(), helmet.meta.toString());
         const indexFile = path.resolve(__dirname, "..", "client", "index.html");
         fs.readFile(indexFile, "utf8", (err, indexPage) => {
           if (err) {
             return res.status(500).send("Derp");
           }
-          console.log(indexPage);
           return res.send(
             indexPage
               .replace(
