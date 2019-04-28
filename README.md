@@ -17,3 +17,13 @@ The API is driven by Keystonejs.
 **watch-server**: Runs server code without bundling
 
 **build**: Runs build-server and build-client
+
+## Server
+
+Log into Linode vps
+
+The server uses Screen to keep the instance alive (while making browsing the vps possible)
+
+Use ctrl-a to reattach to the screen session
+
+to disconnect from screen use
