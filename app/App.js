@@ -75,10 +75,10 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <Helmet>
-          <meta
+          {/* <meta
             name="description"
             content="Home of Fiction, Articles, and Games by Jedai Saboteur"
-          />
+          /> */}
           <meta name="author" content="Jedai Saboteur" />
           {/* <meta property="og:url" content={window.location.href} /> */}
           <meta property="og:title" content="Paradox Inversion" />
