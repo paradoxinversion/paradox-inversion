@@ -26,23 +26,9 @@ export const routes = [
     fetchInitialData: () => getPages()
   },
   {
-    path: "",
+    path: "/",
     component: Index,
     exact: true,
     fetchInitialData: () => getPages()
   }
 ];
-// export const routes = [
-//   {
-//     path: "/post/:year/:month/:day/:slug",
-//     component: Post
-//   },
-//   {
-//     path: "/posts/:searchType/:query",
-//     component: PostIndex
-//   },
-//   {
-//     path: "/:page",
-//     component: Page
-//   }
-// ];
