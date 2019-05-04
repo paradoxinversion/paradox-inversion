@@ -48,6 +48,9 @@ class Post extends React.Component {
                     <p className="post__content__date">
                       {formatDate(postData.publishedAt)}
                     </p>
+                    <p className="is-italic">
+                      By {postData.author.displayName}
+                    </p>
                   </header>
 
                   <hr />

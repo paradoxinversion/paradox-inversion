@@ -240,6 +240,10 @@ p {
   padding: var(--route-content-padding);
 }
 
+/* Utility Classes */
+.is-italic {
+  font-style: italic;
+}
 @media screen and (min-width: 1000px) {
   .nav {
     justify-content: center;

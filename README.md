@@ -18,6 +18,10 @@ The API is driven by Keystonejs.
 
 **build**: Runs build-server and build-client
 
+## Developing
+
+Ensure `mongod` is running.
+
 ## Server
 
 Log into Linode vps

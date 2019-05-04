@@ -10,7 +10,8 @@ module.exports = async function(req, res) {
   if (slugQuery) {
     post = await Post.model
       .findOne({ slug: slugQuery, state: "published" })
-      .populate("category");
+      .populate("category")
+      .populate("author", "displayName");
   }
   if (post) {
     return res.json(post);
