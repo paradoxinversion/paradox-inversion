@@ -108,7 +108,7 @@ class App extends React.Component {
         </main>
 
         <footer id="main-footer">
-          <p>By Jedai Saboteur</p>
+          <p>&copy; Jedai Saboteur 2008 - {new Date().getFullYear()}</p>
         </footer>
       </React.Fragment>
     );
