@@ -14,7 +14,8 @@ Page.add({
   content: { type: Types.Html, wysiwyg: true, height: 150 },
   pageOrder: { type: Number },
   isIndex: { type: Boolean },
-  pagePostSections: { type: Types.TextArray }
+  pagePostSections: { type: Types.TextArray },
+  pageType: { type: Types.Select, options: "General, Article, Story, Index" }
 });
 
 Page.defaultColumns = "title, pageOrder";

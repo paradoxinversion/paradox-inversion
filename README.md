@@ -2,9 +2,11 @@
 
 The API is driven by Keystonejs.
 
+This repo is largely for (Jedai's) personal use. It may or may not be well documented and will likely be messy.
+
 ## Building and Running
 
-**start**: Run the bundled server
+**start**: Run the bundled server in production mode.
 
 **start-dev**: Watch the client and server
 
@@ -20,7 +22,11 @@ The API is driven by Keystonejs.
 
 ## Developing
 
-Ensure `mongod` is running.
+Ensure `mongod` is running and there is a built version of the server.
+
+When working on the server, a new version will have to be built and tested when changes are made. Some of keystone's dependancies cause issues with Parcel. This may or may not be fixed in the future.
+
+When working on the client, running `watch-client` shoud be fine.
 
 ## Server
 
@@ -31,3 +37,7 @@ The server uses Screen to keep the instance alive (while making browsing the vps
 Use ctrl-a to reattach to the screen session
 
 to disconnect from screen use
+
+## posts
+
+Posts have types-- General, or Story

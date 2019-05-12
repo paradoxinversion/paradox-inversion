@@ -20,6 +20,11 @@ export const routes = [
     }
   },
   {
+    path: "/story/:storyName",
+    component: Page,
+    fetchInitialData: () => getPages()
+  },
+  {
     path: "/:page",
     component: Page,
     exact: true,

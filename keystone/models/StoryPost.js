@@ -1,20 +1,20 @@
 var keystone = require("keystone");
 var Types = keystone.Field.Types;
 
-var Post = new keystone.List("Post", {
+var StoryPost = new keystone.List("StoryPost", {
   autokey: { path: "slug", from: "title", unique: true },
   map: { name: "title" },
   sortable: true
 });
 
-Post.add({
+StoryPost.add({
   title: { type: String, required: true },
   state: {
     type: Types.Select,
     options: "draft, published, archived",
     default: "draft"
   },
-  category: { type: Types.Relationship, ref: "Category" },
+  story: { type: Types.Relationship, ref: "Story" },
   tags: { type: Types.TextArray },
   author: { type: Types.Relationship, ref: "User" },
   createdAt: { type: Date, default: Date.now },
@@ -23,9 +23,9 @@ Post.add({
     brief: { type: Types.Html, wysiwyg: true, height: 150 },
     extended: { type: Types.Html, wysiwyg: true, height: 400 }
   },
-  page: { type: Types.Relationship, ref: "Page" }
+  partNumber: { type: Number }
 });
-Post.schema.pre("save", async function(next) {
+StoryPost.schema.pre("save", async function(next) {
   this.tags = this.tags.map(category => {
     return category
       .toLowerCase()
@@ -39,5 +39,5 @@ Post.schema.pre("save", async function(next) {
 
   next();
 });
-Post.defaultColumns = "title, state|20%, author, publishedAt|15%, category";
-Post.register();
+StoryPost.defaultColumns = "title, state|20%, author, publishedAt|15%, story";
+StoryPost.register();
