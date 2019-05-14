@@ -62,6 +62,7 @@ const Page = ({ match, useIndex, getPagePosts, containers, staticContext }) => {
               )}
               {thisPage.pagePostSections.length > 0 &&
                 thisPage.pagePostSections.map(postSection => {
+                  const typeAndQuery = postSection.split(" ");
                   return (
                     <PostTeaserList
                       key={`teaser-${typeAndQuery[0]}-${typeAndQuery[1]}`}
