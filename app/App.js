@@ -8,6 +8,8 @@ import Post from "./components/Post/Post";
 import NotFound from "./pages/NotFound/NotFound";
 import Page from "./components/Page/Page";
 import Logo from "./components/Logo/Logo";
+import { metrics } from "react-metrics";
+
 import "./styles/style.css";
 import "./styles/pistyle.css";
 import { routes } from "./routes";
@@ -115,4 +117,4 @@ class App extends React.Component {
   }
 }
 
-export default hot(module)(connect([SiteContainer])(App));
+export default hot(module)(metrics(config)(connect([SiteContainer])(App)));

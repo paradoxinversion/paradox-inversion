@@ -20,6 +20,7 @@
     "react-dom": "^16.7.0",
     "react-helmet": "^5.2.0",
     "react-hot-loader": "^4.6.5",
+    "react-metrics": "^2.4.1",
     "react-router-config": "^5.0.0",
     "react-router-dom": "^4.3.1",
     "serialize-javascript": "^1.7.0",
@@ -34,10 +35,10 @@
     "parcel-bundler": "^1.12.3"
   },
   "engines": {
-    "node": "9.3.0"
+    "node": "12.2.0"
   },
   "scripts": {
-    "start": "API_URL='http://localhost:3000/api' NODE_ENV='production' NODE_PATH=.  node ./dist/server/server.js",
+    "start": "GOOGLE_ANALYTICS_TRACKING_ID='UA-60755265-1' API_URL='http://localhost:3000/api' NODE_ENV='production' NODE_PATH=.  node ./dist/server/server.js",
     "start-dev": "concurrently \"yarn run watch-server\" \"yarn run watch-client\" ",
     "build-client": "parcel build ./app/index.html --log-level 5 --out-dir dist/client",
     "watch-client": "parcel ./app/index.html --no-cache --open --log-level 3",
