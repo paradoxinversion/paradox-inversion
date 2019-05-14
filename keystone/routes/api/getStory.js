@@ -3,23 +3,20 @@ var Story = keystone.list("Story");
 const StoryPost = keystone.list("StoryPost");
 
 /**
- * Returns a story matching the req.title
+ * Returns a story matching the req.query.title
  */
 module.exports = async function(req, res) {
   let story;
-  let titleQuery = req.query.title;
-  if (titleQuery) {
+  let slugQuery = req.query.query;
+  if (slugQuery) {
     story = await Story.model
-      .findOne({ title: titleQuery })
+      .findOne({ slug: slugQuery })
       .populate("author", "displayName");
 
-    const parts = await StoryPost.model.find({ story: story.title });
-    if (parts) {
-      return res.json(parts);
+    if (story) {
+      return res.json(story);
     }
   }
-  // if (story) {
-  //   return res.json(story);
-  // }
+
   return res.json({ error: "No posts found" });
 };
