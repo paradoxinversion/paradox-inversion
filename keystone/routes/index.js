@@ -16,5 +16,5 @@ exports = module.exports = function(app) {
   app.get("/api/posts", routes.api.getPosts);
   app.get("/api/post", routes.api.getPost);
   app.get("/api/pages", routes.api.getPages);
-  app.get("/api/stories", routes.api.getStory);
+  app.get("/api/series", routes.api.getSeries);
 };

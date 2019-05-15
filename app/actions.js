@@ -17,7 +17,7 @@ export const queryPosts = async (searchType, query) => {
   return postData;
 };
 
-export const queryStories = async slug => {
-  const postData = await axiosInstance(`/stories?title-slug=${slug}`);
-  return postData;
+export const getSeries = async slug => {
+  const seriesData = await axiosInstance(`/series?query=${slug}`);
+  return seriesData;
 };

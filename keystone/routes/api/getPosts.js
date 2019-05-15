@@ -2,7 +2,7 @@ var keystone = require("keystone");
 var Post = keystone.list("Post");
 var Category = keystone.list("Category");
 var Page = keystone.list("Page");
-
+var Series = keystone.list("Series");
 /**
  * Get all posts matching a category or tag,
  * depending on which queryParameter is used (category or tagged)
@@ -33,6 +33,10 @@ module.exports = async function(req, res) {
           .where("tags")
           .in([query]);
 
+        break;
+      case "series":
+        const series = await Series.model.find({ slug: query });
+        posts = await Post.model.find({ series: series });
         break;
       case "page":
         const page = await Page.model.find({

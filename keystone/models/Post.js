@@ -15,6 +15,7 @@ Post.add({
     default: "draft"
   },
   category: { type: Types.Relationship, ref: "Category" },
+  series: { type: Types.Relationship, ref: "Series" },
   tags: { type: Types.TextArray },
   author: { type: Types.Relationship, ref: "User" },
   createdAt: { type: Date, default: Date.now },
