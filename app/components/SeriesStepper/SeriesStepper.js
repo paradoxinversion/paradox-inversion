@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { formatPostPath } from "../../utilityFunctions";
 
 const SeriesStepper = ({ post }) => {
-  console.log(post, post.previousPost, post.nextPost);
   const previous = post.previousPost ? (
     <Link
       to={formatPostPath(

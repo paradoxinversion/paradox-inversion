@@ -3,10 +3,6 @@ import { Link } from "react-router-dom";
 import { formatPostPath } from "../../utilityFunctions";
 const PostTeaser = ({ post }) => {
   try {
-    const d = new Date(post.publishedAt);
-    const day = d.getDate();
-    const month = d.getMonth() + 1;
-    const year = d.getFullYear();
     const {
       publishedAt,
       slug,

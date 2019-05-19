@@ -82,13 +82,6 @@ class PostTeaserList extends React.Component {
             : `Recent Posts tagged ${this.props.query}`}
         </h3>
         {this.state.content.length > 0 ? (
-          // <React.Fragment>
-          //   {this.state.content[0].seriesOrder
-          //     ? this.renderOrderedTeasers()
-          //     : this.state.content.map(post => (
-          //         <PostTeaser key={post.slug} post={post} />
-          //       ))}
-          // </React.Fragment>
           <React.Fragment>
             {this.state.content[0].seriesOrder
               ? this.renderOrderedTeasers()
