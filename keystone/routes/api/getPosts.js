@@ -35,8 +35,31 @@ module.exports = async function(req, res) {
 
         break;
       case "series":
+        // Get the series object (we'll use it to get the associated posts)
         const series = await Series.model.find({ slug: query });
-        posts = await Post.model.find({ series: series });
+        posts = await Post.model.find({ series }).sort({ seriesOrder: 1 });
+
+        posts = await Promise.all(
+          posts.map(async seriesPost => {
+            const postJSON = seriesPost.toJSON();
+            const previousPost = await Post.model
+              .findOne({ series })
+              .where("seriesOrder")
+              .equals(seriesPost.seriesOrder - 1)
+              .select("slug seriesOrder");
+
+            postJSON.previousPost = previousPost;
+
+            const nextPost = await Post.model
+              .findOne({ series })
+              .where("seriesOrder")
+              .equals(seriesPost.seriesOrder + 1)
+              .select("slug seriesOrder");
+
+            postJSON.nextPost = nextPost;
+            return postJSON;
+          })
+        );
         break;
       case "page":
         const page = await Page.model.find({

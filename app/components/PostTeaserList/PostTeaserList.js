@@ -10,6 +10,9 @@ class PostTeaserList extends React.Component {
       content,
       fetchingPosts: true
     };
+
+    this.renderTeasers = this.renderTeasers.bind(this);
+    this.renderOrderedTeasers = this.renderOrderedTeasers.bind(this);
   }
 
   async componentDidMount() {
@@ -46,6 +49,26 @@ class PostTeaserList extends React.Component {
     return postData.data;
   }
 
+  renderTeasers() {
+    return this.state.content.map(post => (
+      <PostTeaser key={post.slug} post={post} />
+    ));
+  }
+  renderOrderedTeasers() {
+    return this.state.content
+      .sort((a, b) => {
+        if (a.seriesOrder > b.seriesOrder) {
+          return 1;
+        }
+        if (a.seriesOrder < b.seriesOrder) {
+          return -1;
+        }
+
+        return 0;
+      })
+      .map(post => <PostTeaser key={post.slug} post={post} />);
+  }
+
   renderTeaserList() {
     return (
       <div className="post-teaser">
@@ -54,13 +77,22 @@ class PostTeaserList extends React.Component {
             ? `Recent Posts`
             : this.props.searchType === "category"
             ? `Recent Posts in ${this.props.query}`
+            : this.props.searchType === "series"
+            ? `Recent posts in this series`
             : `Recent Posts tagged ${this.props.query}`}
         </h3>
         {this.state.content.length > 0 ? (
+          // <React.Fragment>
+          //   {this.state.content[0].seriesOrder
+          //     ? this.renderOrderedTeasers()
+          //     : this.state.content.map(post => (
+          //         <PostTeaser key={post.slug} post={post} />
+          //       ))}
+          // </React.Fragment>
           <React.Fragment>
-            {this.state.content.map(post => (
-              <PostTeaser key={post.slug} post={post} />
-            ))}
+            {this.state.content[0].seriesOrder
+              ? this.renderOrderedTeasers()
+              : this.renderTeasers()}
           </React.Fragment>
         ) : (
           <p>

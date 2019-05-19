@@ -16,6 +16,7 @@ Post.add({
   },
   category: { type: Types.Relationship, ref: "Category" },
   series: { type: Types.Relationship, ref: "Series" },
+  seriesOrder: { type: Number },
   tags: { type: Types.TextArray },
   author: { type: Types.Relationship, ref: "User" },
   createdAt: { type: Date, default: Date.now },

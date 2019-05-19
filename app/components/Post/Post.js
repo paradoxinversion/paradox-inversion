@@ -65,7 +65,9 @@ class Post extends React.Component {
                 <div className="post__metadata">
                   <hr />
                   {/* TODO: make this link to category section search page */}
-                  <p>Category: {postData.category.name}</p>
+                  {postData.category && (
+                    <p>Category: {postData.category.name}</p>
+                  )}
                   <TagList tags={postData.tags} />
                 </div>
               </div>
