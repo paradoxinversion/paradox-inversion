@@ -39,8 +39,8 @@
   "scripts": {
     "start": "API_URL='http://localhost:3000/api' NODE_ENV='production' NODE_PATH=.  node ./dist/server/server.js",
     "start-dev": "concurrently \"yarn run watch-server\" \"yarn run watch-client\" ",
-    "build-client": "parcel build ./app/index.html --log-level 5 --out-dir dist/client",
-    "watch-client": "parcel ./app/index.html --no-cache --open --log-level 3",
+    "build-client": "parcel build ./app/index.html --out-dir dist/client",
+    "watch-client": "parcel ./app/index.html --no-cache --open",
     "build-server": "NODE_ENV='production' parcel build ./server/server.js --target node --no-minify --no-source-maps --out-dir dist/server",
     "start-server": "node ./dist/server/server.js",
     "build": "rimraf dist && yarn run build-server && yarn run build-client"

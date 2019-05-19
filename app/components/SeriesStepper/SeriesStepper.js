@@ -10,17 +10,17 @@ const SeriesStepper = ({ post }) => {
         post.previousPost.publishedAt,
         post.previousPost.slug
       )}>
-      Previous
+      {`Previous: ${post.previousPost.title}`}
     </Link>
   ) : null;
   const next = post.nextPost ? (
     <Link to={formatPostPath(post.nextPost.publishedAt, post.nextPost.slug)}>
-      Next
+      {`Next: ${post.nextPost.title}`}
     </Link>
   ) : null;
 
   return (
-    <div>
+    <div className="flex flex--justify-content--space-between flex--mobile margin--1rem">
       {previous && previous}
       {next && next}
     </div>

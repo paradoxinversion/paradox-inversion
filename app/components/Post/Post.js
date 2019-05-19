@@ -24,7 +24,7 @@ class Post extends React.Component {
     }
   }
 
-  async componentDidUpdate(prevProps, prevState) {
+  async componentDidUpdate(prevProps) {
     if (prevProps.match.params.slug != this.props.match.params.slug) {
       const post = await getPost(this.props.match.params.slug);
       this.setState({
@@ -52,7 +52,7 @@ class Post extends React.Component {
                     content={postData.content.brief.replace(/<\S*>/g, "")}
                   />
                 </Helmet>
-                <div className="post__content">
+                <div className="margin--1rem">
                   <header>
                     <h1 className="post__content__title">{postData.title}</h1>
                     <p className="post__content__date">
