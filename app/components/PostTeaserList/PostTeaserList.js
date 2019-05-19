@@ -50,9 +50,9 @@ class PostTeaserList extends React.Component {
   }
 
   renderTeasers() {
-    return this.state.content.map(post => (
-      <PostTeaser key={post.slug} post={post} />
-    ));
+    return this.state.content
+      .reverse()
+      .map(post => <PostTeaser key={post.slug} post={post} />);
   }
   renderOrderedTeasers() {
     return this.state.content
