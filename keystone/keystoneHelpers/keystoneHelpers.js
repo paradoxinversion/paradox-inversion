@@ -14,7 +14,7 @@ const getSeriesPostNeighbors = async (post, series) => {
     .findOne({ series })
     .where("seriesOrder")
     .equals(post.seriesOrder - 1)
-    .select("slug seriesOrder");
+    .select("slug seriesOrder publishedAt title");
 
   postJSON.previousPost = previousPost;
 
@@ -22,7 +22,7 @@ const getSeriesPostNeighbors = async (post, series) => {
     .findOne({ series })
     .where("seriesOrder")
     .equals(post.seriesOrder + 1)
-    .select("slug seriesOrder");
+    .select("slug seriesOrder publishedAt title");
 
   postJSON.nextPost = nextPost;
   return postJSON;

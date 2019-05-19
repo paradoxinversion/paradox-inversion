@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { formatPostPath } from "../../utilityFunctions";
 const PostTeaser = ({ post }) => {
   try {
     const d = new Date(post.publishedAt);
@@ -7,13 +8,15 @@ const PostTeaser = ({ post }) => {
     const month = d.getMonth() + 1;
     const year = d.getFullYear();
     const {
+      publishedAt,
       slug,
       title,
       content: { brief }
     } = post;
     return (
       <div>
-        <Link to={`/post/${year}/${month}/${day}/${slug}`}>{title}</Link>
+        <Link to={formatPostPath(publishedAt, slug)}>{title}</Link>
+
         <div dangerouslySetInnerHTML={{ __html: brief }} />
       </div>
     );

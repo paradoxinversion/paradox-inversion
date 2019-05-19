@@ -6,6 +6,7 @@ import TagList from "../TagList/TagList";
 import { formatDate } from "../../utilityFunctions";
 import "./Post.css";
 import { getPost } from "../../actions";
+import SeriesStepper from "../SeriesStepper/SeriesStepper";
 class Post extends React.Component {
   constructor(props) {
     super(props);
@@ -16,6 +17,15 @@ class Post extends React.Component {
   }
   async componentDidMount() {
     if (this.state.postData === null) {
+      const post = await getPost(this.props.match.params.slug);
+      this.setState({
+        postData: post.data
+      });
+    }
+  }
+
+  async componentDidUpdate(prevProps, prevState) {
+    if (prevProps.match.params.slug != this.props.match.params.slug) {
       const post = await getPost(this.props.match.params.slug);
       this.setState({
         postData: post.data
@@ -61,6 +71,8 @@ class Post extends React.Component {
                     }}
                   />
                 </div>
+
+                {postData.series && <SeriesStepper post={postData} />}
 
                 <div className="post__metadata">
                   <hr />
