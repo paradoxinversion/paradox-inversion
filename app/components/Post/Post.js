@@ -1,4 +1,5 @@
 import React from "react";
+import ReactGA from "react-ga";
 import { withRouter, Redirect } from "react-router-dom";
 import moment from "moment";
 import { Helmet } from "react-helmet";
@@ -15,21 +16,25 @@ class Post extends React.Component {
       postData
     };
   }
+
+  async loadPost() {
+    const post = await getPost(this.props.match.params.slug);
+    this.setState({
+      postData: post.data
+    });
+
+    ReactGA.pageview(this.props.location.pathname);
+  }
+
   async componentDidMount() {
     if (this.state.postData === null) {
-      const post = await getPost(this.props.match.params.slug);
-      this.setState({
-        postData: post.data
-      });
+      await this.loadPost();
     }
   }
 
   async componentDidUpdate(prevProps) {
     if (prevProps.match.params.slug != this.props.match.params.slug) {
-      const post = await getPost(this.props.match.params.slug);
-      this.setState({
-        postData: post.data
-      });
+      await this.loadPost();
     }
   }
 

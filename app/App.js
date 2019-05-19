@@ -15,6 +15,7 @@ import { RouteWithSubRoutes } from "./components/Misc/RouteWithSubroutes/RouteWi
 import connect from "unstated-connect";
 import SiteContainer from "./containers/SiteContainer";
 import { getPages } from "./actions";
+import ReactGA from "react-ga";
 
 class App extends React.Component {
   constructor(props) {
@@ -26,6 +27,8 @@ class App extends React.Component {
   }
   async componentDidMount() {
     const [SiteContainer] = this.props.containers;
+    ReactGA.initialize("UA-60755265-1");
+    ReactGA.pageview("/");
     try {
       const pages = await getPages();
       SiteContainer.setPages(pages.data);
