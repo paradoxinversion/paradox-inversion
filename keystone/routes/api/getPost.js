@@ -1,6 +1,6 @@
 var keystone = require("keystone");
 var Post = keystone.list("Post");
-
+const keystoneHelpers = require("../../keystoneHelpers/keystoneHelpers");
 /**
  * Return an individual post by it's slug or an error declaring none match,
  */
@@ -12,6 +12,10 @@ module.exports = async function(req, res) {
       .findOne({ slug: slugQuery, state: "published" })
       .populate("category")
       .populate("author", "displayName");
+
+    if (post.series) {
+      post = await keystoneHelpers.getSeriesPostNeighbors(post, post.series);
+    }
   }
   if (post) {
     return res.json(post);
