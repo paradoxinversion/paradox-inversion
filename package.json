@@ -37,7 +37,7 @@
     "node": "9.3.0"
   },
   "scripts": {
-    "start": "API_URL='http://localhost:3000/api' NODE_ENV='production' NODE_PATH=.  node ./dist/server/server.js",
+    "start": "API_URL='http://localhost:3000/api' NODE_ENV='production' NODE_PATH=. forever start ./dist/server/server.js",
     "start-dev": "concurrently \"yarn run watch-server\" \"yarn run watch-client\" ",
     "build-client": "parcel build ./app/index.html --out-dir dist/client",
     "watch-client": "parcel ./app/index.html --no-cache --open",

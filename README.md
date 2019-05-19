@@ -6,7 +6,7 @@ This repo is largely for (Jedai's) personal use. It may or may not be well docum
 
 ## Building and Running
 
-**start**: Run the bundled server in production mode.
+**start**: Run the bundled server in production mode. Environment variables are set, designating production status and pointing the api url to localhost.
 
 **start-dev**: Watch the client and server
 
