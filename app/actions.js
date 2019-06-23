@@ -21,3 +21,14 @@ export const getSeries = async slug => {
   const seriesData = await axiosInstance(`/series?query=${slug}`);
   return seriesData;
 };
+
+export const sortPostsByDateTime = postArray => {
+  return postArray.sort(
+    (a, b) =>
+      new Date(a.publishedAt).getTime() - new Date(b.publishedAt).getTime()
+  );
+};
+
+export const sortPostBySeriesOrder = postArray => {
+  return postArray.sort((a, b) => a.seriesOrder - b.seriesOrder);
+};
