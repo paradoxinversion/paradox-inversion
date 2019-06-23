@@ -1,7 +1,11 @@
 import React from "react";
 import PostTeaser from "../../components/PostTeaser/PostTeaser";
 import { withRouter } from "react-router-dom";
-import { queryPosts } from "../../actions";
+import {
+  queryPosts,
+  sortPostBySeriesOrder,
+  sortPostsByDateTime
+} from "../../actions";
 class PostTeaserList extends React.Component {
   constructor(props) {
     super(props);
@@ -50,21 +54,27 @@ class PostTeaserList extends React.Component {
   }
 
   renderTeasers() {
-    return this.state.content
-      .reverse()
-      .map(post => <PostTeaser key={post.slug} post={post} />);
+    const isSeries = !!this.state.content[0].seriesOrder;
+    const orderFunction = isSeries
+      ? sortPostBySeriesOrder
+      : sortPostsByDateTime;
+    const orderedContent = orderFunction(this.state.content);
+    return orderedContent.map(post => (
+      <PostTeaser key={post.slug} post={post} />
+    ));
   }
+
   renderOrderedTeasers() {
     return this.state.content
       .sort((a, b) => {
-        if (a.seriesOrder > b.seriesOrder) {
-          return 1;
-        }
-        if (a.seriesOrder < b.seriesOrder) {
-          return -1;
-        }
+        // if (a.seriesOrder > b.seriesOrder) {
+        //   return 1;
+        // }
+        // if (a.seriesOrder < b.seriesOrder) {
+        //   return -1;
+        // }
 
-        return 0;
+        return a.seriesOrder - b.seriesOrder;
       })
       .map(post => <PostTeaser key={post.slug} post={post} />);
   }
@@ -82,11 +92,7 @@ class PostTeaserList extends React.Component {
             : `Recent Posts tagged ${this.props.query}`}
         </h3>
         {this.state.content.length > 0 ? (
-          <React.Fragment>
-            {this.state.content[0].seriesOrder
-              ? this.renderOrderedTeasers()
-              : this.renderTeasers()}
-          </React.Fragment>
+          this.renderOrderedTeasers()
         ) : (
           <p>
             Couldn't find any tagged or category posts with the name '
