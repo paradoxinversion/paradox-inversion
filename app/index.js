@@ -4,7 +4,6 @@ import AppRouter from "./pages/AppRouter/AppRouter";
 import App from "./App";
 import { BrowserRouter, Route } from "react-router-dom";
 import { Provider } from "unstated";
-require("dotenv").config();
 var mountNode = document.getElementById("app");
 const renderFunction = !!Window ? ReactDOM.render : ReactDOM.hydrate;
 
