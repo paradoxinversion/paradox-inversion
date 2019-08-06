@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "@zeit/next-css": "^1.0.1",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "concurrently": "^4.1.0",
@@ -14,6 +15,7 @@
     "moment": "^2.23.0",
     "morgan": "^1.9.1",
     "multer": "0.1.8",
+    "next": "^9.0.3",
     "pug": "^2.0.3",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
@@ -29,6 +31,7 @@
   "devDependencies": {
     "@babel/cli": "7.1.0",
     "@babel/core": "7.1.0",
+    "@babel/node": "^7.5.5",
     "@babel/preset-env": "7.1.0",
     "@babel/preset-react": "7.0.0",
     "babel-core": "^6.26.3",
@@ -38,12 +41,15 @@
     "css-loader": "1.0.0",
     "dotenv-webpack": "^1.7.0",
     "file-loader": "^4.1.0",
+    "ignore-loader": "^0.1.2",
     "nodemon": "^1.18.9",
     "parcel-bundler": "^1.12.3",
     "style-loader": "0.23.0",
     "webpack": "4.19.1",
     "webpack-cli": "3.1.1",
-    "webpack-dev-server": "3.1.8"
+    "webpack-dev-middleware": "^3.7.0",
+    "webpack-dev-server": "3.1.8",
+    "webpack-node-externals": "^1.7.2"
   },
   "engines": {
     "node": "12.2.0"
@@ -51,7 +57,8 @@
   "scripts": {
     "start": "API_URL='http://localhost:3000/api' NODE_ENV='production' NODE_PATH=. forever start ./dist/server/server.js",
     "start-dev": "concurrently \"yarn run watch-server\" \"yarn run watch-client\" ",
-    "start-dev-server": "webpack-dev-server --mode development",
+    "start-dev-server": "NODE_ENV=development webpack --config webpack.server.js --mode=development -w",
+    "t": "NODE_PATH=. node dist/server.js",
     "build-client": "parcel build ./app/index.html --out-dir dist/client",
     "watch-client": "parcel ./app/index.html --no-cache --open",
     "build-server": "NODE_ENV='production' parcel build ./server/server.js --target node --no-minify --no-source-maps --out-dir dist/server",

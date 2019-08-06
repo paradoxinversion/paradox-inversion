@@ -3,16 +3,18 @@ const multer = require("multer");
 const body = require("body-parser");
 const keystone = require("../keystone/keystone");
 const path = require("path");
-import React from "react";
-import ReactDOMServer from "react-dom/server";
-import { StaticRouter, matchPath } from "react-router-dom";
-import App from "../app/App";
-import AppRouter from "../app/pages/AppRouter/AppRouter";
-import { Provider } from "unstated";
-import { routes } from "../app/routes";
-import serialize from "serialize-javascript";
-import fs from "fs";
-import { Helmet } from "react-helmet";
+const webpack = require("webpack");
+const webpackDevMiddleware = require("webpack-dev-middleware");
+const React = require("react");
+const ReactDOM = require("react-dom");
+
+const ReactDOMServer = require("react-dom/server");
+const { StaticRouter, matchPath } = require("react-router-dom");
+const App = require("../app/App");
+const { Provider } = require("unstated");
+const { routes } = require("../app/routes");
+const fs = require("fs");
+const { Helmet } = require("react-helmet");
 const app = express();
 
 app.use(body.urlencoded({ extended: true }));

@@ -4,8 +4,11 @@ const Dotenv = require("dotenv-webpack");
 const nodeExternals = require("webpack-node-externals");
 
 module.exports = {
-  entry: "./app/index.js",
-  mode: "development",
+  entry: "./server/server.js",
+  name: "server",
+  target: "node",
+  externals: [nodeExternals()],
+  devtool: "source-map",
   module: {
     rules: [
       {
@@ -14,10 +17,7 @@ module.exports = {
         loader: "babel-loader",
         options: { presets: ["@babel/env"] }
       },
-      {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"]
-      },
+      { test: /\.css$/, loader: "ignore-loader" },
       {
         test: /\.(ttf|eot|woff|woff2|svg)$/,
         use: {
@@ -29,17 +29,11 @@ module.exports = {
       }
     ]
   },
-  resolve: { extensions: ["*", ".js"] },
   output: {
-    path: path.resolve(__dirname, "dist/"),
-    publicPath: "/dist/",
-    filename: "bundle.js"
-  },
-  devServer: {
-    contentBase: path.join(__dirname, "public/"),
-    port: 3000,
-    publicPath: "http://localhost:3000/dist/",
-    hotOnly: true
+    path: path.resolve("dist"),
+    filename: "server.js",
+    publicPath: "/dist",
+    libraryTarget: "umd"
   },
   plugins: [new webpack.HotModuleReplacementPlugin(), new Dotenv()]
 };

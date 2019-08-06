@@ -1,12 +1,8 @@
 import React from "react";
-import Index from "./pages/Index/Index";
 import { NavLink, Route, Switch } from "react-router-dom";
 import { hot } from "react-hot-loader";
 import { Helmet } from "react-helmet";
-import PostIndex from "./pages/PostIndex/PostIndex";
-import Post from "./components/Post/Post";
-import NotFound from "./pages/NotFound/NotFound";
-import Page from "./components/Page/Page";
+import NotFound from "../pages/NotFound/NotFound";
 import Logo from "./components/Logo/Logo";
 import "./styles/style.css";
 import "./styles/pistyle.css";
