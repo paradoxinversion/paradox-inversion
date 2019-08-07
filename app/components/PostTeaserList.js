@@ -1,17 +1,16 @@
 import React from "react";
-import PostTeaser from "../../components/PostTeaser/PostTeaser";
+import PostTeaser from "./PostTeaser";
 import { withRouter } from "react-router-dom";
 import {
   queryPosts,
   sortPostBySeriesOrder,
   sortPostsByDateTime
-} from "../../actions";
+} from "../actions";
 class PostTeaserList extends React.Component {
   constructor(props) {
     super(props);
-    const content = props.staticContext ? props.staticContext.routeData : [];
     this.state = {
-      content,
+      content: [],
       fetchingPosts: true
     };
 
@@ -29,15 +28,15 @@ class PostTeaserList extends React.Component {
   }
 
   async componentDidUpdate(prevProps, prevState) {
-    if (
-      prevProps.searchType !== this.props.searchType ||
-      prevProps.query !== this.props.query
-    ) {
-      const newPosts = await this.fetchPosts();
-      this.setState({
-        content: newPosts
-      });
-    }
+    // if (
+    //   prevProps.searchType !== this.props.searchType ||
+    //   prevProps.query !== this.props.query
+    // ) {
+    //   const newPosts = await this.fetchPosts();
+    //   this.setState({
+    //     content: newPosts
+    //   });
+    // }
   }
 
   async fetchPosts() {
@@ -111,4 +110,4 @@ class PostTeaserList extends React.Component {
   }
 }
 
-export default withRouter(PostTeaserList);
+export default PostTeaserList;

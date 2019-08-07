@@ -9,8 +9,8 @@ class SiteContainer extends Container {
     };
   }
 
-  setPages(pages) {
-    this.setState({
+  async setPages(pages) {
+    await this.setState({
       pages: pages
     });
   }

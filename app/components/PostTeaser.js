@@ -1,6 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { formatPostPath } from "../../utilityFunctions";
+import { formatPostPath } from "../utilityFunctions";
 const PostTeaser = ({ post }) => {
   try {
     const {
@@ -11,8 +10,8 @@ const PostTeaser = ({ post }) => {
     } = post;
     return (
       <div>
-        <Link to={formatPostPath(publishedAt, slug)}>{title}</Link>
-
+        {/* <Link to={formatPostPath(publishedAt, slug)}>{title}</Link> */}
+        <span>Link goes here</span>
         <div dangerouslySetInnerHTML={{ __html: brief }} />
       </div>
     );

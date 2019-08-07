@@ -1,21 +1,49 @@
+import Logo from "../app/components/Logo/Logo";
+import Link from "next/link";
+import { getPages } from "../app/actions";
+import connect from "unstated-connect";
+import SiteContainer from "../app/containers/SiteContainer";
+import { Subscribe } from "unstated";
 import React from "react";
-import ReactDOM from "react-dom";
-import App from "../app/App";
-import { BrowserRouter, Route } from "react-router-dom";
-import { Provider } from "unstated";
-var mountNode = document.getElementById("app");
-const renderFunction = !!Window ? ReactDOM.render : ReactDOM.hydrate;
+import MainHeader from "../app/components/MainHeader";
+import MainFooter from "../app/components/MainFooter";
+import MainLayout from "../app/components/MainLayout";
+class Index extends React.Component {
+  static async getInitialProps() {
+    const pageData = await getPages();
+    await SiteContainer.setPages(pageData.data);
+    return {
+      pages: pageData.data
+    };
+  }
+  async componentDidMount() {
+    console.log(this.props);
+    await SiteContainer.setPages(this.props.pages);
+    console.log(SiteContainer.state);
+    // const [SiteContainer] = this.props.containers;
+    // SiteContainer.setPages(this.props.pages);
+  }
+  render() {
+    return (
+      <div>
+        {/* <MainHeader pages={this.props.pages} />
+        <MainFooter /> */}
+        <MainLayout pages={this.props.pages}>
+          <div>Weeeee</div>
+        </MainLayout>
+      </div>
+    );
+  }
+}
 
-const appMarkup = (
-  <Provider>
-    <BrowserRouter>
-      <App data={window.__INITIAL_DATA__} />
-    </BrowserRouter>{" "}
-  </Provider>
-);
+// Index.getInitialProps = async function() {
+//   const pageData = await getPages();
+//   await SiteContainer.setPages(pageData.data);
+//   console.log(pageData.data);
+//   return {
+//     pages: pageData.data
+//   };
+// };
 
-renderFunction(init, mountNode);
-
-module.exports = {
-  appMarkup
-};
+// export default connect([SiteContainer])(Index);
+export default Index;

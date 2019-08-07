@@ -5,7 +5,7 @@ import ReactGA from "react-ga";
 
 // var pathname = require("location").pathname();
 import connect from "unstated-connect";
-import PostTeaserList from "../PostTeaserList/PostTeaserList";
+import PostTeaserList from "../PostTeaserList";
 import "./Page.css";
 import SiteContainer from "../../containers/SiteContainer";
 

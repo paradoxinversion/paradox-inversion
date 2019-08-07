@@ -56,7 +56,7 @@
   },
   "scripts": {
     "start": "API_URL='http://localhost:3000/api' NODE_ENV='production' NODE_PATH=. forever start ./dist/server/server.js",
-    "start-dev": "concurrently \"yarn run watch-server\" \"yarn run watch-client\" ",
+    "start-dev": "REACT_APP_API_URL='http://localhost:3000/api' next",
     "start-dev-server": "NODE_ENV=development webpack --config webpack.server.js --mode=development -w",
     "t": "NODE_PATH=. node dist/server.js",
     "build-client": "parcel build ./app/index.html --out-dir dist/client",
