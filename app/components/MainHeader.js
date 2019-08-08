@@ -6,18 +6,27 @@ const MainHeader = props => {
     <header id="main-header">
       <Logo />
       <div className="nav">
-        {props.pages
-          .filter(page => !page.isIndex)
-          .map(page => (
-            <Link href={"/[slug]"} as={`/${page.slug}`}>
-              <div
-                key={`navlink-${page.slug}`}
-                className="nav__link"
-                to={`/${page.slug}`}>
-                {page.title}
-              </div>
-            </Link>
-          ))}
+        {props.pages ? (
+          props.pages
+            .filter(page => !page.isIndex)
+            .map(page => (
+              <Link
+                key={`page-${page.slug}`}
+                href={"/[slug]"}
+                as={`/${page.slug}`}
+              >
+                <div
+                  key={`navlink-${page.slug}`}
+                  className="nav__link"
+                  to={`/${page.slug}`}
+                >
+                  {page.title}
+                </div>
+              </Link>
+            ))
+        ) : (
+          <div>Loading pages</div>
+        )}
       </div>
     </header>
   );

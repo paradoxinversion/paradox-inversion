@@ -38,6 +38,55 @@ Use ctrl-a to reattach to the screen session
 
 to disconnect from screen use
 
-## posts
+## API Routes
 
-Posts have types-- General, or Story
+`/`
+
+Main page
+
+`/:page`
+
+A ‘top level’ page (ie, fiction, tech, etc)
+
+`/series/:storyName`
+
+The landing page for a series, containing all ordered parts
+
+`/posts/:searchtype/:query`
+
+Gets all posts matching a search type and query— 
+Search Types: [page, category, series, tag(ged?) ]
+
+`/post/:year/:month/:day/:slug`
+
+Returns a single post 
+
+
+## Keystone
+### Pages
+
+Pages are the basic grouping mechanism of content. Pages have the following fields
+
+#### Name
+
+The name of the page. This is also slugified
+
+#### Page Order
+
+The order (from left to right) in which the page should appear in the header, ascending.
+
+#### Is Index (may be deprecated)
+
+Indicates the page is THE index page of the site. Likely deprecated
+
+#### Page Post Sections
+
+A two-word string indicating what posts the page should pull. The first word is the type of of post to search for (page|category|series|tag(ged?)). The second word is the query. For values that are referenced from lists (such as category) the query must match a valid existing option.
+
+#### Page Type
+
+The type of page it is
+
+### Posts
+
+Posts are any content added to the site. Their sent from the server as HTML strings which are rendered via react.

@@ -19,6 +19,7 @@ class PostTeaserList extends React.Component {
   }
 
   async componentDidMount() {
+    console.log("list props", this.props);
     if (this.state.content.length === 0) {
       const postData = await this.fetchPosts();
       this.setState({
@@ -66,13 +67,6 @@ class PostTeaserList extends React.Component {
   renderOrderedTeasers() {
     return this.state.content
       .sort((a, b) => {
-        // if (a.seriesOrder > b.seriesOrder) {
-        //   return 1;
-        // }
-        // if (a.seriesOrder < b.seriesOrder) {
-        //   return -1;
-        // }
-
         return a.seriesOrder - b.seriesOrder;
       })
       .map(post => <PostTeaser key={post.slug} post={post} />);

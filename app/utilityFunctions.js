@@ -13,3 +13,12 @@ export const formatPostPath = (postDate, slug) => {
 
   return `/post/${year}/${month}/${day}/${slug}`;
 };
+
+export const getPostPathParts = postDate => {
+  const d = new Date(postDate);
+  const day = d.getDate();
+  const month = d.getMonth() + 1;
+  const year = d.getFullYear();
+
+  return [year, month, day];
+};

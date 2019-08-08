@@ -1,13 +1,8 @@
-import Logo from "../app/components/Logo/Logo";
-import Link from "next/link";
 import { getPages } from "../app/actions";
-import connect from "unstated-connect";
 import SiteContainer from "../app/containers/SiteContainer";
-import { Subscribe } from "unstated";
 import React from "react";
-import MainHeader from "../app/components/MainHeader";
-import MainFooter from "../app/components/MainFooter";
 import MainLayout from "../app/components/MainLayout";
+import PostTeaserList from "../app/components/PostTeaserList";
 class Index extends React.Component {
   static async getInitialProps() {
     const pageData = await getPages();
@@ -17,19 +12,13 @@ class Index extends React.Component {
     };
   }
   async componentDidMount() {
-    console.log(this.props);
     await SiteContainer.setPages(this.props.pages);
-    console.log(SiteContainer.state);
-    // const [SiteContainer] = this.props.containers;
-    // SiteContainer.setPages(this.props.pages);
   }
   render() {
     return (
       <div>
-        {/* <MainHeader pages={this.props.pages} />
-        <MainFooter /> */}
         <MainLayout pages={this.props.pages}>
-          <div>Weeeee</div>
+          <PostTeaserList searchType="category" query="announcements" />
         </MainLayout>
       </div>
     );
