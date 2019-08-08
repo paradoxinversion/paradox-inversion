@@ -3,6 +3,7 @@ import SiteContainer from "../app/containers/SiteContainer";
 import React from "react";
 import MainLayout from "../app/components/MainLayout";
 import PostTeaserList from "../app/components/PostTeaserList";
+// import "../style.css";
 class Index extends React.Component {
   static async getInitialProps() {
     const pageData = await getPages();

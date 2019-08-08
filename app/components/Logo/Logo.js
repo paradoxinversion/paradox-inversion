@@ -1,4 +1,5 @@
 import Link from "next/link";
+import "./Logo.css";
 const Logo = () => {
   return (
     <Link href="/">
