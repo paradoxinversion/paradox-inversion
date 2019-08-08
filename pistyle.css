@@ -144,7 +144,7 @@ body {
 }
 
 h1 {
-  font-family: "Comfortaa";
+  font-family: "Comfortaa", sans-serif;
   font-weight: 700;
   font-size: 48px;
   margin-block-start: 0.5rem;
@@ -152,7 +152,7 @@ h1 {
 }
 
 h2 {
-  font-family: "Comfortaa";
+  font-family: "Comfortaa", sans-serif;
   font-weight: 700;
   font-size: 32px;
   margin-block-start: 0.5rem;
@@ -160,7 +160,7 @@ h2 {
 }
 
 h3 {
-  font-family: "Comfortaa";
+  font-family: "Comfortaa", sans-serif;
   font-size: 24px;
   margin-block-start: 0.5rem;
   margin-block-end: 0.5rem;
@@ -225,12 +225,20 @@ p {
   display: flex;
 }
 
+.flex--direction--column {
+  flex-direction: column;
+}
+
 .flex--justify-content--space-between {
   justify-content: space-between;
 }
 
 .margin--1rem {
   margin: 1rem;
+}
+
+#main-layout {
+  height: 100vh;
 }
 
 @media screen and (max-width: 400px) {

@@ -3,7 +3,7 @@
   width: 100%;
   display: grid;
   justify-content: center;
-  font-family: "Comfortaa";
+  font-family: "Comfortaa", sans-serif;
   font-weight: 700;
   grid-template-columns: auto auto;
 }

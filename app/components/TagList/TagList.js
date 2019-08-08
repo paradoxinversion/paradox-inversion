@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import "./TagList.css";
+import "./TagList.css"
 const TagList = ({ tags }) => {
   return (
     <div className="tag-list">

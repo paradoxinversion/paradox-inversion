@@ -6,7 +6,7 @@ import "../../pistyle.css";
 const MainLayout = props => {
   console.log(props);
   return (
-    <div>
+    <div id="main-layout">
       <MainHeader pages={props.pages} />
       {props.children}
       <MainFooter />
