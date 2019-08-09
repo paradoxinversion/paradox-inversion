@@ -5,7 +5,7 @@ import {
   queryPosts,
   sortPostBySeriesOrder,
   sortPostsByDateTime
-} from "../actions";
+} from "../appUtilities/actions";
 class PostTeaserList extends React.Component {
   constructor(props) {
     super(props);
@@ -19,7 +19,6 @@ class PostTeaserList extends React.Component {
   }
 
   async componentDidMount() {
-    console.log("list props", this.props);
     if (this.state.content.length === 0) {
       const postData = await this.fetchPosts();
       this.setState({

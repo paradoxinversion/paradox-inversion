@@ -1,15 +1,14 @@
-import SiteContainer from "../app/containers/SiteContainer";
 import { useRouter } from "next/router";
-import MainLayout from "../app/components/MainLayout";
-import { getPages } from "../app/actions";
-import PostTeaserList from "../app/components/PostTeaserList";
+import MainLayout from "../components/MainLayout";
+import { getPages } from "../appUtilities/actions";
+import PostTeaserList from "../components/PostTeaserList";
 const Page = props => {
   const router = useRouter();
   const page = props.pages.filter(page => page.slug === router.query.slug)[0];
   if (page) {
     return (
       <MainLayout pages={props.pages}>
-        <div>
+        <div className="margin--standard">
           {page.content && (
             <div
               className="page__content"
@@ -34,6 +33,7 @@ const Page = props => {
       </MainLayout>
     );
   } else {
+    // TODO: Make this more useful
     return (
       <MainLayout>
         <p>Derp</p>

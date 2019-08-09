@@ -1,4 +1,4 @@
-import Logo from "./Logo/Logo";
+import Logo from "./Logo";
 import Link from "next/link";
 
 const MainHeader = props => {
@@ -13,13 +13,11 @@ const MainHeader = props => {
               <Link
                 key={`page-${page.slug}`}
                 href={"/[slug]"}
-                as={`/${page.slug}`}
-              >
+                as={`/${page.slug}`}>
                 <div
                   key={`navlink-${page.slug}`}
                   className="nav__link"
-                  to={`/${page.slug}`}
-                >
+                  to={`/${page.slug}`}>
                   {page.title}
                 </div>
               </Link>

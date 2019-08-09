@@ -5,7 +5,6 @@ import axios from "axios";
 //     ? "https://paradoxinversion.com/api"
 //     : "http://localhost:3000/api";
 
-console.log(process.env.API_URL);
 const axiosInstance = axios.create({
   baseURL: "http://localhost:3000/api"
 });

@@ -1,20 +1,24 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { formatPostPath } from "../../utilityFunctions";
+import Link from "next/link";
+
+import { formatPostPath } from "../appUtilities/utilityFunctions";
 
 const SeriesStepper = ({ post }) => {
   const previous = post.previousPost ? (
     <Link
-      to={formatPostPath(
+      href="/post/[year]/[month]/[day]/[slug]"
+      as={formatPostPath(
         post.previousPost.publishedAt,
         post.previousPost.slug
       )}>
-      {`Previous: ${post.previousPost.title}`}
+      <a>{`Previous: ${post.previousPost.title}`}</a>
     </Link>
   ) : null;
   const next = post.nextPost ? (
-    <Link to={formatPostPath(post.nextPost.publishedAt, post.nextPost.slug)}>
-      {`Next: ${post.nextPost.title}`}
+    <Link
+      href="/post/[year]/[month]/[day]/[slug]"
+      as={formatPostPath(post.nextPost.publishedAt, post.nextPost.slug)}>
+      <a>{`Next: ${post.nextPost.title}`}</a>
     </Link>
   ) : null;
 

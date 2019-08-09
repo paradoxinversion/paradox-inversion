@@ -1,7 +1,10 @@
 import React from "react";
 import Link from "next/link";
 
-import { formatPostPath, getPostPathParts } from "../utilityFunctions";
+import {
+  formatPostPath,
+  getPostPathParts
+} from "../appUtilities/utilityFunctions";
 const PostTeaser = ({ post }) => {
   try {
     const {
@@ -11,13 +14,11 @@ const PostTeaser = ({ post }) => {
       content: { brief }
     } = post;
     const [year, month, day] = getPostPathParts(publishedAt, slug);
-    console.log(`${year}/${month}/${day}/${slug}`);
     return (
       <div>
         <Link
           href="/post/[year]/[month]/[day]/[slug]"
-          as={`/post/${year}/${month}/${day}/${slug}`}
-        >
+          as={`/post/${year}/${month}/${day}/${slug}`}>
           <a>{title}</a>
         </Link>
         <div dangerouslySetInnerHTML={{ __html: brief }} />

@@ -1,8 +1,8 @@
-import { getPages } from "../app/actions";
-import SiteContainer from "../app/containers/SiteContainer";
+import { getPages } from "../appUtilities/actions";
+import SiteContainer from "../appUtilities/containers/SiteContainer";
 import React from "react";
-import MainLayout from "../app/components/MainLayout";
-import PostTeaserList from "../app/components/PostTeaserList";
+import MainLayout from "../components/MainLayout";
+import PostTeaserList from "../components/PostTeaserList";
 // import "../style.css";
 class Index extends React.Component {
   static async getInitialProps() {
@@ -19,21 +19,13 @@ class Index extends React.Component {
     return (
       <div>
         <MainLayout pages={this.props.pages}>
-          <PostTeaserList searchType="category" query="announcements" />
+          <div className="margin--standard">
+            <PostTeaserList searchType="category" query="announcements" />
+          </div>
         </MainLayout>
       </div>
     );
   }
 }
 
-// Index.getInitialProps = async function() {
-//   const pageData = await getPages();
-//   await SiteContainer.setPages(pageData.data);
-//   console.log(pageData.data);
-//   return {
-//     pages: pageData.data
-//   };
-// };
-
-// export default connect([SiteContainer])(Index);
 export default Index;

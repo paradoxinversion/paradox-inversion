@@ -1,5 +1,3 @@
 const withCSS = require("@zeit/next-css");
 const withFonts = require("next-fonts");
-module.exports = withCSS({
-  /* config options here */
-});
+module.exports = withFonts(withCSS());

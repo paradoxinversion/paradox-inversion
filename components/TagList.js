@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import "./TagList.css"
+// import "./TagList.css"
 const TagList = ({ tags }) => {
   return (
     <div className="tag-list">
@@ -8,8 +8,7 @@ const TagList = ({ tags }) => {
         <Link
           href={{ path: "/search", query: { type: "tagged", query: "tag" } }}
           as={`/search?type=tagged&query=${tag}`}
-          key={`tag-${tag}`}
-        >
+          key={`tag-${tag}`}>
           <a>{tag}</a>
         </Link>
       ))}
