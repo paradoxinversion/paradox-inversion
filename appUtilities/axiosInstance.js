@@ -1,12 +1,12 @@
 import axios from "axios";
-// const baseURL =
-//   process.env.NODE_ENV === "production" ||
-//   window.location.host.includes("localhost")
-//     ? "https://paradoxinversion.com/api"
-//     : "http://localhost:3000/api";
+const baseURL =
+  process.env.NODE_ENV === "production"
+    ? "https://paradoxinversion.com/api"
+    : "http://localhost:3000/api";
 
+// console.log(process.env);
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:3000/api"
+  baseURL: baseURL
 });
 
 export default axiosInstance;

@@ -1,6 +1,6 @@
-import { getPages } from "../app/actions";
-import PostTeaserList from "../app/components/PostTeaserList";
-import MainLayout from "../app/components/MainLayout";
+import { getPages } from "../appUtilities/actions";
+import PostTeaserList from "../components/PostTeaserList";
+import MainLayout from "../components/MainLayout";
 const Search = props => {
   return (
     <MainLayout pages={props.pages}>
