@@ -6,6 +6,7 @@ import TagList from "../../../../../components/TagList";
 import MainLayout from "../../../../../components/MainLayout";
 import SeriesStepper from "../../../../../components/SeriesStepper";
 import { useRouter } from "next/router";
+import { NextSeo } from "next-seo";
 
 const Post = props => {
   const router = useRouter();

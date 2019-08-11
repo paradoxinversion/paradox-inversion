@@ -1,7 +1,6 @@
 const keystone = require("keystone");
 const path = require("path");
 const next = require("next");
-console.log("ENV:", process.env.NODE_ENV);
 const dev = process.env.NODE_ENV !== "production";
 const app = next({
   dev
