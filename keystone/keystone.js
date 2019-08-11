@@ -1,13 +1,12 @@
 const keystone = require("keystone");
 const path = require("path");
 const next = require("next");
+console.log("ENV:", process.env.NODE_ENV);
 const dev = process.env.NODE_ENV !== "production";
-const app = next({ dev });
+const app = next({
+  dev
+});
 
-const dir =
-  process.env.NODE_ENV === "production"
-    ? path.resolve(__dirname, "..", "..", "keystone")
-    : __dirname;
 keystone.init({
   "cookie secret": "secure string",
   name: "Paradox Inversion",

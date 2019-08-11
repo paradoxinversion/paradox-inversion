@@ -6,7 +6,8 @@
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
     "axios": "^0.18.0",
-    "body-parser": "^1.18.3",
+    "dotenv": "^8.0.0",
+    "dotenv-webpack": "^1.7.0",
     "keystone": "^4.0.0",
     "moment": "^2.23.0",
     "multer": "0.1.8",
@@ -15,29 +16,20 @@
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-ga": "^2.5.7",
-    "react-helmet": "^5.2.0",
-    "react-hot-loader": "^4.6.5",
     "react-router-dom": "^4.3.1",
     "serialize-javascript": "^1.7.0",
     "unstated": "^2.1.1",
-    "unstated-connect": "^0.0.3"
+    "unstated-connect": "^0.0.3",
+    "webpack": "^4.39.1"
   },
-  "devDependencies": {
-    "parcel-bundler": "^1.12.3"
-  },
+  "devDependencies": {},
   "engines": {
     "node": "12.2.0"
   },
   "scripts": {
-    "start": "API_URL='http://localhost:3000/api' NODE_ENV='production' NODE_PATH=. forever start ./dist/server/server.js",
-    "start-dev": "REACT_APP_API_URL='http://localhost:3000/api' node ./keystone/keystone.js",
-    "start-dev-server": "NODE_ENV=development webpack --config webpack.server.js --mode=development -w",
-    "t": "NODE_PATH=. node dist/server.js",
-    "build-client": "parcel build ./app/index.html --out-dir dist/client",
-    "watch-client": "parcel ./app/index.html --no-cache --open",
-    "build-server": "NODE_ENV='production' parcel build ./server/server.js --target node --no-minify --no-source-maps --out-dir dist/server",
-    "start-server": "node ./dist/server/server.js",
-    "build": "rimraf dist && yarn run build-server && yarn run build-client"
+    "start": "NODE_ENV=production forever start ./keystone/keystone.js",
+    "dev": "node ./keystone/keystone.js",
+    "build": "next build"
   },
   "browserslist": [
     "since 2017-06"

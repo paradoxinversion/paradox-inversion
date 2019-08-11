@@ -1,32 +1,33 @@
 # Paradox Inversion
 
-The API is driven by Keystonejs.
+The API is driven by Keystonejs (for CMS functionality) and Nextjs (for React/SSR implementation).
 
 This repo is largely for (Jedai's) personal use. It may or may not be well documented and will likely be messy.
 
-## Building and Running
+## Environment
 
-**start**: Run the bundled server in production mode. Environment variables are set, designating production status and pointing the api url to localhost.
+Some PI configuration is handled via envrionment variables. The project uses dotenv, so a .env file should be present on executing machines with the following:
 
-**start-dev**: Watch the client and server
-
-**build-client**: Bundles all client code to dist/client
-
-**watch-client**: Starts a development server for the client at localhost:1234.
-
-**build-server**: Bundles server code for server side rendering
-
-**watch-server**: Runs server code without bundling
-
-**build**: Runs build-server and build-client
+```env
+API_URL=http(s)://...
+GOOGLE_ANALYTICS_TRACKING_ID=UA-...
+```
 
 ## Developing
 
-Ensure `mongod` is running and there is a built version of the server.
+Ensure `mongod` is running beginning. To start developing, execute `yarn run dev`. This will create a Nextjs server with hot reloading.
 
-When working on the server, a new version will have to be built and tested when changes are made. Some of keystone's dependancies cause issues with Parcel. This may or may not be fixed in the future.
+## Building and Running for Production
 
-When working on the client, running `watch-client` shoud be fine.
+On the production machine, ensure that mongo is running and execute `yarn run build && yarn start`.
+
+## Scripts
+
+**start**: Run the bundled server in production mode. Environment variables are set, designating production status and pointing the api url to localhost.
+
+**dev**: Starts the Nextjs server and Keystone. Remember to have mongo running or it will fail.
+
+**build**: Runs build-server and build-client
 
 ## Server
 
@@ -54,15 +55,15 @@ The landing page for a series, containing all ordered parts
 
 `/posts/:searchtype/:query`
 
-Gets all posts matching a search type and query— 
+Gets all posts matching a search type and query—
 Search Types: [page, category, series, tag(ged?) ]
 
 `/post/:year/:month/:day/:slug`
 
-Returns a single post 
-
+Returns a single post
 
 ## Keystone
+
 ### Pages
 
 Pages are the basic grouping mechanism of content. Pages have the following fields
