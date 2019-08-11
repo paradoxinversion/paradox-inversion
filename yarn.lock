@@ -5369,6 +5369,11 @@ next-ga@^2.3.4:
     debug "^4.0.0"
     react-ga "^2.5.3"
 
+next-seo@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/next-seo/-/next-seo-2.0.0.tgz#478ea9ac5a6f7b331b58f9604a577bcccbd4ba43"
+  integrity sha512-VUkgKtnBEugWIjZTHLBRO/EI9LCqPM55qCuYgP1OBvSPwXKReG27g9k5iEHaFymoTjdyhQFMUE8GVHdbAfd2eA==
+
 next-server@9.0.3:
   version "9.0.3"
   resolved "https://registry.yarnpkg.com/next-server/-/next-server-9.0.3.tgz#b1372df158646ec40118c6e845d9a51764a21d89"

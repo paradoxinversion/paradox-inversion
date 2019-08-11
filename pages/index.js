@@ -5,6 +5,8 @@ import SiteContainer from "../appUtilities/containers/SiteContainer";
 import React from "react";
 import MainLayout from "../components/MainLayout";
 import PostTeaserList from "../components/PostTeaserList";
+import { NextSeo } from "next-seo";
+
 // import "../style.css";
 class Index extends React.Component {
   static async getInitialProps() {
@@ -21,19 +23,16 @@ class Index extends React.Component {
     return (
       <div>
         <MainLayout pages={this.props.pages}>
-          <Head>
-            <title>Paradox Inversion Press - Home</title>
-            <meta property="og:title" content={`Pradox Inversion Press`} />
-            <meta property="og:type" content="website" />
-            <meta
-              property="og:url"
-              content={`http://www.paradoxinversion.com`}
-            />
-            <meta
-              property="og:description"
-              content="Home of Fiction, Articles, and Games by Jedai Saboteur"
-            />
-          </Head>
+          <NextSeo
+            title="Paradox Inversion Press - Home"
+            description="Home of Fiction, Articles, and Games by Jedai Saboteur"
+            openGraph={{
+              url: "http://www.paradoxinversion.com",
+              title: "Paradox Inversion Press",
+              description:
+                "Home of Fiction, Articles, and Games by Jedai Saboteur"
+            }}
+          />
           <div className="margin--standard">
             <PostTeaserList searchType="category" query="announcements" />
           </div>

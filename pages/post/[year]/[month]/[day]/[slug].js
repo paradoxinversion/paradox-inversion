@@ -11,22 +11,15 @@ const Post = props => {
   const router = useRouter();
   return (
     <MainLayout pages={props.pages}>
-      <Head>
-        <title>Paradox Inversion - {props.post.title}</title>
-        <meta
-          property="og:title"
-          content={`Pradox Inversion - ${props.post.title}`}
-        />
-        <meta property="og:type" content="article" />
-        <meta
-          property="og:url"
-          content={`http://www.paradoxinversion.com${router.asPath}`}
-        />
-        <meta
-          property="og:description"
-          content="Home of Fiction, Articles, and Games by Jedai Saboteur"
-        />
-      </Head>
+      <NextSeo
+        title={`Paradox Inversion - ${props.post.title}`}
+        description="Home of Fiction, Articles, and Games by Jedai Saboteur"
+        openGraph={{
+          url: `http://www.paradoxinversion.com${router.asPath}`,
+          title: `Paradox Inversion - ${props.post.title}`,
+          description: "Home of Fiction, Articles, and Games by Jedai Saboteur"
+        }}
+      />
       <div>
         <header className="margin--1rem">
           <h1 className="post__content__title">{props.post.title}</h1>

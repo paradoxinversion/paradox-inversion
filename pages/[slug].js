@@ -3,28 +3,23 @@ import { useRouter } from "next/router";
 import MainLayout from "../components/MainLayout";
 import { getPages } from "../appUtilities/actions";
 import PostTeaserList from "../components/PostTeaserList";
+import { NextSeo } from "next-seo";
+
 const Page = props => {
   const router = useRouter();
   const page = props.pages.filter(page => page.slug === router.query.slug)[0];
-
+  console.log(router);
   return (
     <MainLayout pages={props.pages}>
-      <Head>
-        <title>Paradox Inversion - {page.title}</title>
-        <meta
-          property="og:title"
-          content={`Pradox Inversion - ${page.title}`}
-        />
-        <meta property="og:type" content="article" />
-        <meta
-          property="og:url"
-          content={`http://www.paradoxinversion.com${router.asPath}`}
-        />
-        <meta
-          property="og:description"
-          content="Home of Fiction, Articles, and Games by Jedai Saboteur"
-        />
-      </Head>
+      <NextSeo
+        title={`Paradox Inversion Press - ${page.title}`}
+        description="Home of Fiction, Articles, and Games by Jedai Saboteur"
+        openGraph={{
+          url: `http://www.paradoxinversion.com${router.asPath}`,
+          title: `Paradox Inversion Press - ${page.title}`,
+          description: "Home of Fiction, Articles, and Games by Jedai Saboteur"
+        }}
+      />
       <div className="margin--standard">
         {page.content && (
           <div
