@@ -1,6 +1,5 @@
 import React from "react";
 import PostTeaser from "./PostTeaser";
-import { withRouter } from "react-router-dom";
 import {
   queryPosts,
   sortPostBySeriesOrder,

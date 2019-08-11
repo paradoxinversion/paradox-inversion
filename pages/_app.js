@@ -1,11 +1,9 @@
 import App, { Container } from "next/app";
 import React from "react";
 import { Provider } from "unstated";
-
+import Router from "next/router";
+import withGA from "next-ga";
 class MyApp extends App {
-  // constructor(props){
-  //   super(props)
-  // }
   render() {
     const { Component, pageProps } = this.props;
     return (
@@ -18,4 +16,4 @@ class MyApp extends App {
   }
 }
 
-export default MyApp;
+export default withGA(process.env.GOOGLE_ANALYTICS_TRACKING_ID, Router)(MyApp);

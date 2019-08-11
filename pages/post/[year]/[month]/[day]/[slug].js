@@ -27,8 +27,8 @@ const Post = props => {
           content="Home of Fiction, Articles, and Games by Jedai Saboteur"
         />
       </Head>
-      <div className="margin--1rem">
-        <header>
+      <div>
+        <header className="margin--1rem">
           <h1 className="post__content__title">{props.post.title}</h1>
           <p className="post__content__date">
             {formatDate(props.post.publishedAt)}
@@ -38,7 +38,7 @@ const Post = props => {
 
         <hr />
         <div
-          className="post__content__html"
+          className="post__content__html margin--1rem"
           dangerouslySetInnerHTML={{
             __html: props.post.content.extended
           }}
@@ -47,9 +47,11 @@ const Post = props => {
       {props.post.series && <SeriesStepper post={props.post} />}
       <div className="post__metadata">
         <hr />
-        {/* TODO: make this link to category section search page */}
-        {props.post.category && <p>Category: {props.post.category.name}</p>}
-        <TagList tags={props.post.tags} />
+        <div className="margin--standard">
+          {/* TODO: make this link to category section search page */}
+          {props.post.category && <p>Category: {props.post.category.name}</p>}
+          <TagList tags={props.post.tags} />
+        </div>
       </div>
     </MainLayout>
   );
@@ -60,6 +62,7 @@ Post.getInitialProps = async function({ query }) {
     getPages(),
     getPost(query.slug)
   ]);
+  console.log("Post Data::", postData);
   return {
     pages: pageData.data,
     post: postData.data

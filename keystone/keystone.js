@@ -14,7 +14,8 @@ keystone.init({
   "auto update": true,
   auth: true,
   "trust proxy": "loopback",
-  logger: "dev"
+  logger: "dev",
+  favicon: "../public/favicon.ico"
 });
 keystone.import("models");
 // Import our models directory
