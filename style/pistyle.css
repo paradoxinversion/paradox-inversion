@@ -242,6 +242,7 @@ p {
   height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr auto;
+  background: linear-gradient(90deg, #efefef, white, white, #efefef);
 }
 
 .tag-list {
@@ -313,7 +314,8 @@ hr {
     margin: 0 auto;
   }
 
-  #post-container {
+  #post-container,
+  .container--main {
     display: flex;
     flex-direction: column;
     width: 60%;

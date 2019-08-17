@@ -4,12 +4,10 @@ import MainLayout from "../components/MainLayout";
 const Search = props => {
   return (
     <MainLayout pages={props.pages}>
-      <div className="margin--standard">
-        <PostTeaserList
-          searchType={props.search.type}
-          query={props.search.query}
-        />
-      </div>
+      <PostTeaserList
+        searchType={props.search.type}
+        query={props.search.query}
+      />
     </MainLayout>
   );
 };

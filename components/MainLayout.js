@@ -7,7 +7,7 @@ const MainLayout = props => {
   return (
     <div id="main-layout">
       <MainHeader pages={props.pages} />
-      {props.children}
+      <div className="margin--standard container--main">{props.children}</div>
       <MainFooter />
     </div>
   );

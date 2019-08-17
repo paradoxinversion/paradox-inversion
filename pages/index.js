@@ -35,19 +35,17 @@ class Index extends React.Component {
             }}
           />
 
-          <div className="margin--standard">
-            <div
-              dangerouslySetInnerHTML={{
-                __html: this.props.pages[0].content
-              }}
-            />
-            <PostTeaserList
-              searchType="all"
-              query="all"
-              customHeaderText="Latest Posts"
-              reverseOrder={true}
-            />
-          </div>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: this.props.pages[0].content
+            }}
+          />
+          <PostTeaserList
+            searchType="all"
+            query="all"
+            customHeaderText="Latest Posts"
+            reverseOrder={true}
+          />
         </MainLayout>
       </div>
     );

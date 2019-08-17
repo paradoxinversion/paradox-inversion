@@ -20,28 +20,26 @@ const Page = props => {
           description: "Home of Fiction, Articles, and Games by Jedai Saboteur"
         }}
       />
-      <div className="margin--standard">
-        {page.content && (
-          <div
-            className="page__content"
-            dangerouslySetInnerHTML={{ __html: page.content }}
-          />
-        )}
+      {page.content && (
+        <div
+          className="page__content"
+          dangerouslySetInnerHTML={{ __html: page.content }}
+        />
+      )}
 
-        <PostTeaserList searchType="page" query={page.slug} />
+      <PostTeaserList searchType="page" query={page.slug} />
 
-        {page.pagePostSections.length > 0 &&
-          page.pagePostSections.map(postSection => {
-            const typeAndQuery = postSection.split(" ");
-            return (
-              <PostTeaserList
-                key={`teaser-${typeAndQuery[0]}-${typeAndQuery[1]}`}
-                searchType={typeAndQuery[0]}
-                query={typeAndQuery[1]}
-              />
-            );
-          })}
-      </div>
+      {page.pagePostSections.length > 0 &&
+        page.pagePostSections.map(postSection => {
+          const typeAndQuery = postSection.split(" ");
+          return (
+            <PostTeaserList
+              key={`teaser-${typeAndQuery[0]}-${typeAndQuery[1]}`}
+              searchType={typeAndQuery[0]}
+              query={typeAndQuery[1]}
+            />
+          );
+        })}
     </MainLayout>
   );
 };
