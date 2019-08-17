@@ -9,7 +9,9 @@ const TagList = ({ tags }) => {
           href={{ path: "/search", query: { type: "tagged", query: "tag" } }}
           as={`/search?type=tagged&query=${tag}`}
           key={`tag-${tag}`}>
-          <a>{tag}</a>
+          <a className="color--white color--bg--black margin--right--1rem padding--1rem border--radius--6px">
+            {tag}
+          </a>
         </Link>
       ))}
     </div>

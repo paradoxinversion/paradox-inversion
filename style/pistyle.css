@@ -228,10 +228,16 @@ p {
   margin: 1rem;
 }
 
+.margin--right--1rem {
+  margin-right: 1rem;
+}
+
 .margin--standard {
   margin: 1rem;
 }
-
+.padding--1rem {
+  padding: 1rem;
+}
 #main-layout {
   height: 100vh;
   display: grid;
@@ -274,6 +280,22 @@ p {
 .logo__i {
   color: red;
 }
+hr {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.color--bg--black {
+  background-color: black;
+}
+
+.color--white {
+  color: white;
+}
+
+.border--radius--6px {
+  border-radius: 6px;
+}
 
 @media screen and (max-width: 400px) {
   .flex--mobile {
@@ -285,8 +307,20 @@ p {
   .nav {
     justify-content: center;
   }
-  .post-index {
+  .post-index,
+  .post__content__html {
     width: 60%;
     margin: 0 auto;
+  }
+
+  #post-container {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin: 0 auto;
+  }
+
+  #post-content {
+    flex-grow: 1;
   }
 }
