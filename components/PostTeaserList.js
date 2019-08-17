@@ -41,7 +41,7 @@ class PostTeaserList extends React.Component {
   }
 
   renderTeasers() {
-    const isSeries = !!this.state.content[0].seriesOrder;
+    const isSeries = !!this.state.content[0].seriesOrder !== undefined;
     const orderFunction = isSeries
       ? sortPostBySeriesOrder
       : sortPostsByDateTime;

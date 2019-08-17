@@ -40,5 +40,6 @@ export const sortPostsByDateTime = postArray => {
  * @returns {Array} Posts sorted by series order number
  */
 export const sortPostBySeriesOrder = postArray => {
+  console.log("sort");
   return postArray.sort((a, b) => a.seriesOrder - b.seriesOrder);
 };
