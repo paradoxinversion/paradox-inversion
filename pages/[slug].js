@@ -15,7 +15,7 @@ const Page = props => {
         title={`Paradox Inversion Press - ${page.title}`}
         description="Home of Fiction, Articles, and Games by Jedai Saboteur"
         openGraph={{
-          url: `http://www.paradoxinversion.com${router.asPath}`,
+          url: `https://www.paradoxinversion.com${router.asPath}`,
           title: `Paradox Inversion Press - ${page.title}`,
           description: "Home of Fiction, Articles, and Games by Jedai Saboteur"
         }}

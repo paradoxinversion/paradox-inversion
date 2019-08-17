@@ -28,7 +28,7 @@ class Index extends React.Component {
             title="Paradox Inversion Press - Home"
             description="Home of Fiction, Articles, and Games by Jedai Saboteur"
             openGraph={{
-              url: "http://www.paradoxinversion.com",
+              url: "https://www.paradoxinversion.com",
               title: "Paradox Inversion Press",
               description:
                 "Home of Fiction, Articles, and Games by Jedai Saboteur"
