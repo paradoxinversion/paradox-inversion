@@ -41,7 +41,12 @@ class Index extends React.Component {
                 __html: this.props.pages[0].content
               }}
             />
-            <PostTeaserList searchType="category" query="announcements" />
+            <PostTeaserList
+              searchType="all"
+              query="all"
+              customHeaderText="Latest Posts"
+              reverseOrder={true}
+            />
           </div>
         </MainLayout>
       </div>

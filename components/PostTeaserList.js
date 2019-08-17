@@ -1,10 +1,12 @@
 import React from "react";
+import PropTypes from "prop-types";
 import PostTeaser from "./PostTeaser";
 import {
   queryPosts,
   sortPostBySeriesOrder,
   sortPostsByDateTime
 } from "../appUtilities/actions";
+
 class PostTeaserList extends React.Component {
   constructor(props) {
     super(props);
@@ -14,7 +16,6 @@ class PostTeaserList extends React.Component {
     };
 
     this.renderTeasers = this.renderTeasers.bind(this);
-    this.renderOrderedTeasers = this.renderOrderedTeasers.bind(this);
   }
 
   async componentDidMount() {
@@ -24,18 +25,6 @@ class PostTeaserList extends React.Component {
         content: postData
       });
     }
-  }
-
-  async componentDidUpdate(prevProps, prevState) {
-    // if (
-    //   prevProps.searchType !== this.props.searchType ||
-    //   prevProps.query !== this.props.query
-    // ) {
-    //   const newPosts = await this.fetchPosts();
-    //   this.setState({
-    //     content: newPosts
-    //   });
-    // }
   }
 
   async fetchPosts() {
@@ -56,34 +45,33 @@ class PostTeaserList extends React.Component {
     const orderFunction = isSeries
       ? sortPostBySeriesOrder
       : sortPostsByDateTime;
-    const orderedContent = orderFunction(this.state.content);
-    return orderedContent.map(post => (
+    const orderedContent = orderFunction(this.state.content).map(post => (
       <PostTeaser key={post.slug} post={post} />
     ));
-  }
-
-  renderOrderedTeasers() {
-    return this.state.content
-      .sort((a, b) => {
-        return a.seriesOrder - b.seriesOrder;
-      })
-      .map(post => <PostTeaser key={post.slug} post={post} />);
+    if (this.props.reverseOrder) {
+      orderedContent.reverse();
+    }
+    return orderedContent;
   }
 
   renderTeaserList() {
     return (
       <div className="post-teaser">
-        <h3>
-          {this.props.searchType === "page"
-            ? `Recent Posts`
-            : this.props.searchType === "category"
-            ? `Recent Posts in ${this.props.query}`
-            : this.props.searchType === "series"
-            ? `Recent posts in this series`
-            : `Recent Posts tagged ${this.props.query}`}
-        </h3>
+        {this.props.customHeaderText ? (
+          <h3>{this.props.customHeaderText}</h3>
+        ) : (
+          <h3>
+            {this.props.searchType === "page"
+              ? `Recent Posts`
+              : this.props.searchType === "category"
+              ? `Recent Posts in ${this.props.query}`
+              : this.props.searchType === "series"
+              ? `Recent posts in this series`
+              : `Recent Posts tagged ${this.props.query}`}
+          </h3>
+        )}
         {this.state.content.length > 0 ? (
-          this.renderOrderedTeasers()
+          this.renderTeasers()
         ) : (
           <p>
             Couldn't find any tagged or category posts with the name '
@@ -101,5 +89,18 @@ class PostTeaserList extends React.Component {
     );
   }
 }
+
+PostTeaserList.defaultProps = {
+  type: "all",
+  query: "all",
+  reverseOrder: false
+};
+
+PostTeaserList.propTypes = {
+  type: PropTypes.string.isRequired,
+  query: PropTypes.string.isRequired,
+  customHeaderText: PropTypes.string,
+  reverseOrder: PropTypes.bool
+};
 
 export default PostTeaserList;

@@ -22,6 +22,11 @@ export const getSeries = async slug => {
   return seriesData;
 };
 
+/**
+ * Return an array of posts sorted by when they are published.
+ * @param {Array} postArray
+ * @returns {Array} Posts sorted by the time they were published
+ */
 export const sortPostsByDateTime = postArray => {
   return postArray.sort(
     (a, b) =>
@@ -29,6 +34,11 @@ export const sortPostsByDateTime = postArray => {
   );
 };
 
+/**
+ * Return an array of posts sorted by their series order number.
+ * @param {Array} postArray
+ * @returns {Array} Posts sorted by series order number
+ */
 export const sortPostBySeriesOrder = postArray => {
   return postArray.sort((a, b) => a.seriesOrder - b.seriesOrder);
 };

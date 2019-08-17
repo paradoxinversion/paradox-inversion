@@ -15,6 +15,10 @@ module.exports = async function(req, res) {
   const query = req.query.query;
   if (searchType && query) {
     switch (searchType) {
+      case "all":
+        posts = (await Post.model.find({})) || [];
+        break;
+
       case "category":
         const category = await Category.model.find({
           slug: query
@@ -58,6 +62,7 @@ module.exports = async function(req, res) {
         } else {
           posts = [];
         }
+        break;
       default:
         break;
     }

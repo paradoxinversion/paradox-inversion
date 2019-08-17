@@ -17,9 +17,6 @@ keystone.init({
   favicon: "../public/favicon.ico"
 });
 keystone.import("models");
-// Import our models directory
-
-// Import routes from express app
 
 app.prepare().then(() => {
   keystone.set("cors allow origin", true);
