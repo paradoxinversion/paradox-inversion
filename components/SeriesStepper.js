@@ -18,7 +18,7 @@ const SeriesStepper = ({ post }) => {
     <Link
       href="/post/[year]/[month]/[day]/[slug]"
       as={formatPostPath(post.nextPost.publishedAt, post.nextPost.slug)}>
-      <a>{`Next: ${post.nextPost.title}`}</a>
+      <a id="next-part-link">{`Next: ${post.nextPost.title}`}</a>
     </Link>
   ) : null;
 
