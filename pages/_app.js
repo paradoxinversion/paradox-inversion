@@ -3,11 +3,14 @@ import React from "react";
 import { Provider } from "unstated";
 import Router from "next/router";
 import withGA from "next-ga";
+import { DefaultSeo } from "next-seo";
+import SEO from "../next-seo.config";
 class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
       <Container>
+        <DefaultSeo {...SEO} />
         <Provider>
           <Component {...pageProps} />
         </Provider>

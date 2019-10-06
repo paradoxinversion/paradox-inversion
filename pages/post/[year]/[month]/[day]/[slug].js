@@ -18,7 +18,7 @@ const Post = props => {
         openGraph={{
           url: `https://www.paradoxinversion.com${router.asPath}`,
           title: `Paradox Inversion - ${props.post.title}`,
-          description: "Home of Fiction, Articles, and Games by Jedai Saboteur"
+          description: `${props.post.content.socialMediaBrief}`
         }}
       />
       <header id="post-header" className="margin--1rem">

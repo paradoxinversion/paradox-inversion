@@ -11,6 +11,7 @@ const Page = new keystone.List("Page", {
 // Each needs a type property
 Page.add({
   title: { type: String, required: true },
+  socialMediaBrief: { Type: Types.Text, max: 200, required: true },
   content: { type: Types.Html, wysiwyg: true, height: 150 },
   pageOrder: { type: Number },
   isIndex: { type: Boolean },

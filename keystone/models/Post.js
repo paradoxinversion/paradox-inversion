@@ -23,6 +23,7 @@ Post.add({
   publishedAt: Date,
   content: {
     brief: { type: Types.Html, wysiwyg: true, height: 150 },
+    socialMediaBrief: { type: Types.Text, max: 280, required: true },
     extended: { type: Types.Html, wysiwyg: true, height: 400 }
   },
   page: { type: Types.Relationship, ref: "Page" }
