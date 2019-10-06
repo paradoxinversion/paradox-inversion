@@ -39,6 +39,16 @@ Use ctrl-a to reattach to the screen session
 
 to disconnect from screen use
 
+## Deployment (Manual)
+
+SSH to remote machine, enter pass
+
+Navigate to remote paradox-inversion folder
+
+git pull the latest version of the `deploy` branch
+
+build the project with `yarn run build`.
+
 ## API Routes
 
 `/`
