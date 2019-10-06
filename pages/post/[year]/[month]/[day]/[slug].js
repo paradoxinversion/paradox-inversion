@@ -16,6 +16,7 @@ const Post = props => {
         title={`${props.post.title}`}
         description="Home of Fiction, Articles, and Games by Jedai Saboteur"
         openGraph={{
+          type: "article",
           url: `https://www.paradoxinversion.com${router.asPath}`,
           title: `${props.post.title}`,
           description: `${props.post.content.socialMediaBrief}`
