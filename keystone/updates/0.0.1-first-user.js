@@ -1,9 +1,9 @@
 exports.create = {
   User: [
     {
-      displayName: "Jedai Saboteur",
-      email: "fake@email.com",
-      password: "123456789"
+      displayName: "Test",
+      email: "test@test.test",
+      password: "test"
     }
   ],
   Page: [
