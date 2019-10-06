@@ -13,11 +13,11 @@ const Page = props => {
     <MainLayout pages={props.pages}>
       <NextSeo
         title={`Paradox Inversion Press - ${page.title}`}
-        description="Home of Fiction, Articles, and Games by Jedai Saboteur"
+        description={`${page.socialMediaBrief}`}
         openGraph={{
           url: `https://www.paradoxinversion.com${router.asPath}`,
           title: `Paradox Inversion Press - ${page.title}`,
-          description: "Home of Fiction, Articles, and Games by Jedai Saboteur"
+          description: `${page.socialMediaBrief}`
         }}
       />
       {page.content && (

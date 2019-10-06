@@ -1,17 +1,14 @@
-const keystone = require("keystone");
+var keystone = require("keystone");
 var Types = keystone.Field.Types;
 
-// Create a list of Users
 const Page = new keystone.List("Page", {
   autokey: { path: "slug", from: "title", unique: true },
   map: { name: "title" }
 });
 
-// Add fields to the Page model
-// Each needs a type property
 Page.add({
   title: { type: String, required: true },
-  socialMediaBrief: { Type: Types.Text, max: 200, required: true },
+  socialMediaBrief: { type: Types.Text },
   content: { type: Types.Html, wysiwyg: true, height: 150 },
   pageOrder: { type: Number },
   isIndex: { type: Boolean },
