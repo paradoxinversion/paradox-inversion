@@ -1,5 +1,5 @@
 var keystone = require("keystone");
-const { Relationship, Integer } = require("@keystonejs/fields");
+const { Relationship, Integer, Select } = require("@keystonejs/fields");
 var Post = new keystone.List("Post", {
   autokey: { path: "slug", from: "title", unique: true },
   map: { name: "title" },
@@ -9,7 +9,7 @@ var Post = new keystone.List("Post", {
 Post.add({
   title: { type: String, required: true },
   state: {
-    type: Types.Select,
+    type: Select,
     options: "draft, published, archived",
     default: "draft"
   },
