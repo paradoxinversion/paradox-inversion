@@ -4,11 +4,14 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "@keystonejs/adapter-mongoose": "^5.1.0",
+    "@keystonejs/app-graphql": "^5.0.0",
+    "@keystonejs/fields": "^5.0.2",
+    "@keystonejs/keystone": "^5.1.0",
     "@zeit/next-css": "^1.0.1",
     "axios": "^0.18.0",
     "dotenv": "^8.0.0",
     "dotenv-webpack": "^1.7.0",
-    "keystone": "^4.0.0",
     "moment": "^2.23.0",
     "multer": "0.1.8",
     "next": "^9.0.3",
@@ -32,7 +35,8 @@
   "scripts": {
     "start": "NODE_ENV=production forever start ./keystone/keystone.js",
     "dev": "node ./keystone/keystone.js",
-    "build": "next build"
+    "build": "next build",
+    "start:dev": "keystone"
   },
   "browserslist": [
     "since 2017-06"

@@ -1,6 +1,5 @@
 var keystone = require("keystone");
-var Types = keystone.Field.Types;
-
+const { Relationship, Integer } = require("@keystonejs/fields");
 var Post = new keystone.List("Post", {
   autokey: { path: "slug", from: "title", unique: true },
   map: { name: "title" },
@@ -14,11 +13,11 @@ Post.add({
     options: "draft, published, archived",
     default: "draft"
   },
-  category: { type: Types.Relationship, ref: "Category" },
-  series: { type: Types.Relationship, ref: "Series" },
-  seriesOrder: { type: Number },
+  category: { type: Relationship, ref: "Category" },
+  series: { type: Relationship, ref: "Series" },
+  seriesOrder: { type: Integer },
   tags: { type: Types.TextArray },
-  author: { type: Types.Relationship, ref: "User" },
+  author: { type: Relationship, ref: "User" },
   createdAt: { type: Date, default: Date.now },
   publishedAt: Date,
   content: {
