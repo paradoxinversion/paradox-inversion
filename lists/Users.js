@@ -9,6 +9,10 @@ module.exports = {
     password: {
       type: Password,
       isRequired: true
+    },
+    displayName: {
+      type: Text
     }
-  }
+  },
+  labelField: "displayName"
 };

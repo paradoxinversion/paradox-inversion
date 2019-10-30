@@ -2,6 +2,7 @@ const { Text, Checkbox, CalendarDay } = require("@keystonejs/fields");
 
 module.exports = {
   fields: {
+    name: { type: Text },
     description: {
       type: Text,
       isRequired: true
@@ -19,7 +20,7 @@ module.exports = {
       defaultValue: Date.now()
     },
     assignee: {
-      type: "Text",
+      type: Text,
       isRequired: true
     }
   }

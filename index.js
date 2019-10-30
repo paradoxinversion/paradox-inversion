@@ -8,14 +8,22 @@ const { PasswordAuthStrategy } = require("@keystonejs/auth-password");
 
 const TodosSchema = require("./lists/Todos.js");
 const UsersSchema = require("./lists/Users");
-keystone.createList("Todo", TodosSchema);
-keystone.createList("User", UsersSchema);
-const admin = new AdminUIApp({ authStrategy });
+const CategoriesSchema = require("./lists/Categories");
+const SeriesSchema = require("./lists/Series");
+const PostsShema = require("./lists/Posts");
+const TagsSchema = require("./lists/Tags");
 // create an instance of Keystone app
 const keystone = new Keystone({
   name: "Paradox Inversion",
   adapter: new MongooseAdapter()
 });
+
+keystone.createList("User", UsersSchema);
+keystone.createList("Todo", TodosSchema);
+keystone.createList("Category", CategoriesSchema);
+keystone.createList("Serial", SeriesSchema);
+keystone.createList("Tag", TagsSchema);
+keystone.createList("Post", PostsShema);
 
 const authStrategy = keystone.createAuthStrategy({
   type: PasswordAuthStrategy,
@@ -26,13 +34,7 @@ const authStrategy = keystone.createAuthStrategy({
   }
 });
 
-keystone.createList("Todo", {
-  fields: {
-    name: { type: Text }
-  }
-});
-
 module.exports = {
   keystone,
-  apps: [new GraphQLApp()]
+  apps: [new GraphQLApp(), new AdminUIApp({ authStrategy })]
 };
