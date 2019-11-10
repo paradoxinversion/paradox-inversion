@@ -210,27 +210,22 @@ export const getPreviousSerialPartData = (serialPost, serialsArray) => {
     const index = serialsArray.findIndex(
       post => post.seriesOrder == serialPost.seriesOrder
     );
-    console.log(index);
     if (index > -1) {
-      console.log("Previous:", serialsArray[index - 1]);
       return serialsArray[index - 1];
     }
   }
 };
 export const getNextSerialPartData = (serialPost, serialsArray) => {
-  console.log("DERP", serialPost, serialsArray.length);
   if (serialPost.seriesOrder < serialsArray.length) {
-    console.log("THIS IS RUNNINNG");
     const index = serialsArray.findIndex(
       post => post.seriesOrder == serialPost.seriesOrder
     );
-    console.log("inded for next", index);
     if (index > -1) {
-      console.log("Next:", serialsArray[index - +1]);
       return serialsArray[index + 1];
     }
   }
 };
+
 /**
  * Return an array of posts sorted by when they are published.
  * @param {Array} postArray

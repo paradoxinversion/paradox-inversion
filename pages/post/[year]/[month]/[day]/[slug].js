@@ -1,4 +1,3 @@
-import Head from "next/head";
 import {
   getPost,
   getPages,
@@ -71,7 +70,6 @@ Post.getInitialProps = async function({ query }) {
   let seriesData = [];
   if (postData.series) {
     seriesData = await getSeries(postData.series.url);
-    console.log("SD", seriesData);
   }
   return {
     pages: pageData,

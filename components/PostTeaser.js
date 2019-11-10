@@ -1,10 +1,7 @@
 import React from "react";
 import Link from "next/link";
+import { getPostPathParts } from "../appUtilities/utilityFunctions";
 
-import {
-  formatPostPath,
-  getPostPathParts
-} from "../appUtilities/utilityFunctions";
 const PostTeaser = ({ post }) => {
   try {
     const { publishDate, url, title, brief } = post;
@@ -20,10 +17,10 @@ const PostTeaser = ({ post }) => {
       </div>
     );
   } catch (e) {
-    console.log(e);
     return (
       <p>
-        An error occured loading this post. Jedai is probably working to fix it.
+        An error occured loading this widget. Jedai is probably working to fix
+        it.
       </p>
     );
   }

@@ -4,8 +4,7 @@ class SiteContainer extends Container {
   constructor(props) {
     super(props);
     this.state = {
-      pages: [],
-      test: "test"
+      pages: []
     };
   }
 
