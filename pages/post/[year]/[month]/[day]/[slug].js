@@ -10,7 +10,6 @@ import { NextSeo } from "next-seo";
 
 const Post = props => {
   const router = useRouter();
-  console.log(router);
   return (
     <MainLayout pages={props.pages}>
       <NextSeo
@@ -56,7 +55,6 @@ const Post = props => {
 };
 
 Post.getInitialProps = async function({ query }) {
-  console.log("Trying to load");
   const [pageData, postData] = await Promise.all([
     getPages(),
     getPost(query.slug)

@@ -22,6 +22,7 @@ module.exports = {
     seriesOrder: { type: Integer },
     tags: { type: Relationship, ref: "Tag.posts", many: true },
     author: { type: Relationship, ref: "User" },
+    page: { type: Relationship, ref: "Page" },
     publishDate: {
       type: DateTime,
       format: "MM/DD/YYYY",

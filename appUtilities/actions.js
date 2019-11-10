@@ -17,6 +17,24 @@ export const getPages = async () => {
   return pages.data.data.allPages;
 };
 
+export const getPage = async slug => {
+  const query = `
+  query{
+    allPages(where:{url:"${slug}"}){
+      id
+      title
+      url
+      isIndex
+      content
+    }
+  }
+  `;
+  const pages = await axiosInstance.post("/admin/api", {
+    query
+  });
+  return pages.data.data.allPages[0];
+};
+
 export const getHomePage = async pagesArray => {
   const homePageId = pagesArray.find(page => page.title === "Home").id;
   const query = `
@@ -31,7 +49,6 @@ export const getHomePage = async pagesArray => {
   }
   `;
   const homePage = await axiosInstance.post("/admin/api", { query });
-  console.log(homePage.data.data.Page);
   return homePage.data.data.Page;
 };
 export const getPost = async slug => {
@@ -50,7 +67,6 @@ export const getPost = async slug => {
   }
   `;
   const post = await axiosInstance.post(`/admin/api`, { query });
-  console.log(post);
   return post.data.data.allPosts[0];
 };
 
@@ -61,6 +77,10 @@ export const queryPosts = async (searchType, query) => {
 
   if (searchType === "tagged") {
     return await getTaggedPosts(query);
+  }
+
+  if (searchType === "page") {
+    return await getPagePosts(query);
   }
 };
 
@@ -84,10 +104,10 @@ export const getAllPosts = async () => {
 export const getTaggedPosts = async searchQuery => {
   const query = `
   query {
-    allTags(where: { tag: "${searchQuery}" }) {
+    allTags(where:{ tag: "${searchQuery}" }) {
       id
       tag
-      posts {
+      posts (where:{state: published}){
         id
         title
         brief
@@ -99,6 +119,23 @@ export const getTaggedPosts = async searchQuery => {
   `;
   const taggedPosts = await axiosInstance.post(`/admin/api`, { query });
   return taggedPosts.data.data.allTags[0].posts;
+};
+
+export const getPagePosts = async searchQuery => {
+  const query = `
+  query {
+    allPosts(where: { page: { title: "${searchQuery}" } }) {
+      id
+      title
+      brief
+      publishDate
+      url
+    }
+  }
+  `;
+  const pagePosts = await axiosInstance.post(`/admin/api`, { query });
+  console.log(pagePosts.data.data.allPosts);
+  return pagePosts.data.data.allPosts;
 };
 
 export const getSeries = async slug => {
@@ -124,6 +161,5 @@ export const sortPostsByDateTime = postArray => {
  * @returns {Array} Posts sorted by series order number
  */
 export const sortPostBySeriesOrder = postArray => {
-  console.log("sort");
   return postArray.sort((a, b) => a.seriesOrder - b.seriesOrder);
 };
