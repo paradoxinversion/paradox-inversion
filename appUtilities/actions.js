@@ -1,7 +1,7 @@
 import axiosInstance from "./axiosInstance";
 
 export const getPages = async () => {
-  const getPublishedPages = `
+  const query = `
   query{
     allPages{
       id
@@ -12,7 +12,7 @@ export const getPages = async () => {
   }
   `;
   const pages = await axiosInstance.post("/admin/api", {
-    query: getPublishedPages
+    query
   });
   return pages.data.data.allPages;
 };
@@ -35,8 +35,23 @@ export const getHomePage = async pagesArray => {
   return homePage.data.data.Page;
 };
 export const getPost = async slug => {
-  const post = await axiosInstance.get(`/post?slug=${slug}`);
-  return post;
+  const query = `
+  query{
+    allPosts(where: {url: "${slug}"}) {
+      id
+      title
+      brief
+      publishDate
+      url
+      socialMediaBrief
+      tags{tag id}
+      mainContent
+    }
+  }
+  `;
+  const post = await axiosInstance.post(`/admin/api`, { query });
+  console.log(post);
+  return post.data.data.allPosts[0];
 };
 
 export const queryPosts = async (searchType, query) => {

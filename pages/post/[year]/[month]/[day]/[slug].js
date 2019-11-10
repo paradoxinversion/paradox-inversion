@@ -10,6 +10,7 @@ import { NextSeo } from "next-seo";
 
 const Post = props => {
   const router = useRouter();
+  console.log(router);
   return (
     <MainLayout pages={props.pages}>
       <NextSeo
@@ -17,9 +18,9 @@ const Post = props => {
         description="Home of Fiction, Articles, and Games by Jedai Saboteur"
         openGraph={{
           type: "article",
-          url: `https://www.paradoxinversion.com${router.asPath}`,
+          // url: `https://www.paradoxinversion.com${router.asPath}`,
           title: `${props.post.title}`,
-          description: `${props.post.content.socialMediaBrief}`
+          description: `${props.post.socialMediaBrief}`
         }}
       />
       <header id="post-header" className="margin--1rem">
@@ -37,7 +38,7 @@ const Post = props => {
         id="post-content"
         className="margin--1rem"
         dangerouslySetInnerHTML={{
-          __html: props.post.content.extended
+          __html: props.post.mainContent
         }}
       />
 
@@ -55,13 +56,14 @@ const Post = props => {
 };
 
 Post.getInitialProps = async function({ query }) {
+  console.log("Trying to load");
   const [pageData, postData] = await Promise.all([
     getPages(),
     getPost(query.slug)
   ]);
   return {
-    pages: pageData.data,
-    post: postData.data
+    pages: pageData,
+    post: postData
   };
 };
 export default Post;

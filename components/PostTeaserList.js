@@ -34,7 +34,6 @@ class PostTeaserList extends React.Component {
     const { searchType, query } = this.props;
 
     const postData = await queryPosts(searchType, query);
-    console.log(postData);
     this.setState({
       fetchingPosts: false
     });

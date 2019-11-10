@@ -8,7 +8,6 @@ import {
 const PostTeaser = ({ post }) => {
   try {
     const { publishDate, url, title, brief } = post;
-    debugger;
     const [year, month, day] = getPostPathParts(publishDate);
     return (
       <div>

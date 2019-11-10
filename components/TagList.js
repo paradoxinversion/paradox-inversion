@@ -10,7 +10,7 @@ const TagList = ({ tags }) => {
           as={`/search?type=tagged&query=${tag}`}
           key={`tag-${tag}`}>
           <a className="color--white color--bg--black margin--right--1rem padding--1rem border--radius--6px text--align--center">
-            {tag}
+            {tag.tag}
           </a>
         </Link>
       ))}
