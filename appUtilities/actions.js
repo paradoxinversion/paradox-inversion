@@ -91,12 +91,14 @@ export const getTaggedPosts = async searchQuery => {
         id
         title
         brief
+        publishDate
+        url
       }
     }
   }
   `;
   const taggedPosts = await axiosInstance.post(`/admin/api`, { query });
-  return taggedPosts.data.data.allTags;
+  return taggedPosts.data.data.allTags[0].posts;
 };
 
 export const getSeries = async slug => {

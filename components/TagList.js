@@ -7,7 +7,7 @@ const TagList = ({ tags }) => {
       {tags.map(tag => (
         <Link
           href={{ path: "/search", query: { type: "tagged", query: "tag" } }}
-          as={`/search?type=tagged&query=${tag}`}
+          as={`/search?type=tagged&query=${tag.tag}`}
           key={`tag-${tag}`}>
           <a className="color--white color--bg--black margin--right--1rem padding--1rem border--radius--6px text--align--center">
             {tag.tag}
