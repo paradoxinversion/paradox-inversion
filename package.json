@@ -12,6 +12,7 @@
     "@keystonejs/auth-password": "^5.0.0",
     "@keystonejs/field-content": "^5.0.1",
     "@keystonejs/fields": "^5.0.2",
+    "@keystonejs/fields-datetime-utc": "^5.0.0",
     "@keystonejs/fields-wysiwyg-tinymce": "^5.0.0",
     "@keystonejs/keystone": "^5.1.0",
     "@zeit/next-css": "^1.0.1",
@@ -32,8 +33,7 @@
     "react-router-dom": "^4.3.1",
     "serialize-javascript": "^1.7.0",
     "unstated": "^2.1.1",
-    "unstated-connect": "^0.0.3",
-    "webpack": "^4.39.1"
+    "unstated-connect": "^0.0.3"
   },
   "devDependencies": {},
   "engines": {

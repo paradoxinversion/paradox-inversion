@@ -1,5 +1,4 @@
 const {
-  DateTime,
   Relationship,
   Integer,
   Select,
@@ -8,7 +7,7 @@ const {
 } = require("@keystonejs/fields");
 
 const { Wysiwyg } = require("@keystonejs/fields-wysiwyg-tinymce");
-
+const { DateTimeUtc } = require("@keystonejs/fields-datetime-utc");
 module.exports = {
   access: {
     create: ({ authentication: { item } }) => !!item && item.isAdmin,
@@ -37,9 +36,7 @@ module.exports = {
     author: { type: Relationship, ref: "User" },
     page: { type: Relationship, ref: "Page" },
     publishDate: {
-      type: DateTime,
-      format: "MM/DD/YYYY",
-      yearPickerType: "auto"
+      type: DateTimeUtc
     },
     brief: {
       type: Wysiwyg

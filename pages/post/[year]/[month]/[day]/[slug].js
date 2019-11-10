@@ -28,7 +28,7 @@ const Post = props => {
       <header id="post-header" className="margin--1rem">
         <h1 className="post__content__title">{props.post.title}</h1>
         <p className="post__content__date">
-          {formatDate(props.post.publishedAt)}
+          {formatDate(props.post.publishDate)}
         </p>
         {props.post.author && (
           <p className="is-italic">By {props.post.author.displayName}</p>

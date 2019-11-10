@@ -2085,6 +2085,17 @@
     "@keystonejs/adapter-knex" "^5.0.0"
     "@keystonejs/fields" "^5.0.0"
 
+"@keystonejs/fields-datetime-utc@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@keystonejs/fields-datetime-utc/-/fields-datetime-utc-5.0.0.tgz#f598e9a66de24bab9527f518da0cb33574e11150"
+  integrity sha512-e2I/KpC/YzQf3vPcag6X1SpDCwp5Zh6+CMlsmssrp7anhop7tP6a79NM6W5WgQuw/G33x7Q4TVsAeK2IlH3XOQ==
+  dependencies:
+    "@babel/runtime" "^7.4.3"
+    "@keystonejs/adapter-knex" "^5.0.0"
+    "@keystonejs/adapter-mongoose" "^5.0.0"
+    "@keystonejs/fields" "^5.0.0"
+    luxon "^1.11.4"
+
 "@keystonejs/fields-mongoid@^5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@keystonejs/fields-mongoid/-/fields-mongoid-5.0.0.tgz#02181f5a4f6a219ef8066a296378cda9f4d0c92e"
@@ -11613,35 +11624,6 @@ webpack@4.39.0:
   version "4.39.0"
   resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.39.0.tgz#1d511308c3dd8f9fe3152c9447ce30f1814a620c"
   integrity sha512-nrxFNSEKm4T1C/EsgOgN50skt//Pl4X7kgJC1MrlE47M292LSCVmMOC47iTGL0CGxbdwhKGgeThrJcw0bstEfA==
-  dependencies:
-    "@webassemblyjs/ast" "1.8.5"
-    "@webassemblyjs/helper-module-context" "1.8.5"
-    "@webassemblyjs/wasm-edit" "1.8.5"
-    "@webassemblyjs/wasm-parser" "1.8.5"
-    acorn "^6.2.1"
-    ajv "^6.10.2"
-    ajv-keywords "^3.4.1"
-    chrome-trace-event "^1.0.2"
-    enhanced-resolve "^4.1.0"
-    eslint-scope "^4.0.3"
-    json-parse-better-errors "^1.0.2"
-    loader-runner "^2.4.0"
-    loader-utils "^1.2.3"
-    memory-fs "^0.4.1"
-    micromatch "^3.1.10"
-    mkdirp "^0.5.1"
-    neo-async "^2.6.1"
-    node-libs-browser "^2.2.1"
-    schema-utils "^1.0.0"
-    tapable "^1.1.3"
-    terser-webpack-plugin "^1.4.1"
-    watchpack "^1.6.0"
-    webpack-sources "^1.4.1"
-
-webpack@^4.39.1:
-  version "4.41.2"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.41.2.tgz#c34ec76daa3a8468c9b61a50336d8e3303dce74e"
-  integrity sha512-Zhw69edTGfbz9/8JJoyRQ/pq8FYUoY0diOXqW0T6yhgdhCv6wr0hra5DwwWexNRns2Z2+gsnrNcbe9hbGBgk/A==
   dependencies:
     "@webassemblyjs/ast" "1.8.5"
     "@webassemblyjs/helper-module-context" "1.8.5"
