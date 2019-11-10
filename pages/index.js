@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-import { getPages } from "../appUtilities/actions";
+import { getPages, getHomePage } from "../appUtilities/actions";
 import SiteContainer from "../appUtilities/containers/SiteContainer";
 import React from "react";
 import MainLayout from "../components/MainLayout";
@@ -12,16 +12,13 @@ import Page from "./[slug]";
 class Index extends React.Component {
   static async getInitialProps() {
     const pageData = await getPages();
-    // await SiteContainer.setPages(pageData.data);
-    // return {
-    //   pages: pageData
-    // };
-    console.log(pageData);
-    return { pages: pageData };
+    const homePage = await getHomePage(pageData);
+    await SiteContainer.setPages(pageData.data);
+    return { pages: pageData, homePage };
   }
-  // async componentDidMount() {
-  //   await SiteContainer.setPages(this.props.pages);
-  // }
+  async componentDidMount() {
+    await SiteContainer.setPages(this.props.pages);
+  }
   render() {
     // return (
     //   <div>
@@ -65,7 +62,17 @@ class Index extends React.Component {
                 "Home of Fiction, Articles, and Games by Jedai Saboteur"
             }}
           />
-          <p>Paradox Inversion</p>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: this.props.homePage.content
+            }}
+          />
+          <PostTeaserList
+            searchType="all"
+            query="all"
+            customHeaderText="Latest Posts"
+            reverseOrder={true}
+          />
         </MainLayout>
       </div>
     );

@@ -23,8 +23,8 @@ module.exports = {
     content: {
       type: Wysiwyg
     },
-    testContent: {
-      type: Content
+    postSections: {
+      type: Text
     },
     isIndex: { type: Checkbox },
     state: {

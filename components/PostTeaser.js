@@ -7,18 +7,14 @@ import {
 } from "../appUtilities/utilityFunctions";
 const PostTeaser = ({ post }) => {
   try {
-    const {
-      publishedAt,
-      slug,
-      title,
-      content: { brief }
-    } = post;
-    const [year, month, day] = getPostPathParts(publishedAt, slug);
+    const { publishDate, url, title, brief } = post;
+    debugger;
+    const [year, month, day] = getPostPathParts(publishDate);
     return (
       <div>
         <Link
           href="/post/[year]/[month]/[day]/[slug]"
-          as={`/post/${year}/${month}/${day}/${slug}`}>
+          as={`/post/${year}/${month}/${day}/${url}`}>
           <a>{title}</a>
         </Link>
         <div dangerouslySetInnerHTML={{ __html: brief }} />

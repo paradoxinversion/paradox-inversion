@@ -1,4 +1,5 @@
 const {
+  DateTime,
   Relationship,
   Integer,
   Select,
@@ -21,6 +22,11 @@ module.exports = {
     seriesOrder: { type: Integer },
     tags: { type: Relationship, ref: "Tag.posts", many: true },
     author: { type: Relationship, ref: "User" },
+    publishDate: {
+      type: DateTime,
+      format: "MM/DD/YYYY",
+      yearPickerType: "auto"
+    },
     brief: {
       type: Wysiwyg
     },
@@ -39,4 +45,4 @@ module.exports = {
   labelField: "title"
 };
 
-// TODO: There should be processing of tags and publish date on save
+// TODO: There should be processing of publish date on save
