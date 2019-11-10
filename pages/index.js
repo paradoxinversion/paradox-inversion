@@ -12,17 +12,48 @@ import Page from "./[slug]";
 class Index extends React.Component {
   static async getInitialProps() {
     const pageData = await getPages();
-    await SiteContainer.setPages(pageData.data);
-    return {
-      pages: pageData.data
-    };
+    // await SiteContainer.setPages(pageData.data);
+    // return {
+    //   pages: pageData
+    // };
+    console.log(pageData);
+    return { pages: pageData };
   }
-  async componentDidMount() {
-    await SiteContainer.setPages(this.props.pages);
-  }
+  // async componentDidMount() {
+  //   await SiteContainer.setPages(this.props.pages);
+  // }
   render() {
+    // return (
+    //   <div>
+    //     <MainLayout pages={this.props.pages}>
+    //       <NextSeo
+    //         title="Paradox Inversion Press - Home"
+    //         description="Home of Fiction, Articles, and Games by Jedai Saboteur"
+    //         openGraph={{
+    //           url: "https://www.paradoxinversion.com",
+    //           title: "Paradox Inversion Press",
+    //           description:
+    //             "Home of Fiction, Articles, and Games by Jedai Saboteur"
+    //         }}
+    //       />
+
+    //       <div
+    //         dangerouslySetInnerHTML={{
+    //           __html: this.props.pages[0].content
+    //         }}
+    //       />
+    //       <PostTeaserList
+    //         searchType="all"
+    //         query="all"
+    //         customHeaderText="Latest Posts"
+    //         reverseOrder={true}
+    //       />
+    //     </MainLayout>
+    //   </div>
+    // );
     return (
       <div>
+        {" "}
         <MainLayout pages={this.props.pages}>
           <NextSeo
             title="Paradox Inversion Press - Home"
@@ -34,18 +65,7 @@ class Index extends React.Component {
                 "Home of Fiction, Articles, and Games by Jedai Saboteur"
             }}
           />
-
-          <div
-            dangerouslySetInnerHTML={{
-              __html: this.props.pages[0].content
-            }}
-          />
-          <PostTeaserList
-            searchType="all"
-            query="all"
-            customHeaderText="Latest Posts"
-            reverseOrder={true}
-          />
+          <p>Paradox Inversion</p>
         </MainLayout>
       </div>
     );

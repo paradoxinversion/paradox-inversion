@@ -8,6 +8,7 @@ const {
 } = require("@keystonejs/fields");
 
 const { Wysiwyg } = require("@keystonejs/fields-wysiwyg-tinymce");
+const { Content } = require("@keystonejs/field-content");
 
 module.exports = {
   adminConfig: {
@@ -21,6 +22,9 @@ module.exports = {
     pageOrder: { type: Integer },
     content: {
       type: Wysiwyg
+    },
+    testContent: {
+      type: Content
     },
     isIndex: { type: Checkbox },
     state: {

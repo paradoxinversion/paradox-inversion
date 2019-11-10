@@ -1,4 +1,4 @@
-import App, { Container } from "next/app";
+import App from "next/app";
 import React from "react";
 import { Provider } from "unstated";
 import Router from "next/router";
@@ -9,12 +9,12 @@ class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
-      <Container>
+      <React.Fragment>
         <DefaultSeo {...SEO} />
         <Provider>
           <Component {...pageProps} />
         </Provider>
-      </Container>
+      </React.Fragment>
     );
   }
 }

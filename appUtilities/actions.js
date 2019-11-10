@@ -1,8 +1,19 @@
 import axiosInstance from "./axiosInstance";
 
 export const getPages = async () => {
-  const pages = await axiosInstance.get("/pages");
-  return pages;
+  const getPublishedPages = `
+  query{
+    allPages{
+      id
+      title
+      url
+    }
+  }
+  `;
+  const pages = await axiosInstance.post("/admin/api", {
+    query: getPublishedPages
+  });
+  return pages.data.data.allPages;
 };
 
 export const getPost = async slug => {

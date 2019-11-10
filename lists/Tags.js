@@ -13,7 +13,7 @@ module.exports = {
       type: Text,
       isRequired: true
     },
-    posts: { type: Relationship, ref: "Post.tags" }
+    posts: { type: Relationship, ref: "Post.tags", many: true }
   },
   labelField: "tag"
 };

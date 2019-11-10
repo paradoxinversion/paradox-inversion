@@ -11,13 +11,13 @@ const MainHeader = props => {
             .filter(page => !page.isIndex)
             .map(page => (
               <Link
-                key={`page-${page.slug}`}
+                key={`page-${page.url}`}
                 href={"/[slug]"}
-                as={`/${page.slug}`}>
+                as={`/${page.url}`}>
                 <div
-                  key={`navlink-${page.slug}`}
+                  key={`navlink-${page.url}`}
                   className="nav__link"
-                  to={`/${page.slug}`}>
+                  to={`/${page.url}`}>
                   {page.title}
                 </div>
               </Link>
