@@ -1,6 +1,11 @@
 const { Text, Slug, Relationship } = require("@keystonejs/fields");
 
 module.exports = {
+  access: {
+    create: ({ authentication: { item } }) => !!item && item.isAdmin,
+    update: ({ authentication: { item } }) => !!item && item.isAdmin,
+    delete: ({ authentication: { item } }) => !!item && item.isAdmin
+  },
   adminConfig: {
     defaultSort: "tag"
   },

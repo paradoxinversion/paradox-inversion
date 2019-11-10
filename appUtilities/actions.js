@@ -124,7 +124,7 @@ export const getTaggedPosts = async searchQuery => {
 export const getPagePosts = async searchQuery => {
   const query = `
   query {
-    allPosts(where: { page: { title: "${searchQuery}" } }) {
+    allPosts(where: { page: { url: "${searchQuery}" } }) {
       id
       title
       brief

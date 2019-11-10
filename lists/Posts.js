@@ -10,6 +10,19 @@ const {
 const { Wysiwyg } = require("@keystonejs/fields-wysiwyg-tinymce");
 
 module.exports = {
+  access: {
+    create: ({ authentication: { item } }) => !!item && item.isAdmin,
+    read: ({ authentication: { item } }) => {
+      if (item) {
+        return {};
+      }
+      return {
+        state: "published"
+      };
+    },
+    update: ({ authentication: { item } }) => !!item && item.isAdmin,
+    delete: ({ authentication: { item } }) => !!item && item.isAdmin
+  },
   adminConfig: {
     defaultColumns: "title,author",
     defaultSort: "title"
@@ -40,7 +53,7 @@ module.exports = {
     state: {
       type: Select,
       options: "draft, published, archived",
-      default: "draft"
+      defaultValue: "draft"
     }
   },
   labelField: "title"
