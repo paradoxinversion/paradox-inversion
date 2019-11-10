@@ -1,5 +1,9 @@
 import Head from "next/head";
-import { getPost, getPages } from "../../../../../appUtilities/actions";
+import {
+  getPost,
+  getPages,
+  getSeries
+} from "../../../../../appUtilities/actions";
 import React from "react";
 import { formatDate } from "../../../../../appUtilities/utilityFunctions";
 import TagList from "../../../../../components/TagList";
@@ -41,7 +45,12 @@ const Post = props => {
         }}
       />
 
-      {props.post.series && <SeriesStepper post={props.post} />}
+      {props.post.series && (
+        <SeriesStepper
+          post={props.post}
+          seriesData={props.seriesData.seriesPosts}
+        />
+      )}
       <hr />
       <footer id="post-footer" className="post__metadata">
         <div className="margin--standard">
@@ -59,9 +68,15 @@ Post.getInitialProps = async function({ query }) {
     getPages(),
     getPost(query.slug)
   ]);
+  let seriesData = [];
+  if (postData.series) {
+    seriesData = await getSeries(postData.series.url);
+    console.log("SD", seriesData);
+  }
   return {
     pages: pageData,
-    post: postData
+    post: postData,
+    seriesData: seriesData
   };
 };
 export default Post;

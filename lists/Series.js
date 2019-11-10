@@ -22,6 +22,9 @@ module.exports = {
     url: { type: Slug, from: "title" },
     title: { type: Text, isRequired: true },
     synopsis: { type: Wysiwyg },
+    socialMediaBrief: {
+      type: Text
+    },
     seriesPosts: {
       type: Relationship,
       ref: "Post",

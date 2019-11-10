@@ -31,23 +31,21 @@ const Page = props => {
       <PostTeaserList searchType="page" query={props.page.url} />
 
       {/* {props.page.pagePostSections.length > 0 &&
-          props.page.pagePostSections.map(postSection => {
-            const typeAndQuery = postSection.split(" ");
-            return (
-              <PostTeaserList
-                key={`teaser-${typeAndQuery[0]}-${typeAndQuery[1]}`}
-                searchType={typeAndQuery[0]}
-                query={typeAndQuery[1]}
-              />
-            );
-          })} */}
+        props.page.pagePostSections.map(postSection => {
+          const typeAndQuery = postSection.split(" ");
+          return (
+            <PostTeaserList
+              key={`teaser-${typeAndQuery[0]}-${typeAndQuery[1]}`}
+              searchType={typeAndQuery[0]}
+              query={typeAndQuery[1]}
+            />
+          );
+        })} */}
     </MainLayout>
   );
 };
 Page.getInitialProps = async function({ query }) {
-  const pages = await getPages();
-  let page;
-  page = await getPage(query.slug);
+  const [pages, page] = await Promise.all([getPages(), getPage(query.slug)]);
 
   return {
     pages,

@@ -2,23 +2,32 @@ import React from "react";
 import Link from "next/link";
 
 import { formatPostPath } from "../appUtilities/utilityFunctions";
+import {
+  getPreviousSerialPartData,
+  getNextSerialPartData
+} from "../appUtilities/actions";
 
-const SeriesStepper = ({ post }) => {
-  const previous = post.previousPost ? (
+const SeriesStepper = ({ post, seriesData }) => {
+  const previous = getPreviousSerialPartData(post, seriesData) ? (
     <Link
       href="/post/[year]/[month]/[day]/[slug]"
       as={formatPostPath(
-        post.previousPost.publishedAt,
-        post.previousPost.slug
+        getPreviousSerialPartData(post, seriesData).publishDate,
+        getPreviousSerialPartData(post, seriesData).url
       )}>
-      <a>{`Previous: ${post.previousPost.title}`}</a>
+      <a>{`Previous: ${getPreviousSerialPartData(post, seriesData).title}`}</a>
     </Link>
   ) : null;
-  const next = post.nextPost ? (
+  const next = getNextSerialPartData(post, seriesData) ? (
     <Link
       href="/post/[year]/[month]/[day]/[slug]"
-      as={formatPostPath(post.nextPost.publishedAt, post.nextPost.slug)}>
-      <a id="next-part-link">{`Next: ${post.nextPost.title}`}</a>
+      as={formatPostPath(
+        getNextSerialPartData(post, seriesData).publishDate,
+        getNextSerialPartData(post, seriesData).url
+      )}>
+      <a id="next-part-link">{`Next: ${
+        getNextSerialPartData(post, seriesData).title
+      }`}</a>
     </Link>
   ) : null;
 

@@ -20,34 +20,6 @@ class Index extends React.Component {
     await SiteContainer.setPages(this.props.pages);
   }
   render() {
-    // return (
-    //   <div>
-    //     <MainLayout pages={this.props.pages}>
-    //       <NextSeo
-    //         title="Paradox Inversion Press - Home"
-    //         description="Home of Fiction, Articles, and Games by Jedai Saboteur"
-    //         openGraph={{
-    //           url: "https://www.paradoxinversion.com",
-    //           title: "Paradox Inversion Press",
-    //           description:
-    //             "Home of Fiction, Articles, and Games by Jedai Saboteur"
-    //         }}
-    //       />
-
-    //       <div
-    //         dangerouslySetInnerHTML={{
-    //           __html: this.props.pages[0].content
-    //         }}
-    //       />
-    //       <PostTeaserList
-    //         searchType="all"
-    //         query="all"
-    //         customHeaderText="Latest Posts"
-    //         reverseOrder={true}
-    //       />
-    //     </MainLayout>
-    //   </div>
-    // );
     return (
       <div>
         {" "}

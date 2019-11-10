@@ -1,5 +1,9 @@
 import axiosInstance from "./axiosInstance";
 
+/**
+ * Get all pages. The user will only see pages that are not
+ * 'published' if they are logged in due to access control.
+ */
 export const getPages = async () => {
   const query = `
   query{
@@ -17,6 +21,12 @@ export const getPages = async () => {
   return pages.data.data.allPages;
 };
 
+/**
+ * Get a specific page by URL. If the page is not published and
+ * the user is not logged in, will return undefined causing an
+ * error
+ * @param {String} slug - The slugified URL of the page
+ */
 export const getPage = async slug => {
   const query = `
   query{
@@ -35,6 +45,10 @@ export const getPage = async slug => {
   return pages.data.data.allPages[0];
 };
 
+/**
+ * Gets the Home page from the array of pages
+ * @param {Array} pagesArray - All available pages
+ */
 export const getHomePage = async pagesArray => {
   const homePageId = pagesArray.find(page => page.title === "Home").id;
   const query = `
@@ -51,6 +65,12 @@ export const getHomePage = async pagesArray => {
   const homePage = await axiosInstance.post("/admin/api", { query });
   return homePage.data.data.Page;
 };
+
+/**
+ * Gets a single post if it's been published or the user
+ * is logged in.
+ * @param {*} slug - The slugified title of the post
+ */
 export const getPost = async slug => {
   const query = `
   query{
@@ -61,8 +81,21 @@ export const getPost = async slug => {
       publishDate
       url
       socialMediaBrief
-      tags{tag id}
+      tags { 
+        tag 
+        id 
+      }
       mainContent
+      author { 
+        displayName 
+      }
+      category {
+        name
+      }
+      seriesOrder
+      series{
+        url
+      }
     }
   }
   `;
@@ -70,7 +103,15 @@ export const getPost = async slug => {
   return post.data.data.allPosts[0];
 };
 
+/**
+ * Gets posts depending on a search type and query--
+ * This is for searching for posts associated with
+ * pages, tags, categories, etc.
+ * @param {*} searchType
+ * @param {*} query
+ */
 export const queryPosts = async (searchType, query) => {
+  // ! Need Category Search
   if (searchType === "all") {
     return await getAllPosts();
   }
@@ -101,6 +142,11 @@ export const getAllPosts = async () => {
   return postData.data.data.allPosts;
 };
 
+/**
+ * Gets pubblished posts associated with the tag matching
+ * the search query.
+ * @param {*} searchQuery - The tag to search
+ */
 export const getTaggedPosts = async searchQuery => {
   const query = `
   query {
@@ -121,6 +167,10 @@ export const getTaggedPosts = async searchQuery => {
   return taggedPosts.data.data.allTags[0].posts;
 };
 
+/**
+ * Gets published posts associated with a page
+ * @param {String} searchQuery - The page url slug
+ */
 export const getPagePosts = async searchQuery => {
   const query = `
   query {
@@ -134,15 +184,53 @@ export const getPagePosts = async searchQuery => {
   }
   `;
   const pagePosts = await axiosInstance.post(`/admin/api`, { query });
-  console.log(pagePosts.data.data.allPosts);
   return pagePosts.data.data.allPosts;
 };
 
 export const getSeries = async slug => {
-  const seriesData = await axiosInstance(`/series?query=${slug}`);
-  return seriesData;
+  const query = `
+  query {
+    allSerials(where: {url: "${slug}"}){
+      seriesPosts(orderBy: "seriesOrder"){
+        id
+        seriesOrder
+        url
+        publishDate
+        title
+      }
+    }
+  }
+  `;
+  const series = await axiosInstance.post("/admin/api", { query });
+  return series.data.data.allSerials[0];
 };
 
+export const getPreviousSerialPartData = (serialPost, serialsArray) => {
+  if (serialPost.seriesOrder !== 1) {
+    const index = serialsArray.findIndex(
+      post => post.seriesOrder == serialPost.seriesOrder
+    );
+    console.log(index);
+    if (index > -1) {
+      console.log("Previous:", serialsArray[index - 1]);
+      return serialsArray[index - 1];
+    }
+  }
+};
+export const getNextSerialPartData = (serialPost, serialsArray) => {
+  console.log("DERP", serialPost, serialsArray.length);
+  if (serialPost.seriesOrder < serialsArray.length) {
+    console.log("THIS IS RUNNINNG");
+    const index = serialsArray.findIndex(
+      post => post.seriesOrder == serialPost.seriesOrder
+    );
+    console.log("inded for next", index);
+    if (index > -1) {
+      console.log("Next:", serialsArray[index - +1]);
+      return serialsArray[index + 1];
+    }
+  }
+};
 /**
  * Return an array of posts sorted by when they are published.
  * @param {Array} postArray

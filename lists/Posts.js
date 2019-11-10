@@ -31,7 +31,7 @@ module.exports = {
     url: { type: Slug, from: "title" },
     title: { type: Text, isRequired: true },
     category: { type: Relationship, ref: "Category" },
-    series: { type: Relationship, ref: "Serial" },
+    series: { type: Relationship, ref: "Serial.seriesPosts" },
     seriesOrder: { type: Integer },
     tags: { type: Relationship, ref: "Tag.posts", many: true },
     author: { type: Relationship, ref: "User" },
@@ -48,7 +48,7 @@ module.exports = {
       type: Wysiwyg
     },
     socialMediaBrief: {
-      type: Wysiwyg
+      type: Text
     },
     state: {
       type: Select,
