@@ -33,7 +33,7 @@ module.exports = {
     series: { type: Relationship, ref: "Serial.seriesPosts" },
     seriesOrder: { type: Integer },
     tags: { type: Relationship, ref: "Tag.posts", many: true },
-    author: { type: Relationship, ref: "User" },
+    author: { type: Relationship, ref: "User", isRequired: true },
     page: { type: Relationship, ref: "Page" },
     publishDate: {
       type: DateTimeUtc
