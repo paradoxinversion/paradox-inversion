@@ -1,5 +1,8 @@
-import Head from "next/head";
-import { getPost, getPages } from "../../../../../appUtilities/actions";
+import {
+  getPost,
+  getPages,
+  getSeries
+} from "../../../../../appUtilities/actions";
 import React from "react";
 import { formatDate } from "../../../../../appUtilities/utilityFunctions";
 import TagList from "../../../../../components/TagList";
@@ -19,13 +22,13 @@ const Post = props => {
           type: "article",
           url: `https://www.paradoxinversion.com${router.asPath}`,
           title: `${props.post.title}`,
-          description: `${props.post.content.socialMediaBrief}`
+          description: `${props.post.socialMediaBrief}`
         }}
       />
       <header id="post-header" className="margin--1rem">
         <h1 className="post__content__title">{props.post.title}</h1>
         <p className="post__content__date">
-          {formatDate(props.post.publishedAt)}
+          {formatDate(props.post.publishDate)}
         </p>
         {props.post.author && (
           <p className="is-italic">By {props.post.author.displayName}</p>
@@ -37,11 +40,16 @@ const Post = props => {
         id="post-content"
         className="margin--1rem"
         dangerouslySetInnerHTML={{
-          __html: props.post.content.extended
+          __html: props.post.mainContent
         }}
       />
 
-      {props.post.series && <SeriesStepper post={props.post} />}
+      {props.post.series && (
+        <SeriesStepper
+          post={props.post}
+          seriesData={props.seriesData.seriesPosts}
+        />
+      )}
       <hr />
       <footer id="post-footer" className="post__metadata">
         <div className="margin--standard">
@@ -59,9 +67,14 @@ Post.getInitialProps = async function({ query }) {
     getPages(),
     getPost(query.slug)
   ]);
+  let seriesData = [];
+  if (postData.series) {
+    seriesData = await getSeries(postData.series.url);
+  }
   return {
-    pages: pageData.data,
-    post: postData.data
+    pages: pageData,
+    post: postData,
+    seriesData: seriesData
   };
 };
 export default Post;

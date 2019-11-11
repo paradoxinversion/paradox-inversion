@@ -13,10 +13,9 @@ const Search = props => {
 };
 
 Search.getInitialProps = async function({ query }) {
-  // const postData = await queryPosts(query.type, query.query);
   const pageData = await getPages();
   return {
-    pages: pageData.data,
+    pages: pageData,
     search: {
       type: query.type,
       query: query.query

@@ -32,12 +32,11 @@ class PostTeaserList extends React.Component {
       fetchingPosts: true
     });
     const { searchType, query } = this.props;
-
     const postData = await queryPosts(searchType, query);
     this.setState({
       fetchingPosts: false
     });
-    return postData.data;
+    return postData;
   }
 
   renderTeasers() {
@@ -84,6 +83,7 @@ class PostTeaserList extends React.Component {
   render() {
     return (
       <div className="post-teaser-list">
+        {this.state.fetchingPosts && <p>Loading Posts...</p>}
         {this.state.content.length > 0 ? this.renderTeaserList() : null}
       </div>
     );

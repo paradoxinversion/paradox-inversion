@@ -1,36 +1,37 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { withRouter } from "next/router";
+
 import MainLayout from "../components/MainLayout";
-import { getPages } from "../appUtilities/actions";
+import { getPages, getPage } from "../appUtilities/actions";
 import PostTeaserList from "../components/PostTeaserList";
 import { NextSeo } from "next-seo";
 
 const Page = props => {
   const router = useRouter();
-  const page = props.pages.filter(page => page.slug === router.query.slug)[0];
-  console.log(router);
+
   return (
     <MainLayout pages={props.pages}>
       <NextSeo
-        title={`${page.title}`}
-        description={`${page.socialMediaBrief}`}
+        title={`${props.page.title}`}
+        description={`${props.page.socialMediaBrief}`}
         openGraph={{
-          url: `https://www.paradoxinversion.com${router.asPath}`,
-          title: `${page.title}`,
-          description: `${page.socialMediaBrief}`
+          url: `https://www.paradoxinversion.com/${router.asPath}`,
+          title: `${props.page.title}`,
+          description: `${props.page.socialMediaBrief}`
         }}
       />
-      {page.content && (
+      {props.page.content && (
         <div
           className="page__content"
-          dangerouslySetInnerHTML={{ __html: page.content }}
+          dangerouslySetInnerHTML={{ __html: props.page.content }}
         />
       )}
 
-      <PostTeaserList searchType="page" query={page.slug} />
+      <PostTeaserList searchType="page" query={props.page.url} />
 
-      {page.pagePostSections.length > 0 &&
-        page.pagePostSections.map(postSection => {
+      {/* {props.page.pagePostSections.length > 0 &&
+        props.page.pagePostSections.map(postSection => {
           const typeAndQuery = postSection.split(" ");
           return (
             <PostTeaserList
@@ -39,14 +40,16 @@ const Page = props => {
               query={typeAndQuery[1]}
             />
           );
-        })}
+        })} */}
     </MainLayout>
   );
 };
-Page.getInitialProps = async function() {
-  const pageData = await getPages();
+Page.getInitialProps = async function({ query }) {
+  const [pages, page] = await Promise.all([getPages(), getPage(query.slug)]);
+
   return {
-    pages: pageData.data
+    pages,
+    page
   };
 };
 export default Page;

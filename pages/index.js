@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-import { getPages } from "../appUtilities/actions";
+import { getPages, getHomePage } from "../appUtilities/actions";
 import SiteContainer from "../appUtilities/containers/SiteContainer";
 import React from "react";
 import MainLayout from "../components/MainLayout";
@@ -12,10 +12,9 @@ import Page from "./[slug]";
 class Index extends React.Component {
   static async getInitialProps() {
     const pageData = await getPages();
+    const homePage = await getHomePage(pageData);
     await SiteContainer.setPages(pageData.data);
-    return {
-      pages: pageData.data
-    };
+    return { pages: pageData, homePage };
   }
   async componentDidMount() {
     await SiteContainer.setPages(this.props.pages);
@@ -23,6 +22,7 @@ class Index extends React.Component {
   render() {
     return (
       <div>
+        {" "}
         <MainLayout pages={this.props.pages}>
           <NextSeo
             title="Paradox Inversion Press - Home"
@@ -34,10 +34,9 @@ class Index extends React.Component {
                 "Home of Fiction, Articles, and Games by Jedai Saboteur"
             }}
           />
-
           <div
             dangerouslySetInnerHTML={{
-              __html: this.props.pages[0].content
+              __html: this.props.homePage.content
             }}
           />
           <PostTeaserList
