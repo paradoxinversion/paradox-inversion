@@ -16,6 +16,7 @@ const keystone = new Keystone({
   name: "Paradox Inversion",
   adapter: new MongooseAdapter(),
   cookieSecret: process.env.COOKIE_SECRET,
+  secureCookies: false,
   onConnect: async () => {
     const users = await keystone.lists.User.adapter.findAll();
     if (!users.length) {
