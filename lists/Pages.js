@@ -1,13 +1,7 @@
-const {
-  Relationship,
-  Integer,
-  Select,
-  Text,
-  Slug,
-  Checkbox
-} = require("@keystonejs/fields");
+const { Integer, Select, Text, Slug } = require("@keystonejs/fields");
 
 const { Wysiwyg } = require("@keystonejs/fields-wysiwyg-tinymce");
+// TODO: Figure out how much slate I need to know to utilize this effectively
 const { Content } = require("@keystonejs/field-content");
 
 module.exports = {
@@ -39,7 +33,6 @@ module.exports = {
     postSections: {
       type: Text
     },
-    isIndex: { type: Checkbox },
     state: {
       type: Select,
       options: "draft, published, archived",

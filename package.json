@@ -40,11 +40,9 @@
     "node": "12.2.0"
   },
   "scripts": {
-    "start": "NODE_ENV=production forever start ./keystone/keystone.js",
-    "dev": "node ./keystone/keystone.js",
     "build": "keystone build",
-    "start:dev": "keystone",
-    "start:local": "keystone start"
+    "start": "NODE_ENV=production keystone start",
+    "start:dev": "keystone"
   },
   "browserslist": [
     "since 2017-06"

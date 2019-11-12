@@ -14,7 +14,15 @@ const PagesSchema = require("./lists/Pages");
 
 const keystone = new Keystone({
   name: "Paradox Inversion",
-  adapter: new MongooseAdapter()
+  adapter: new MongooseAdapter(),
+  cookieSecret: process.env.COOKIE_SECRET,
+  onConnect: async () => {
+    const users = await keystone.lists.User.adapter.findAll();
+    if (!users.length) {
+      const initialData = require("./initialData");
+      await keystone.createItems(initialData);
+    }
+  }
 });
 
 keystone.createList("User", UsersSchema);

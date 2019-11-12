@@ -11,7 +11,6 @@ export const getPages = async () => {
       id
       title
       url
-      isIndex
     }
   }
   `;
@@ -34,7 +33,6 @@ export const getPage = async slug => {
       id
       title
       url
-      isIndex
       content
     }
   }
