@@ -1,4 +1,4 @@
-const { Integer, Select, Text, Slug } = require("@keystonejs/fields");
+const { Integer, Select, Text, Slug, Checkbox } = require("@keystonejs/fields");
 
 const { Wysiwyg } = require("@keystonejs/fields-wysiwyg-tinymce");
 // TODO: Figure out how much slate I need to know to utilize this effectively
@@ -37,6 +37,10 @@ module.exports = {
       type: Select,
       options: "draft, published, archived",
       defaultValue: "draft"
+    },
+    shownInNav: {
+      type: Checkbox,
+      defaultValue: false
     }
   },
   labelField: "title"

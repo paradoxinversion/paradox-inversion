@@ -11,6 +11,7 @@ export const getPages = async () => {
       id
       title
       url
+      shownInNav
     }
   }
   `;
@@ -34,6 +35,7 @@ export const getPage = async slug => {
       title
       url
       content
+      shownInNav
     }
   }
   `;

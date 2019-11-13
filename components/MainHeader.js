@@ -8,7 +8,7 @@ const MainHeader = props => {
       <div className="nav">
         {props.pages ? (
           props.pages
-            .filter(page => page.title !== "Home")
+            .filter(page => page.title !== "Home" && page.shownInNav)
             .map(page => (
               <Link
                 key={`page-${page.url}`}
