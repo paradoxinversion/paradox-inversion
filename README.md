@@ -19,7 +19,7 @@ Ensure `mongod` is running beginning. To start developing, execute `yarn run dev
 
 ## Building and Running for Production
 
-On the production machine, ensure that mongo is running and execute `yarn run build && yarn start`.
+On the production machine, ensure that mongo is running and execute `yarn run build && forever start -c "yarn start" ./dist`.
 
 ## Scripts
 
