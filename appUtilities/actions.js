@@ -36,6 +36,7 @@ export const getPage = async slug => {
       url
       content
       shownInNav
+      socialMediaBrief
     }
   }
   `;
