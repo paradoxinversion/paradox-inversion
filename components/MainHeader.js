@@ -9,17 +9,18 @@ const MainHeader = props => {
         {props.pages ? (
           props.pages
             .filter(page => page.title !== "Home" && page.shownInNav)
-            .map(page => (
+            .map((page, index) => (
               <Link
                 key={`page-${page.url}`}
                 href={"/[slug]"}
-                as={`/${page.url}`}>
-                <div
+                as={`/${page.url}`}
+                tabindex={index}>
+                <a
                   key={`navlink-${page.url}`}
-                  className="nav__link"
+                  className="nav__link cursor--is--pointer"
                   to={`/${page.url}`}>
                   {page.title}
-                </div>
+                </a>
               </Link>
             ))
         ) : (

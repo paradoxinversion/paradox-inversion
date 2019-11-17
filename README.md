@@ -2,54 +2,47 @@
 
 The API is driven by Keystonejs (for CMS functionality) and Nextjs (for React/SSR implementation).
 
-This repo is largely for (Jedai's) personal use. It may or may not be well documented and will likely be messy.
+This repo is largely for (Jedai's) personal use, but has reached a stage at which it might be useful for anyone trying to make a similar blog without having to do too much tweaking.
 
 ## Environment
 
-Some PI configuration is handled via envrionment variables. The project uses dotenv, so a .env file should be present on executing machines with the following:
-
-```env
-API_URL=http(s)://...
-GOOGLE_ANALYTICS_TRACKING_ID=UA-...
-```
+Some PI configuration is handled via envrionment variables. The project uses dotenv, so a .env file should be present on machines running the software. Copy or create a new `.env.` file with the values from `.env.example`, replacing values with your own as necessary.
 
 ## Developing
 
-Ensure `mongod` is running beginning. To start developing, execute `yarn run dev`. This will create a Nextjs server with hot reloading.
+Ensure MongoDB is running and Port 3000 is is not in use. To start developing, execute `yarn start:dev`. This will instantiate Keystone, connect to the database, and prepare GraphQL.
+
+Restarting the server will be necessary when making any changes to Keystone (such has changing Keystone Lists). Changes to Keystone lists may break existing items unless changed values are properly handled (ie, migrated). See Keystone5 documentation for more details.
 
 ## Building and Running for Production
 
-On the production machine, ensure that mongo is running and execute `yarn run build && forever start -c "yarn start" ./dist`.
+To build the site, run `yarn run build`. A `dist` directory will be created in the project root if there are no errors.
+
+Run the project with `yarn start`.
+
+### Remote Server Run
+
+Ensure the machine has `forever.js` installed globally and that it is available to the user running the instance. Ensure that mongo is running and execute `forever start -c "yarn start" ./dist`.
 
 ## Scripts
 
-**start**: Run the bundled server in production mode. Environment variables are set, designating production status and pointing the api url to localhost.
+**start**: Run the built Keystone isntance in production mode.
 
-**dev**: Starts the Nextjs server and Keystone. Remember to have mongo running or it will fail.
+**start:dev**: Run the development server.
 
-**build**: Runs build-server and build-client
-
-## Server
-
-Log into Linode vps
-
-The server uses Screen to keep the instance alive (while making browsing the vps possible)
-
-Use ctrl-a to reattach to the screen session
-
-to disconnect from screen use
+**build**: Build the project for production.
 
 ## Deployment (Manual)
 
-SSH to remote machine, enter pass
+SSH to remote machine, enter credentials
 
-Navigate to remote paradox-inversion folder
+Navigate to remote paradox-inversion deployment folder.
 
-git pull the latest version of the `deploy` branch
+`git pull` the latest version of the `deploy` branch. Ensure dependencies are up to date.
 
-build the project with `yarn run build`.
+Build the project with `yarn run build`.
 
-## API Routes
+## Site Routes
 
 `/`
 
@@ -74,9 +67,56 @@ Returns a single post
 
 ## Keystone
 
+(This section is under heavy construction)
+
+### Access Control
+
+For most lists, only a logged-in user can create, update, or delete entries. This setup also there is one user (me :)), who is also the administrator. You may want to tweak that if you intend to use this as a basis for a site with multiple account-holding users.
+
+### Common Fields
+
+#### Url
+
+A sluggified version of the title or name of the item. Should be unique at certain levels, but doesn't matter as much for others. For instance, it matters for pages because the URLS would clash. For posts, the date posted matters more, as posts with different dates but matching names have different (complete) urls.
+
+#### Title
+
+Just a name. Might migrate instances of lists using `name` to this for consistency.
+
+#### Social Media Brief
+
+Text content that will be added to opengraph/twitter cards/etc on social media.
+
+#### State
+
+The 'post state' of the item-- Draft (working on it, not visible to public), Published (done, visible to public).
+
+### Categories
+
+#### Access
+
+Logged In: C, U, D
+
+All: R
+
+#### Fields
+
+- url
+- name
+- description
+
 ### Pages
 
 Pages are the basic grouping mechanism of content. Pages have the following fields
+
+- url
+- title
+- socialMediaBrief
+- pageOrder
+- content
+- postSections
+- state
+- shownInNav
 
 #### Name
 
@@ -85,10 +125,6 @@ The name of the page. This is also slugified
 #### Page Order
 
 The order (from left to right) in which the page should appear in the header, ascending.
-
-#### Is Index (may be deprecated)
-
-Indicates the page is THE index page of the site. Likely deprecated
 
 #### Page Post Sections
 
