@@ -10,7 +10,7 @@ import MainLayout from "../../../../../components/MainLayout";
 import SeriesStepper from "../../../../../components/SeriesStepper";
 import { useRouter } from "next/router";
 import { NextSeo } from "next-seo";
-
+import ReactMarkdown from "react-markdown";
 const Post = props => {
   const router = useRouter();
   return (
@@ -36,13 +36,19 @@ const Post = props => {
       </header>
       <hr />
 
-      <main
-        id="post-content"
-        className="margin--1rem"
-        dangerouslySetInnerHTML={{
-          __html: props.post.mainContent
-        }}
-      />
+      {props.post.mainContent ? (
+        <main
+          id="post-content"
+          className="margin--1rem"
+          dangerouslySetInnerHTML={{
+            __html: props.post.mainContent
+          }}
+        />
+      ) : (
+        <div id="post-content" className="margin--1rem">
+          <ReactMarkdown source={props.post.markdownContent} />
+        </div>
+      )}
 
       {props.post.series && (
         <SeriesStepper

@@ -5,7 +5,7 @@ const {
   Text,
   Slug
 } = require("@keystonejs/fields");
-
+const { Markdown } = require("@keystonejs/fields-markdown");
 const { Wysiwyg } = require("@keystonejs/fields-wysiwyg-tinymce");
 const { DateTimeUtc } = require("@keystonejs/fields-datetime-utc");
 module.exports = {
@@ -43,6 +43,9 @@ module.exports = {
     },
     mainContent: {
       type: Wysiwyg
+    },
+    markdownContent: {
+      type: Markdown
     },
     socialMediaBrief: {
       type: Text

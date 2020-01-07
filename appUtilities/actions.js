@@ -87,6 +87,7 @@ export const getPost = async slug => {
         id 
       }
       mainContent
+      markdownContent
       author { 
         displayName 
       }
