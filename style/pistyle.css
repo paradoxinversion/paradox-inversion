@@ -128,15 +128,18 @@
   --route-content-padding-top: 18px;
   --route-content-padding-bottom: 18px;
 }
+
 pre,
 code {
   border-radius: 4px;
   background-color: #ffbcbc;
 }
+
 pre {
   padding: 0.5rem 0.5rem;
   overflow: scroll;
 }
+
 p code {
   padding: 0 0.5rem;
 }
