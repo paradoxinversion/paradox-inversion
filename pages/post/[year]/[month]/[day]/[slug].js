@@ -46,7 +46,10 @@ const Post = props => {
         />
       ) : (
         <div id="post-content" className="margin--1rem">
-          <ReactMarkdown source={props.post.markdownContent} />
+          <ReactMarkdown
+            className="markdown-post"
+            source={props.post.markdownContent}
+          />
         </div>
       )}
 

@@ -363,3 +363,6 @@ hr {
 .cursor--is--pointer {
   cursor: pointer;
 }
+.markdown-post {
+  width: calc(100vw - 4rem);
+}
