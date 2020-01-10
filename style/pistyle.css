@@ -125,6 +125,7 @@
 }
 .post__content__title {
   word-break: break-word;
+  hyphens: auto;
 }
 :root {
   --route-content-padding-top: 18px;
