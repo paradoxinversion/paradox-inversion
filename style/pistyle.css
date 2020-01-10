@@ -138,6 +138,7 @@ code {
 pre {
   padding: 0.5rem 0.5rem;
   overflow: scroll;
+  font-size: 14px;
 }
 
 p code {
@@ -173,7 +174,8 @@ h3 {
 }
 
 p {
-  font-size: 18px;
+  /* font-size: 18px; */
+  font-size: 14px;
   margin-block-start: 0.5rem;
   margin-block-end: 1.5rem;
 }
@@ -295,7 +297,7 @@ p {
 }
 
 .logo {
-  font-size: 36px;
+  font-size: 32px;
   width: 100%;
   display: grid;
   justify-content: center;
@@ -333,17 +335,36 @@ hr {
 #post-content {
   flex-grow: 1;
 }
-.container--main {
+#container--main {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
-@media screen and (max-width: 400px) {
+
+.cursor--is--pointer {
+  cursor: pointer;
+}
+
+.markdown-post {
+  width: inherit;
+}
+
+@media screen and (max-width: 1024px) {
   .flex--mobile {
     flex-direction: column;
   }
+  .markdown-post {
+    width: calc(100vw - 4rem);
+  }
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 1025px) {
+  p {
+    font-size: 16px;
+  }
+  .main--bg {
+    width: 100vw;
+  }
   .nav {
     justify-content: center;
   }
@@ -354,15 +375,8 @@ hr {
   }
 
   #post-container,
-  .container--main {
+  #container--main {
     width: 60%;
     margin: 0 auto;
   }
-}
-
-.cursor--is--pointer {
-  cursor: pointer;
-}
-.markdown-post {
-  width: calc(100vw - 4rem);
 }

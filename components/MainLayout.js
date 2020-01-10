@@ -9,7 +9,9 @@ const MainLayout = props => {
     <div id="main-layout">
       <MainHeader pages={props.pages} />
       <div className="main--bg">
-        <div className="margin--standard container--main">{props.children}</div>
+        <div id="container--main" className="margin--standard">
+          {props.children}
+        </div>
       </div>
       <MainFooter />
     </div>
