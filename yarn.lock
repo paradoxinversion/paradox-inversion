@@ -12282,9 +12282,9 @@ tinycolor2@^1.4.1:
   integrity sha1-9PrTM0R7wLB9TcjpIJ2POaisd+g=
 
 tinymce@^5.0.3:
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/tinymce/-/tinymce-5.1.1.tgz#fd0d2ad1d07e9aa60a88d391b1cdcaa6402f3104"
-  integrity sha512-gdIt9kMNkQrDA0vm9mLcqnDBMMwDV6xsIaug0UzbRUnLpcOjR8JnE0P12GwrA/+9/p8IZiHcolGN9xAD/XxDzw==
+  version "5.4.1"
+  resolved "https://registry.yarnpkg.com/tinymce/-/tinymce-5.4.1.tgz#4c101e78cbd22c148d6013f7c66eb0cb480723db"
+  integrity sha512-eUjwDVCTSHSnFfpzX5TjTHXsGj5gvPQwzo3RFDF374gfK5voHqcRGojvQnu4NtNW1BAb012/KW1tkXBbUrEveg==
 
 tmp@^0.0.33:
   version "0.0.33"
