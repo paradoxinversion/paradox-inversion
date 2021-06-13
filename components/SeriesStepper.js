@@ -4,7 +4,7 @@ import Link from "next/link";
 import { formatPostPath } from "../appUtilities/utilityFunctions";
 import {
   getPreviousSerialPartData,
-  getNextSerialPartData
+  getNextSerialPartData,
 } from "../appUtilities/actions";
 
 const SeriesStepper = ({ post, seriesData }) => {
@@ -14,7 +14,8 @@ const SeriesStepper = ({ post, seriesData }) => {
       as={formatPostPath(
         getPreviousSerialPartData(post, seriesData).publishDate,
         getPreviousSerialPartData(post, seriesData).url
-      )}>
+      )}
+    >
       <a>{`Previous: ${getPreviousSerialPartData(post, seriesData).title}`}</a>
     </Link>
   ) : null;
@@ -24,7 +25,8 @@ const SeriesStepper = ({ post, seriesData }) => {
       as={formatPostPath(
         getNextSerialPartData(post, seriesData).publishDate,
         getNextSerialPartData(post, seriesData).url
-      )}>
+      )}
+    >
       <a id="next-part-link">{`Next: ${
         getNextSerialPartData(post, seriesData).title
       }`}</a>
@@ -32,7 +34,7 @@ const SeriesStepper = ({ post, seriesData }) => {
   ) : null;
 
   return (
-    <div className="flex flex--justify-content--space-between flex--mobile margin--1rem">
+    <div>
       {previous && previous}
       {next && next}
     </div>

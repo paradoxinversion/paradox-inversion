@@ -31,12 +31,13 @@ class Index extends React.Component {
               url: "https://www.paradoxinversion.com",
               title: "Paradox Inversion Press",
               description:
-                "Home of Fiction, Articles, and Games by Jedai Saboteur"
+                "Home of Fiction, Articles, and Games by Jedai Saboteur",
             }}
           />
           <div
+            className="mb-8"
             dangerouslySetInnerHTML={{
-              __html: this.props.homePage.content
+              __html: this.props.homePage.content,
             }}
           />
           <PostTeaserList

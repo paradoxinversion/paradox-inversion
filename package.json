@@ -37,9 +37,13 @@
     "unstated": "^2.1.1",
     "unstated-connect": "^0.0.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "autoprefixer": "^9",
+    "postcss": "^7",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+  },
   "engines": {
-    "node": "12.2.0"
+    "node": "14.17.0"
   },
   "scripts": {
     "build": "keystone build",

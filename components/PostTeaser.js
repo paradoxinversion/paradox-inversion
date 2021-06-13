@@ -7,13 +7,21 @@ const PostTeaser = ({ post }) => {
     const { publishDate, url, title, brief } = post;
     const [year, month, day] = getPostPathParts(publishDate);
     return (
-      <div>
+      <div className="rounded mb-4">
         <Link
           href="/post/[year]/[month]/[day]/[slug]"
-          as={`/post/${year}/${month}/${day}/${url}`}>
-          <a>{title}</a>
+          as={`/post/${year}/${month}/${day}/${url}`}
+        >
+          <a className="post-teaster__title text-3xl">{title}</a>
         </Link>
+
         <div dangerouslySetInnerHTML={{ __html: brief }} />
+        <Link
+          href="/post/[year]/[month]/[day]/[slug]"
+          as={`/post/${year}/${month}/${day}/${url}`}
+        >
+          <a className="post-teaster__title">Read it </a>
+        </Link>
       </div>
     );
   } catch (e) {

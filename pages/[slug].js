@@ -7,7 +7,7 @@ import { getPages, getPage } from "../appUtilities/actions";
 import PostTeaserList from "../components/PostTeaserList";
 import { NextSeo } from "next-seo";
 
-const Page = props => {
+const Page = (props) => {
   const router = useRouter();
 
   return (
@@ -18,14 +18,11 @@ const Page = props => {
         openGraph={{
           url: `https://www.paradoxinversion.com/${router.asPath}`,
           title: `${props.page.title}`,
-          description: `${props.page.socialMediaBrief}`
+          description: `${props.page.socialMediaBrief}`,
         }}
       />
       {props.page.content && (
-        <div
-          className="page__content"
-          dangerouslySetInnerHTML={{ __html: props.page.content }}
-        />
+        <div dangerouslySetInnerHTML={{ __html: props.page.content }} />
       )}
 
       <PostTeaserList searchType="page" query={props.page.url} />
@@ -49,7 +46,7 @@ Page.getInitialProps = async function({ query }) {
 
   return {
     pages,
-    page
+    page,
   };
 };
 export default Page;
