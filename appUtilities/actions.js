@@ -12,11 +12,12 @@ export const getPages = async () => {
       title
       url
       shownInNav
+      
     }
   }
   `;
   const pages = await axiosInstance.post("/admin/api", {
-    query
+    query,
   });
   return pages.data.data.allPages;
 };
@@ -27,7 +28,7 @@ export const getPages = async () => {
  * error
  * @param {String} slug - The slugified URL of the page
  */
-export const getPage = async slug => {
+export const getPage = async (slug) => {
   const query = `
   query{
     allPages(where:{url:"${slug}"}){
@@ -37,11 +38,12 @@ export const getPage = async slug => {
       content
       shownInNav
       socialMediaBrief
+      pageType
     }
   }
   `;
   const pages = await axiosInstance.post("/admin/api", {
-    query
+    query,
   });
   return pages.data.data.allPages[0];
 };
@@ -50,8 +52,8 @@ export const getPage = async slug => {
  * Gets the Home page from the array of pages
  * @param {Array} pagesArray - All available pages
  */
-export const getHomePage = async pagesArray => {
-  const homePageId = pagesArray.find(page => page.title === "Home").id;
+export const getHomePage = async (pagesArray) => {
+  const homePageId = pagesArray.find((page) => page.title === "Home").id;
   const query = `
   query {
     Page(where: {id: "${homePageId}"}) {
@@ -60,6 +62,7 @@ export const getHomePage = async pagesArray => {
       title
       socialMediaBrief
       content
+      
     }
   }
   `;
@@ -72,7 +75,7 @@ export const getHomePage = async pagesArray => {
  * is logged in.
  * @param {*} slug - The slugified title of the post
  */
-export const getPost = async slug => {
+export const getPost = async (slug) => {
   const query = `
   query{
     allPosts(where: {url: "${slug}"}) {
@@ -149,7 +152,7 @@ export const getAllPosts = async () => {
  * the search query.
  * @param {*} searchQuery - The tag to search
  */
-export const getTaggedPosts = async searchQuery => {
+export const getTaggedPosts = async (searchQuery) => {
   const query = `
   query {
     allTags(where:{ tag: "${searchQuery}" }) {
@@ -173,7 +176,7 @@ export const getTaggedPosts = async searchQuery => {
  * Gets published posts associated with a page
  * @param {String} searchQuery - The page url slug
  */
-export const getPagePosts = async searchQuery => {
+export const getPagePosts = async (searchQuery) => {
   const query = `
   query {
     allPosts(where: { page: { url: "${searchQuery}" } }) {
@@ -189,7 +192,7 @@ export const getPagePosts = async searchQuery => {
   return pagePosts.data.data.allPosts;
 };
 
-export const getSeries = async slug => {
+export const getSeries = async (slug) => {
   const query = `
   query {
     allSerials(where: {url: "${slug}"}){
@@ -210,7 +213,7 @@ export const getSeries = async slug => {
 export const getPreviousSerialPartData = (serialPost, serialsArray) => {
   if (serialPost.seriesOrder !== 1) {
     const index = serialsArray.findIndex(
-      post => post.seriesOrder == serialPost.seriesOrder
+      (post) => post.seriesOrder == serialPost.seriesOrder
     );
     if (index > -1) {
       return serialsArray[index - 1];
@@ -220,7 +223,7 @@ export const getPreviousSerialPartData = (serialPost, serialsArray) => {
 export const getNextSerialPartData = (serialPost, serialsArray) => {
   if (serialPost.seriesOrder < serialsArray.length) {
     const index = serialsArray.findIndex(
-      post => post.seriesOrder == serialPost.seriesOrder
+      (post) => post.seriesOrder == serialPost.seriesOrder
     );
     if (index > -1) {
       return serialsArray[index + 1];
@@ -233,7 +236,7 @@ export const getNextSerialPartData = (serialPost, serialsArray) => {
  * @param {Array} postArray
  * @returns {Array} Posts sorted by the time they were published
  */
-export const sortPostsByDateTime = postArray => {
+export const sortPostsByDateTime = (postArray) => {
   return postArray.sort(
     (a, b) =>
       new Date(a.publishedAt).getTime() - new Date(b.publishedAt).getTime()
@@ -245,6 +248,6 @@ export const sortPostsByDateTime = postArray => {
  * @param {Array} postArray
  * @returns {Array} Posts sorted by series order number
  */
-export const sortPostBySeriesOrder = postArray => {
+export const sortPostBySeriesOrder = (postArray) => {
   return postArray.sort((a, b) => a.seriesOrder - b.seriesOrder);
 };

@@ -6,9 +6,12 @@ import {
   sortPostBySeriesOrder,
   sortPostsByDateTime,
 } from "../appUtilities/actions";
+import PostTeaserListHeader from "./PostTeaserList/PostTeaserListHeader";
+
 const PostTeaserList = (props) => {
   const [fetchingPosts, setFetchingPosts] = useState(false);
   const [content, setContent] = useState([]);
+
   const fetchPosts = async () => {
     setFetchingPosts(true);
     const { searchType, query } = props;
@@ -16,6 +19,7 @@ const PostTeaserList = (props) => {
     setFetchingPosts(false);
     return postData;
   };
+
   useEffect(() => {
     const getPosts = async () => {
       if (content.length === 0) {
@@ -27,42 +31,33 @@ const PostTeaserList = (props) => {
     getPosts();
   }, []);
 
-  const renderTeasers = () => {
+  const orderTeasers = () => {
     // TODO: Can I just get rid of the !== undef?
     const isSeries = !!content[0].seriesOrder !== undefined;
     const orderFunction = isSeries
       ? sortPostBySeriesOrder
       : sortPostsByDateTime;
-    const orderedContent = orderFunction(content).map((post) => (
-      <PostTeaser key={post.slug} post={post} />
-    ));
+
+    const orderedContent = orderFunction(content);
     if (props.reverseOrder) {
       orderedContent.reverse();
     }
     return orderedContent;
   };
 
-  const renderTeaserList = () => {
-    return (
+  return (
+    <div>
+      {fetchingPosts && <p>Loading Posts...</p>}
       <div>
-        {props.customHeaderText ? (
-          <div className="text-center sm:text-left">
-            <p className="barcode barcode--large">I See You.</p>
-            <p className="post-teaser-header">{props.customHeaderText}</p>
-          </div>
-        ) : (
-          <p>
-            {props.searchType === "page"
-              ? `Recent Posts`
-              : props.searchType === "category"
-              ? `Recent Posts in ${props.query}`
-              : props.searchType === "series"
-              ? `Recent posts in this series`
-              : `Recent Posts tagged ${props.query}`}
-          </p>
-        )}
-        {content.length > 0 ? (
-          renderTeasers()
+        <PostTeaserListHeader
+          customHeaderText={props.customHeaderText}
+          query={props.query}
+        />
+
+        {!!content.length ? (
+          orderTeasers().map((post) => (
+            <PostTeaser key={post.url} post={post} />
+          ))
         ) : (
           <p>
             Couldn't find any tagged or category posts with the name '
@@ -70,13 +65,6 @@ const PostTeaserList = (props) => {
           </p>
         )}
       </div>
-    );
-  };
-
-  return (
-    <div>
-      {fetchingPosts && <p>Loading Posts...</p>}
-      {content.length > 0 ? renderTeaserList() : null}
     </div>
   );
 };

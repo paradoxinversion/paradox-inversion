@@ -1,5 +1,5 @@
 import App from "next/app";
-import React from "react";
+import React, {Fragment} from "react";
 import { Provider } from "unstated";
 import Router from "next/router";
 import withGA from "next-ga";
@@ -9,12 +9,12 @@ class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
     return (
-      <React.Fragment>
+      <Fragment>
         <DefaultSeo {...SEO} />
         <Provider>
           <Component {...pageProps} />
         </Provider>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }
