@@ -1,12 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import SectionHeader from "../SectionHeader";
 const PostTeaserListHeader = (props) => {
   return (
     <React.Fragment>
       {props.customHeaderText ? (
         <div className="text-center sm:text-left">
-          <p className="barcode barcode--large">I See You.</p>
-          <p className="post-teaser-header">{props.customHeaderText}</p>
+          <p className="barcode barcode--large">I see you.</p>
+          <p className="post-teaser--header--text">Latest Posts</p>
         </div>
       ) : (
         <p>

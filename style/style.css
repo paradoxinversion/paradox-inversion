@@ -4,24 +4,79 @@ body {
   background-color: #171717;
   color: white;
 }
+a {
+  /* color: red; */
+}
+a:hover {
+  text-decoration: underline;
+}
 .logo {
+  font-family: "Bebas Neue", cursive;
+}
+
+.font-bebas {
   font-family: "Bebas Neue", cursive;
 }
 .sidebar {
   min-width: 120px;
 }
-.post-teaser-header {
+
+.barcode-header {
+  margin-top: -3.05rem;
+}
+.post-teaser--header--text {
   font-family: "Bebas Neue", cursive;
   letter-spacing: 8px;
   font-size: 2.25rem;
   margin-top: -3.05rem;
 }
 
+.pi-header--text {
+  font-family: "Bebas Neue", cursive;
+  font-size: 2.25rem;
+}
+.pi-header--text__barcode {
+  font-family: "Bebas Neue", cursive;
+  font-size: 2.25rem;
+}
+
+.pi-content > p {
+  margin-bottom: 0.5rem;
+}
+
+.pi-content a {
+  color: red;
+}
+
+.pi-content > h1 {
+  font-family: "Bebas Neue", cursive;
+  font-size: 2rem;
+}
+
+.pi-content > h2 {
+  font-family: "Bebas Neue", cursive;
+  font-size: 1.5rem;
+}
+
+.pi-content > h3 {
+  font-family: "Bebas Neue", cursive;
+  /* font-size: 2rem; */
+}
+
+.pi-content pre {
+  @apply border rounded p-2 overflow-y-auto my-4;
+}
+
+.pi-content p > code {
+  background-color: #353535;
+  @apply inline-block px-2 py-1 text-sm rounded;
+}
 @layer components {
   .barcode {
     font-family: "Libre Barcode 39", cursive;
-
-    /* line-height: 0; */
+  }
+  .barcode--md {
+    font-size: 32px;
   }
   .barcode--large {
     font-size: 56px;

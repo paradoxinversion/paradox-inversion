@@ -25,45 +25,51 @@ const Post = (props) => {
           description: `${props.post.socialMediaBrief}`,
         }}
       />
-      <header id="post-header">
-        <h1>{props.post.title}</h1>
-        <p>{formatDate(props.post.publishDate)}</p>
+      <header id="post-header" className="mb-4">
+        <h1 className="pi-header--text">{props.post.title}</h1>
         {props.post.author && <p>By {props.post.author.displayName}</p>}
+        <p>{formatDate(props.post.publishDate)}</p>
       </header>
-      <hr />
+      <hr className="mb-8" />
+      <div className="flex-grow flex flex-col lg:flex-row">
+        {props.post.mainContent ? (
+          <div
+            id="post-content"
+            className="pi-content flex-grow max-w-prose mx-auto"
+            dangerouslySetInnerHTML={{
+              __html: props.post.mainContent,
+            }}
+          />
+        ) : (
+          <main id="post-content" className="pi-content max-w-prose mx-auto">
+            <ReactMarkdown source={props.post.markdownContent} />
+          </main>
+        )}
+        {props.post.series && (
+          <SeriesStepper
+            post={props.post}
+            seriesData={props.seriesData.seriesPosts}
+          />
+        )}
+      </div>
 
-      {props.post.mainContent ? (
-        <main
-          id="post-content"
-          dangerouslySetInnerHTML={{
-            __html: props.post.mainContent,
-          }}
-        />
-      ) : (
-        <div id="post-content">
-          <ReactMarkdown source={props.post.markdownContent} />
-        </div>
-      )}
-
-      {props.post.series && (
-        <SeriesStepper
-          post={props.post}
-          seriesData={props.seriesData.seriesPosts}
-        />
-      )}
-      <hr />
-      <footer id="post-footer">
+      <hr className="my-4" />
+      <footer id="post-footer" className="mb-4">
         <div>
           {/* TODO: make this link to category section search page */}
-          {props.post.category && <p>Category: {props.post.category.name}</p>}
-          <TagList tags={props.post.tags} />
+          {props.post.category && (
+            <p className="font-bebas text-xl">
+              Category: {props.post.category.name}
+            </p>
+          )}
+          {!!props.post.tags.length && <TagList tags={props.post.tags} />}
         </div>
       </footer>
     </MainLayout>
   );
 };
 
-Post.getInitialProps = async function({ query }) {
+Post.getInitialProps = async function ({ query }) {
   const [pageData, postData] = await Promise.all([
     getPages(),
     getPost(query.slug),

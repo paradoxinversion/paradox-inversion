@@ -24,7 +24,7 @@ const MainLayout = (props) => {
       <div className="flex flex-grow flex-col mx-4 sm:flex-row ">
         {navOpen && <MobileNav pages={props.pages} />}
         {navOpen && <Sidebar pages={props.pages} />}
-        <div className="">{props.children}</div>
+        <div className="flex flex-col flex-grow sm:w-3/4">{props.children}</div>
       </div>
       <MainFooter />
     </div>

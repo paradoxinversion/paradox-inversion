@@ -6,6 +6,8 @@ import MainLayout from "../components/MainLayout";
 import { getPages, getPage } from "../appUtilities/actions";
 import PostTeaserList from "../components/PostTeaserList";
 import { NextSeo } from "next-seo";
+import SectionHeader from "../components/SectionHeader";
+import PostTeaserListHeader from "../components/PostTeaserList/PostTeaserListHeader";
 
 const Page = (props) => {
   const router = useRouter();
@@ -21,8 +23,18 @@ const Page = (props) => {
           description: `${props.page.socialMediaBrief}`,
         }}
       />
+      <p className="pi-header--text text-center sm:text-left">
+        {props.page.title}
+      </p>
+      <p className="barcode text-center sm:text-left">
+        The world is not so simple
+      </p>
       {props.page.content && (
-        <div dangerouslySetInnerHTML={{ __html: props.page.content }} />
+        <div
+          id="page-content"
+          className="pi-content"
+          dangerouslySetInnerHTML={{ __html: props.page.content }}
+        />
       )}
 
       {props.page.pageType !== "standard" && (
