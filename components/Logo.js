@@ -1,11 +1,11 @@
+import React from "react";
 import Link from "next/link";
 
 const Logo = () => {
   return (
     <Link href="/" as="/">
-      <div className="logo">
-        <span className="logo__p">Paradox</span>{" "}
-        <span className="logo__i">Inversion</span>
+      <div className="cursor-pointer logo text-5xl">
+        <span>Paradox</span> <span>Inversion</span>
       </div>
     </Link>
   );

@@ -33,18 +33,34 @@
     "react-ga": "^2.5.7",
     "react-markdown": "^4.3.1",
     "react-router-dom": "^4.3.1",
+    "react-select": "^4.3.1",
     "serialize-javascript": "^1.7.0",
     "unstated": "^2.1.1",
     "unstated-connect": "^0.0.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.14.5",
+    "@storybook/addon-actions": "^6.2.9",
+    "@storybook/addon-essentials": "^6.2.9",
+    "@storybook/addon-links": "^6.2.9",
+    "@storybook/addon-postcss": "^2.0.0",
+    "@storybook/react": "^6.2.9",
+    "autoprefixer": "^9",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-react-require": "^3.1.3",
+    "postcss": "^7",
+    "prettier": "2.3.1",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+  },
   "engines": {
-    "node": "12.2.0"
+    "node": "14.17.0"
   },
   "scripts": {
     "build": "keystone build",
     "start": "NODE_ENV=production keystone start",
-    "start:dev": "keystone"
+    "start:dev": "keystone",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "browserslist": [
     "since 2017-06"

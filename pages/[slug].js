@@ -6,8 +6,10 @@ import MainLayout from "../components/MainLayout";
 import { getPages, getPage } from "../appUtilities/actions";
 import PostTeaserList from "../components/PostTeaserList";
 import { NextSeo } from "next-seo";
+import SectionHeader from "../components/SectionHeader";
+import PostTeaserListHeader from "../components/PostTeaserList/PostTeaserListHeader";
 
-const Page = props => {
+const Page = (props) => {
   const router = useRouter();
 
   return (
@@ -18,38 +20,35 @@ const Page = props => {
         openGraph={{
           url: `https://www.paradoxinversion.com/${router.asPath}`,
           title: `${props.page.title}`,
-          description: `${props.page.socialMediaBrief}`
+          description: `${props.page.socialMediaBrief}`,
         }}
       />
+      <p className="pi-header--text text-center sm:text-left">
+        {props.page.title}
+      </p>
+      <p className="barcode text-center sm:text-left">
+        The world is not so simple
+      </p>
       {props.page.content && (
         <div
-          className="page__content"
+          id="page-content"
+          className="pi-content"
           dangerouslySetInnerHTML={{ __html: props.page.content }}
         />
       )}
 
-      <PostTeaserList searchType="page" query={props.page.url} />
-
-      {/* {props.page.pagePostSections.length > 0 &&
-        props.page.pagePostSections.map(postSection => {
-          const typeAndQuery = postSection.split(" ");
-          return (
-            <PostTeaserList
-              key={`teaser-${typeAndQuery[0]}-${typeAndQuery[1]}`}
-              searchType={typeAndQuery[0]}
-              query={typeAndQuery[1]}
-            />
-          );
-        })} */}
+      {props.page.pageType !== "standard" && (
+        <PostTeaserList searchType="page" query={props.page.url} />
+      )}
     </MainLayout>
   );
 };
-Page.getInitialProps = async function({ query }) {
+Page.getInitialProps = async function ({ query }) {
   const [pages, page] = await Promise.all([getPages(), getPage(query.slug)]);
 
   return {
     pages,
-    page
+    page,
   };
 };
 export default Page;

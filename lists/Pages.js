@@ -12,15 +12,15 @@ module.exports = {
         return {};
       }
       return {
-        state: "published"
+        state: "published",
       };
     },
     update: ({ authentication: { item } }) => !!item && item.isAdmin,
-    delete: ({ authentication: { item } }) => !!item && item.isAdmin
+    delete: ({ authentication: { item } }) => !!item && item.isAdmin,
   },
   adminConfig: {
     defaultColumns: "title,pageOrder",
-    defaultSort: "pageOrder"
+    defaultSort: "pageOrder",
   },
   fields: {
     url: { type: Slug, from: "title" },
@@ -28,20 +28,25 @@ module.exports = {
     socialMediaBrief: { type: Text },
     pageOrder: { type: Integer },
     content: {
-      type: Wysiwyg
+      type: Wysiwyg,
     },
     postSections: {
-      type: Text
+      type: Text,
     },
     state: {
       type: Select,
       options: "draft, published, archived",
-      defaultValue: "draft"
+      defaultValue: "draft",
+    },
+    pageType: {
+      type: Select,
+      options: "standard, series",
+      defaultValue: "standard",
     },
     shownInNav: {
       type: Checkbox,
-      defaultValue: false
-    }
+      defaultValue: false,
+    },
   },
-  labelField: "title"
+  labelField: "title",
 };

@@ -1,7 +1,7 @@
 import {
   getPost,
   getPages,
-  getSeries
+  getSeries,
 } from "../../../../../appUtilities/actions";
 import React from "react";
 import { formatDate } from "../../../../../appUtilities/utilityFunctions";
@@ -11,7 +11,7 @@ import SeriesStepper from "../../../../../components/SeriesStepper";
 import { useRouter } from "next/router";
 import { NextSeo } from "next-seo";
 import ReactMarkdown from "react-markdown";
-const Post = props => {
+const Post = (props) => {
   const router = useRouter();
   return (
     <MainLayout pages={props.pages}>
@@ -22,59 +22,57 @@ const Post = props => {
           type: "article",
           url: `https://www.paradoxinversion.com${router.asPath}`,
           title: `${props.post.title}`,
-          description: `${props.post.socialMediaBrief}`
+          description: `${props.post.socialMediaBrief}`,
         }}
       />
-      <header id="post-header" className="margin--1rem">
-        <h1 className="post__content__title">{props.post.title}</h1>
-        <p className="post__content__date">
-          {formatDate(props.post.publishDate)}
-        </p>
-        {props.post.author && (
-          <p className="is-italic">By {props.post.author.displayName}</p>
-        )}
+      <header id="post-header" className="mb-4">
+        <h1 className="pi-header--text">{props.post.title}</h1>
+        {props.post.author && <p>By {props.post.author.displayName}</p>}
+        <p>{formatDate(props.post.publishDate)}</p>
       </header>
-      <hr />
-
-      {props.post.mainContent ? (
-        <main
-          id="post-content"
-          className="margin--1rem"
-          dangerouslySetInnerHTML={{
-            __html: props.post.mainContent
-          }}
-        />
-      ) : (
-        <div id="post-content" className="margin--1rem">
-          <ReactMarkdown
-            className="markdown-post"
-            source={props.post.markdownContent}
+      <hr className="mb-8" />
+      <div className="flex-grow flex flex-col lg:flex-row">
+        {props.post.mainContent ? (
+          <div
+            id="post-content"
+            className="pi-content flex-grow max-w-prose mx-auto"
+            dangerouslySetInnerHTML={{
+              __html: props.post.mainContent,
+            }}
           />
-        </div>
-      )}
+        ) : (
+          <main id="post-content" className="pi-content max-w-prose mx-auto">
+            <ReactMarkdown source={props.post.markdownContent} />
+          </main>
+        )}
+        {props.post.series && (
+          <SeriesStepper
+            post={props.post}
+            seriesData={props.seriesData.seriesPosts}
+          />
+        )}
+      </div>
 
-      {props.post.series && (
-        <SeriesStepper
-          post={props.post}
-          seriesData={props.seriesData.seriesPosts}
-        />
-      )}
-      <hr />
-      <footer id="post-footer" className="post__metadata">
-        <div className="margin--standard">
+      <hr className="my-4" />
+      <footer id="post-footer" className="mb-4">
+        <div>
           {/* TODO: make this link to category section search page */}
-          {props.post.category && <p>Category: {props.post.category.name}</p>}
-          <TagList tags={props.post.tags} />
+          {props.post.category && (
+            <p className="font-bebas text-xl">
+              Category: {props.post.category.name}
+            </p>
+          )}
+          {!!props.post.tags.length && <TagList tags={props.post.tags} />}
         </div>
       </footer>
     </MainLayout>
   );
 };
 
-Post.getInitialProps = async function({ query }) {
+Post.getInitialProps = async function ({ query }) {
   const [pageData, postData] = await Promise.all([
     getPages(),
-    getPost(query.slug)
+    getPost(query.slug),
   ]);
   let seriesData = [];
   if (postData.series) {
@@ -83,7 +81,7 @@ Post.getInitialProps = async function({ query }) {
   return {
     pages: pageData,
     post: postData,
-    seriesData: seriesData
+    seriesData: seriesData,
   };
 };
 export default Post;
