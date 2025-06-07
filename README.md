@@ -1,5 +1,7 @@
 # Paradox Inversion
 
+> This is the **old** version of Paradox Inversion Press. The new version implements a separate [client](https://github.com/paradoxinversion/paradox-inversion-press-client) and [cms](https://github.com/paradoxinversion/paradox-inversion-press-client), utilizing Keystone 6.
+
 The API is driven by Keystonejs (for CMS functionality) and Nextjs (for React/SSR implementation).
 
 This repo is largely for (Jedai's) personal use, but has reached a stage at which it might be useful for anyone trying to make a similar blog without having to do too much tweaking.
